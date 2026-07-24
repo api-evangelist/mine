@@ -1,0 +1,93 @@
+openapi: 3.0.1
+info:
+  title: MineOS Aispm Employee API
+  version: v1.0
+servers:
+- url: https://api.portal.saymine.com/
+  description: MineOS EU API Endpoint
+- url: https://api.us.portal.saymine.com/
+  description: MineOS US API Endpoint
+security:
+- Bearer: []
+tags:
+- name: Employee
+paths:
+  /api/public-v1/employee/List:
+    get:
+      tags:
+      - Employee
+      summary: Retrieves a list of the non-archived company Employees with pagination parameters.
+      parameters:
+      - name: offset
+        in: query
+        description: The optional starting point for pagination. If not provided, it defaults to 0.
+        schema:
+          type: integer
+          format: int32
+      - name: limit
+        in: query
+        description: The optional maximum number of employees to retrieve. If not provided, it defaults to 100.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EmployeePublicResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+components:
+  schemas:
+    ErrorPublicResponse:
+      type: object
+      properties:
+        internalErrorCode:
+          $ref: '#/components/schemas/InternalErrorCode'
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EmployeePublicResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    InternalErrorCode:
+      enum:
+      - GeneralError
+      - NotFound
+      - AlreadyExists
+      - InvalidArgument
+      type: string
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: "Authorization header using the Bearer scheme. \r\n\r\nEnter 'Bearer' [space] and then your API Key in the text input below.\r\n\r\nExample: 'Bearer 12345abcdef'"
+      name: Authorization
+      in: header

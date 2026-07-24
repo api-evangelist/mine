@@ -1,0 +1,81 @@
+openapi: 3.0.1
+info:
+  title: MineOS Aispm AispmEnroll API
+  version: v1.0
+servers:
+- url: https://api.portal.saymine.com/
+  description: MineOS EU API Endpoint
+- url: https://api.us.portal.saymine.com/
+  description: MineOS US API Endpoint
+security:
+- Bearer: []
+tags:
+- name: AispmEnroll
+paths:
+  /enroll:
+    post:
+      tags:
+      - AispmEnroll
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/EnrollmentRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrollmentRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EnrollmentRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EnrollmentRequest'
+      responses:
+        '200':
+          description: Success
+  /enroll/renew:
+    post:
+      tags:
+      - AispmEnroll
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/RenewRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RenewRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/RenewRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/RenewRequest'
+      responses:
+        '200':
+          description: Success
+components:
+  schemas:
+    EnrollmentRequest:
+      type: object
+      properties:
+        token:
+          type: string
+          nullable: true
+        csr:
+          type: string
+          nullable: true
+      additionalProperties: false
+    RenewRequest:
+      type: object
+      properties:
+        csr:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: "Authorization header using the Bearer scheme. \r\n\r\nEnter 'Bearer' [space] and then your API Key in the text input below.\r\n\r\nExample: 'Bearer 12345abcdef'"
+      name: Authorization
+      in: header

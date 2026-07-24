@@ -1,0 +1,141 @@
+openapi: 3.0.1
+info:
+  title: MineOS Aispm Partners API
+  version: v1.0
+servers:
+- url: https://api.portal.saymine.com/
+  description: MineOS EU API Endpoint
+- url: https://api.us.portal.saymine.com/
+  description: MineOS US API Endpoint
+security:
+- Bearer: []
+tags:
+- name: Partners
+paths:
+  /api/Partners/ActivateAccount:
+    post:
+      tags:
+      - Partners
+      summary: Create a new account
+      description: "Creating an account results in an invite being sent to the email address in the request.\r\n            If the company already has an account, the request will be denied."
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ActivationRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActivationRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ActivationRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ActivationRequest'
+      responses:
+        '200':
+          description: Returns the newly created account ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivationResponse'
+        '400':
+          description: The request contains an invalid parameter
+        '401':
+          description: The request is not authenticated properly
+        '409':
+          description: The domain already has a company assigned to it
+  /api/Partners/AccountInfo:
+    get:
+      tags:
+      - Partners
+      summary: Gets account information
+      description: A partner can only get information for accounts he is allowed to. Partners are automatically allowed to account created by them.
+      parameters:
+      - name: accountId
+        in: query
+        description: The ID of the account to get information for
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the information for the account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
+        '400':
+          description: The request contains an invalid parameter
+        '401':
+          description: The request is not authenticated properly
+        '403':
+          description: The partner is not authorized to access the account ID or it does not exist
+components:
+  schemas:
+    InfoResponse:
+      type: object
+      properties:
+        privacyCenterUrl:
+          type: string
+          description: Privacy Center URL
+          nullable: true
+          example: https://acmecorp.saymine.io/acmecorp
+        users:
+          type: integer
+          description: Number of users with access to the account.
+          format: int32
+          example: 1
+        closedRequests:
+          type: integer
+          description: Total number of already handled requests.
+          format: int32
+          example: 10
+        openRequests:
+          type: integer
+          description: Total number of currently open requests that need to be handled.
+          format: int32
+          example: 3
+      additionalProperties: false
+    ActivationResponse:
+      type: object
+      properties:
+        accountId:
+          type: string
+          description: Account ID of the newly created account.
+          nullable: true
+          example: 8d78993b-73ac-4fa1-a3d3-a8fca7a061c7
+      additionalProperties: false
+    ActivationRequest:
+      required:
+      - companyName
+      - domains
+      - userEmail
+      type: object
+      properties:
+        userEmail:
+          minLength: 1
+          type: string
+          description: "Email address of the first user to have access to the new account.\r\nthe email address provided must be a business account (not a free domain like gmail/outlook/...)"
+          example: johndoe@acmecorp.com
+        companyName:
+          minLength: 1
+          type: string
+          description: Name of the company for which the account is created.
+          example: Acme Corp
+        cmpProductId:
+          type: string
+          description: 'Optional: If the customer for which the account is being created has a CMP solution, insert its product ID here so it will be linked from the platform. If you are not sure the product ID of you CMP solution, reach out to us.'
+          nullable: true
+        domains:
+          type: array
+          items:
+            type: string
+          description: A list of website domains that are used by the customer for which the account is being created. At least one is required.
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: "Authorization header using the Bearer scheme. \r\n\r\nEnter 'Bearer' [space] and then your API Key in the text input below.\r\n\r\nExample: 'Bearer 12345abcdef'"
+      name: Authorization
+      in: header

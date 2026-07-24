@@ -1,0 +1,1645 @@
+openapi: 3.0.1
+info:
+  title: MineOS Aispm Tickets API
+  version: v1.0
+servers:
+- url: https://api.portal.saymine.com/
+  description: MineOS EU API Endpoint
+- url: https://api.us.portal.saymine.com/
+  description: MineOS US API Endpoint
+security:
+- Bearer: []
+tags:
+- name: Tickets
+paths:
+  /api/ticket/List:
+    get:
+      tags:
+      - Tickets
+      summary: List all requests
+      description: "Returns a paginated list of tickets. Use the cursor tokens in the response to fetch the next or previous page.\r\nAll query filters are optional. Closed requests created more than 3 months ago are not included in the response."
+      parameters:
+      - name: State
+        in: query
+        description: 'Filter by list of ticket states. The default is all. Possible values are: [Open, Closed, Redacted, Processing, Notify, Delete, Redacting, Edit, Unverified]'
+        schema:
+          type: string
+          example: Processing,Notify
+        example: Processing,Notify
+      - name: PrivacyRightIds
+        in: query
+        description: Filter by list of right ids. The default is all.
+        schema:
+          type: string
+          example: delete
+        example: delete
+      - name: BrandIds
+        in: query
+        description: Filter by list of brand ids. The default is all.
+        schema:
+          type: string
+      - name: MinCreatedAt
+        in: query
+        description: 'Filter by created at dates - return only requests that were created after the provided date at 00:00, in the format: yyyy-MM-dd.'
+        schema:
+          type: string
+          example: '2023-05-20'
+        example: '2023-05-20'
+      - name: MaxCreatedAt
+        in: query
+        description: 'Filter by created at dates - return only requests that were created before the provided date at 00:00, iin the format: yyyy-MM-dd'
+        schema:
+          type: string
+          example: '2023-05-20'
+        example: '2023-05-20'
+      - name: MinClosedAt
+        in: query
+        description: "Filter by closed at dates - return only requests that were closed after the provided date at 00:00, in the format: yyyy-MM-dd.\r\nRelevant for tickets that were closed after 13/03/2024."
+        schema:
+          type: string
+          example: '2024-04-20'
+        example: '2024-04-20'
+      - name: MaxClosedAt
+        in: query
+        description: "Filter by closed at dates - return only requests that were closed before the provided date at 00:00, iin the format: yyyy-MM-dd.\r\nRelevant for tickets that were closed after 13/03/2024."
+        schema:
+          type: string
+          example: '2024-04-20'
+        example: '2024-04-20'
+      - name: After
+        in: query
+        schema:
+          type: string
+      - name: Before
+        in: query
+        schema:
+          type: string
+      - name: Size
+        in: query
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestsListResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: string
+  /api/ticket/{ticketId}:
+    get:
+      tags:
+      - Tickets
+      summary: Get ticket
+      parameters:
+      - name: ticketId
+        in: path
+        description: TicketID of the request to get info for
+        required: true
+        schema:
+          type: string
+        example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketInfo'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+  /api/ticket/{ticketId}/log:
+    get:
+      tags:
+      - Tickets
+      summary: Get ticket logs
+      parameters:
+      - name: ticketId
+        in: path
+        description: TicketID of the request to get info for
+        required: true
+        schema:
+          type: string
+        example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketLogs'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+  /api/ticket/{ticketId}/dueDate:
+    post:
+      tags:
+      - Tickets
+      summary: Update the due date of a request
+      parameters:
+      - name: ticketId
+        in: path
+        description: TicketID of the request to upadte due date for
+        required: true
+        schema:
+          type: string
+        example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/DueDateUpdateRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DueDateUpdateRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DueDateUpdateRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DueDateUpdateRequest'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+  /api/ticket/Create/v2:
+    post:
+      tags:
+      - Tickets
+      summary: Create request [v2]
+      description: "Duplication handling - if there was already an attempt to create a ticket with the same email with the same request type in the last minute,\r\nwe return 202 with the existing ticket id and avoid creating another one"
+      parameters:
+      - name: test
+        in: query
+        description: When test is True a request will not actually be created
+        schema:
+          type: boolean
+        example: false
+      requestBody:
+        description: the details of the request
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/RequestCreateWithPrivacyRightRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestCreateWithPrivacyRightRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/RequestCreateWithPrivacyRightRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/RequestCreateWithPrivacyRightRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestCreateResponse'
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestCreateResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+  /api/ticket/CreateMany:
+    post:
+      tags:
+      - Tickets
+      summary: Create many requests
+      description: "Duplication handling - if there was already an attempt to create a request with the same email and the same request type in the last minute,\r\nwe return the existing request id and avoid creating another one.\r\nFailure in creating a request will be indicated in the response,\r\nif any request creation fails, the system continuous with the rest of the requests"
+      parameters:
+      - name: test
+        in: query
+        description: When test is True no requests will actually be created
+        schema:
+          type: boolean
+        example: false
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/RequestCreateWithPrivacyRightRequest'
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/RequestCreateWithPrivacyRightRequest'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/RequestCreateWithPrivacyRightRequest'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/RequestCreateWithPrivacyRightRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SingleRequestCreateResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+  /api/ticket/GetMetadata:
+    get:
+      tags:
+      - Tickets
+      summary: Get metadata
+      description: Used to read metadata or custom identifiers from the request.
+      parameters:
+      - name: ticketId
+        in: query
+        description: TicketID of the request to update status for
+        schema:
+          type: string
+        example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketGetMetadataResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+  /api/ticket/UpdateMetadata:
+    post:
+      tags:
+      - Tickets
+      summary: Update metadata
+      description: Used to store metadata or custom identifiers on the request.
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/TicketUpdateMetadataRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketUpdateMetadataRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/TicketUpdateMetadataRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/TicketUpdateMetadataRequest'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+  /api/ticket/{ticketId}/require-attention:
+    post:
+      tags:
+      - Tickets
+      summary: Mark/unmark a ticket with the Require Attention label
+      description: "Will pause any automatic ticket runs until marked as reviewed.\r\nWill not pause any data mutation process once the processing automation step has started"
+      parameters:
+      - name: ticketId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/TicketMarkAsRequireAttentionRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketMarkAsRequireAttentionRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/TicketMarkAsRequireAttentionRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/TicketMarkAsRequireAttentionRequest'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+  /api/ticket/{ticketId}/group-assignment:
+    post:
+      tags:
+      - Tickets
+      summary: Assign a group to a request
+      parameters:
+      - name: ticketId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/GroupAssignmentRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupAssignmentRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GroupAssignmentRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GroupAssignmentRequest'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+  /api/ticket/AddNote:
+    post:
+      tags:
+      - Tickets
+      summary: Add a note
+      parameters:
+      - name: ticketId
+        in: query
+        description: The Request ID to add note for
+        schema:
+          type: string
+        example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
+      - name: userId
+        in: query
+        description: Optional. The User ID to add note on behalf of
+        schema:
+          type: string
+        example: '1135124226903180384'
+      requestBody:
+        description: The contents of the note
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/NoteTextRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NoteTextRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/NoteTextRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/NoteTextRequest'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+  /api/ticket/Redact/{ticketId}:
+    post:
+      tags:
+      - Tickets
+      summary: Redact request
+      parameters:
+      - name: ticketId
+        in: path
+        description: Ticket ID
+        required: true
+        schema:
+          type: string
+        example: eb640185-9e3d-48f5-bf74-d7a3120814e8
+      - name: test
+        in: query
+        description: When set to true, request will not actually be redacted
+        schema:
+          type: boolean
+        example: false
+      responses:
+        '200':
+          description: Success
+  /api/ticket/CloseV2:
+    post:
+      tags:
+      - Tickets
+      summary: Close request
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/CloseTicketRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CloseTicketRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CloseTicketRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CloseTicketRequest'
+      responses:
+        '200':
+          description: Success
+  /api/ticket/EngageAutopilot/{ticketId}:
+    post:
+      tags:
+      - Tickets
+      summary: Start Autopilot
+      parameters:
+      - name: ticketId
+        in: path
+        description: TicketID of the request to start autopilot for
+        required: true
+        schema:
+          type: string
+        example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketAssignAutoPilotResponse'
+  /api/ticket/{ticketId}/custom-integrations/{integrationId}:
+    post:
+      tags:
+      - Tickets
+      summary: Update custom integration status [v2]
+      parameters:
+      - name: ticketId
+        in: path
+        description: TicketID of the associated request
+        required: true
+        schema:
+          type: string
+        example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
+      - name: integrationId
+        in: path
+        description: IntegrationID of the associated request
+        required: true
+        schema:
+          type: string
+        example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/CustomIntegrationActionStatusRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomIntegrationActionStatusRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CustomIntegrationActionStatusRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CustomIntegrationActionStatusRequest'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+  /api/ticket/{ticketId}/workflow:
+    get:
+      tags:
+      - Tickets
+      summary: Get the workflow assigned to a ticket
+      description: Returns the workflow id, display name, and the list of integrations attached to the ticket's workflow.
+      parameters:
+      - name: ticketId
+        in: path
+        description: TicketID of the request
+        required: true
+        schema:
+          type: string
+        example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketWorkflowResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+    post:
+      tags:
+      - Tickets
+      summary: Change the workflow assigned to a ticket
+      description: "Allowed only when the ticket has not yet started processing. If the requested workflow is the same as the\r\none already assigned, the request is a no-op and returns 200 without any side effect."
+      parameters:
+      - name: ticketId
+        in: path
+        description: TicketID of the request
+        required: true
+        schema:
+          type: string
+        example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
+      requestBody:
+        description: Workflow id to assign
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ChangeWorkflowRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeWorkflowRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ChangeWorkflowRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ChangeWorkflowRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketWorkflowResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: string
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    PublicNoteResponse:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        text:
+          type: string
+          nullable: true
+        createdBy:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TicketWorkflowResponse:
+      type: object
+      properties:
+        workflowId:
+          type: string
+          description: The workflow id assigned to the ticket.
+          nullable: true
+          example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
+        workflowName:
+          type: string
+          description: The display name of the workflow.
+          nullable: true
+          example: Employees
+        integrations:
+          type: array
+          items:
+            $ref: '#/components/schemas/TicketWorkflowIntegration'
+          description: Integrations attached to the ticket's workflow.
+          nullable: true
+      additionalProperties: false
+    RequestCreateResponse:
+      type: object
+      properties:
+        ticketId:
+          type: string
+          description: ID of request that was created
+          nullable: true
+      additionalProperties: false
+    FormCustomData:
+      type: object
+      properties:
+        state:
+          type: string
+          nullable: true
+        mobileNumber:
+          type: string
+          nullable: true
+        address:
+          type: string
+          nullable: true
+        url:
+          type: string
+          nullable: true
+        customQuestion:
+          $ref: '#/components/schemas/CustomQuestion'
+        authorizedAgentInfo:
+          $ref: '#/components/schemas/AuthorizedAgentInfo'
+        fileAttachment:
+          $ref: '#/components/schemas/FileAttachment'
+        formCustomEntries:
+          type: string
+          nullable: true
+        fullUrl:
+          type: string
+          nullable: true
+        referrer:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SingleRequestCreateResponse:
+      type: object
+      properties:
+        ticketId:
+          type: string
+          description: ID of request that was created
+          nullable: true
+        alreadyExists:
+          type: boolean
+          description: True if the request was already created in the last 1 minute
+          example: false
+        emailAddress:
+          type: string
+          description: Email address of the requesting user
+          nullable: true
+        success:
+          type: boolean
+          description: Whether or not the request was created successfully
+        error:
+          type: string
+          description: Error message in case a request creation failed
+          nullable: true
+      additionalProperties: false
+    ActionStatus:
+      enum:
+      - NotStarted
+      - MissingIdentifiers
+      - InProgress
+      - Completed
+      - Failed
+      - Expired
+      - PartialCompleted
+      type: string
+    TicketCustomIntegrationStatus:
+      enum:
+      - Unknown
+      - Completed
+      - Failed
+      - MissingIdentifiers
+      - UserNotFound
+      - CannotDeleteData
+      type: string
+    RequestType:
+      enum:
+      - Unknown
+      - Delete
+      - Get
+      - Fetch
+      - NoProcess
+      type: string
+    CloseTicketRequest:
+      type: object
+      properties:
+        ticketId:
+          type: string
+          description: Ticket ID to close
+          nullable: true
+          example: eb640185-9e3d-48f5-bf74-d7a3120814e8
+        reason:
+          $ref: '#/components/schemas/TicketCloseType'
+        test:
+          type: boolean
+          description: When set to true, request is not actually closed
+          example: false
+        skipAutomation:
+          type: boolean
+          description: "When set to true, any close automations will be skipped (e.g. sending a complete notification to user)\r\nIf the ticket's request type is undetermined, a close automation will be skipped"
+          example: false
+        templateId:
+          type: string
+          description: "When provided, the ticket will be closed with the provided template.\r\nThe default workflow template will be used if not provided."
+          nullable: true
+          example: 5f44e478-7fca-477c-94e4-a5a1e39da5d6
+      additionalProperties: false
+    StateChangeSource:
+      enum:
+      - Unknown
+      - DataAction
+      - Agent
+      - ApiKey
+      - BackCompat
+      - AutoRejectRule
+      - EvidenceFinder
+      - AutoRedactRule
+      - AutoCompleteRule
+      - AutoAcceptRule
+      - FormSubmission
+      - EmailValidation
+      - EmailForwarding
+      - ManualCreation
+      - Manual
+      - AutoClose
+      - Import
+      - AutoTransition
+      - InternalOrchestration
+      type: string
+    StateHistoryLog:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/StateLogItem'
+          nullable: true
+      additionalProperties: false
+    TicketStateEnum:
+      enum:
+      - Unknown
+      - Open
+      - Closed
+      - Redacted
+      - Processing
+      - Notify
+      - Redacting
+      - Unverified
+      - NotReady
+      - Edit
+      - Pending
+      type: string
+    PortalNotesResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/NoteResponse'
+          nullable: true
+      additionalProperties: false
+    WorkflowChangeHistoryLog:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowChangeLogItemResponse'
+          nullable: true
+      additionalProperties: false
+    WorkflowChangeLogItemResponse:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        changeSource:
+          $ref: '#/components/schemas/StateChangeSource'
+        agentName:
+          type: string
+          nullable: true
+        agentEmail:
+          type: string
+          nullable: true
+        apiKeyName:
+          type: string
+          nullable: true
+        fromWorkflowId:
+          type: string
+          nullable: true
+        fromWorkflowName:
+          type: string
+          nullable: true
+        toWorkflowId:
+          type: string
+          nullable: true
+        toWorkflowName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TicketGetMetadataResponse:
+      type: object
+      properties:
+        customFields:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          nullable: true
+      additionalProperties: false
+    GroupAssignmentRequest:
+      required:
+      - groupId
+      type: object
+      properties:
+        groupId:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    AuthorizedAgentInfo:
+      type: object
+      properties:
+        authorizedAgentEmail:
+          type: string
+          nullable: true
+        verificationDocumentFile:
+          $ref: '#/components/schemas/FileAttachment'
+      additionalProperties: false
+    AssignmentLog:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssignmentLogItem'
+          nullable: true
+      additionalProperties: false
+    AssignedTicket:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        autoPilotState:
+          $ref: '#/components/schemas/AutoPilotState'
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TicketUpdateMetadataRequest:
+      required:
+      - customFields
+      - ticketId
+      type: object
+      properties:
+        ticketId:
+          minLength: 1
+          type: string
+          description: TicketID of the request to update status for
+          example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
+        customFields:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: 'A collection of metadata fields to add to the request. Use the following special names to set custom identifiers: $phoneNumber, $internalId'
+        test:
+          type: boolean
+          description: Used for testing; When Test is true, the change will not actually apply
+      additionalProperties: false
+    TicketWorkflowIntegration:
+      type: object
+      properties:
+        taskId:
+          type: string
+          description: Task id (integration id) of the workflow task.
+          nullable: true
+        systemId:
+          type: string
+          description: System id (system catalog id) of the integration.
+          nullable: true
+        displayName:
+          type: string
+          description: Display name of the integration.
+          nullable: true
+      additionalProperties: false
+    TicketSource:
+      enum:
+      - Unknown
+      - MineApp
+      - Form
+      - Api
+      - EmailForwarding
+      - Manual
+      - Import
+      type: string
+    TicketLogs:
+      type: object
+      properties:
+        conversation:
+          $ref: '#/components/schemas/PortalMessageResponse'
+        notes:
+          $ref: '#/components/schemas/PortalNotesResponse'
+        integrationsLogs:
+          $ref: '#/components/schemas/IntegrationHistoryLog'
+        stateLogs:
+          $ref: '#/components/schemas/StateHistoryLog'
+        assignmentLogs:
+          $ref: '#/components/schemas/AssignmentLog'
+        requireAttentionLogs:
+          $ref: '#/components/schemas/RequireAttentionHistoryLog'
+        workflowChangesLogs:
+          $ref: '#/components/schemas/WorkflowChangeHistoryLog'
+      additionalProperties: false
+    NoteResponse:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        agentName:
+          type: string
+          nullable: true
+        agentEmail:
+          type: string
+          nullable: true
+        noteText:
+          type: string
+          nullable: true
+      additionalProperties: false
+    IntegrationState:
+      enum:
+      - Unknown
+      - NotStarted
+      - Starting
+      - InProgress
+      - Completed
+      - Failed
+      - NewData
+      - MissingIdentifiers
+      - PartialCompleted
+      type: string
+    AssignmentLogItem:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        agentName:
+          type: string
+          nullable: true
+        agentEmail:
+          type: string
+          nullable: true
+        groupNameAssignment:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TicketListItem:
+      type: object
+      properties:
+        ticketId:
+          type: string
+          nullable: true
+        requestId:
+          type: string
+          nullable: true
+        workflowId:
+          type: string
+          nullable: true
+        workflowName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ExternalTicketState:
+      enum:
+      - Unknown
+      - Open
+      - Closed
+      - Redacted
+      - Processing
+      - Notify
+      - Redacting
+      - Unverified
+      - NotReady
+      - Edit
+      - Pending
+      type: string
+    CursorTokens:
+      type: object
+      properties:
+        before:
+          type: string
+          nullable: true
+        after:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AutoPilotState:
+      enum:
+      - NotAssigned
+      - Assigned
+      - TimeOut
+      type: string
+    FileAttachment:
+      type: object
+      properties:
+        label:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        path:
+          type: string
+          nullable: true
+        expiryDate:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    TicketCustomIntegrationAction:
+      enum:
+      - Unknown
+      - Delete
+      - Copy
+      type: string
+    RequireAttentionHistoryLog:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/RequireAttentionLogItem'
+          nullable: true
+      additionalProperties: false
+    StateLogItem:
+      type: object
+      properties:
+        state:
+          $ref: '#/components/schemas/TicketStateEnum'
+        changeSource:
+          $ref: '#/components/schemas/StateChangeSource'
+        reason:
+          $ref: '#/components/schemas/ReasonEnum'
+        agentEmail:
+          type: string
+          nullable: true
+        agentName:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        apiKeyName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Reference:
+      type: object
+      properties:
+        fileName:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        url:
+          type: string
+          nullable: true
+      additionalProperties: false
+    RequestCreateWithPrivacyRightRequest:
+      required:
+      - countryCode
+      - email
+      - requestTypeId
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: First name of the requesting user
+          nullable: true
+          example: John
+        lastName:
+          type: string
+          description: Last name of the requesting user
+          nullable: true
+          example: Doe
+        email:
+          minLength: 1
+          type: string
+          description: Email address of the requesting user
+          example: johndoe@example.com
+        countryCode:
+          minLength: 1
+          type: string
+          description: ISO-3166 country code of the requesting user
+          example: US
+        state:
+          type: string
+          description: ISO-3166 state code of the requesting user
+          nullable: true
+          example: AL
+        locale:
+          type: string
+          description: Locale of the requesting user. Must be in the format of 5 characters
+          nullable: true
+          example: en-US
+        customFields:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: 'Custom fields collection to add to the request. Use the following special names to set identifiers for use with automations: $phonenumber, $internalId'
+          nullable: true
+        requestTypeId:
+          minLength: 1
+          type: string
+          description: Request type Id
+          example: delete
+        brandId:
+          type: string
+          description: Brand Id associated with the ticket
+          nullable: true
+        isAuthorizedAgent:
+          type: boolean
+          description: Flag that indicates whether the request requires an authorized agent flow. Defaults to false.
+          example: false
+        authorizedAgentEmail:
+          type: string
+          description: "The email address of the authorized agent.\r\nIf this field is provided, the IsAuthorizedAgent flag must be set to true.\r\nAll user communication will be with the authorized agent."
+          nullable: true
+          example: johndoe-parent@example.com
+        isUnverified:
+          type: boolean
+          description: When set to true, the request will open as unverified. The default value is false.
+          example: false
+        workflowId:
+          type: string
+          description: Workflow id to assign to the ticket. Must belong to the same privacy right as the ticket.
+          nullable: true
+          example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
+      additionalProperties: false
+    DataSubjectTypeInfo:
+      type: object
+      properties:
+        dataSubjectType:
+          $ref: '#/components/schemas/DataSubjectType'
+        dataSubjectTypeLabel:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CustomQuestion:
+      type: object
+      properties:
+        question:
+          type: string
+          nullable: true
+        multiSelect:
+          type: boolean
+        answers:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    MailDirection:
+      enum:
+      - Unknown
+      - Inbound
+      - Outbound
+      type: string
+    DataSubjectType:
+      type: object
+      additionalProperties: false
+    CustomIntegrationActionStatusRequest:
+      required:
+      - action
+      - status
+      type: object
+      properties:
+        test:
+          type: boolean
+          description: Used for testing; When Test is true, the status update will not actually apply
+        status:
+          $ref: '#/components/schemas/TicketCustomIntegrationStatus'
+        message:
+          type: string
+          description: Message that explains what changed, such as why the status changed
+          nullable: true
+        action:
+          $ref: '#/components/schemas/TicketCustomIntegrationAction'
+        data:
+          type: object
+          additionalProperties: {}
+          description: Data that was collected by this integration in JSON format. For use with 'Copy' action only
+          nullable: true
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reference'
+          description: Data that was collected by this integration in files format. For use with 'Copy' action only
+          nullable: true
+      additionalProperties: false
+    TicketAssignAutoPilotResponse:
+      type: object
+      properties:
+        assignedTickets:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssignedTicket'
+          nullable: true
+      additionalProperties: false
+    TicketInfo:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Full name of the requesting user
+          nullable: true
+          example: John Doe
+        firstName:
+          type: string
+          description: First name of the requesting user. Will be null if unavailable.
+          nullable: true
+          example: John
+        lastName:
+          type: string
+          description: Last name of the requesting user. Will be null if unavailable.
+          nullable: true
+          example: Doe
+        userEmail:
+          type: string
+          description: Email address of the requesting user
+          nullable: true
+          example: johnd@example.com
+        countryCode:
+          type: string
+          description: 'Country of residence of the requesting user. Format: ISO3166 Country Code (see https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes)'
+          nullable: true
+          example: US
+        domain:
+          type: string
+          description: Domain of the company/website to which the requesting user is creating the request.
+          nullable: true
+          example: acme.com
+        groupIdAssignment:
+          type: string
+          description: Assigned group id if exists.
+          nullable: true
+          example: '123456789'
+        privacyRightId:
+          type: string
+          description: Privacy Right id. If the right is undetermined will be null.
+          nullable: true
+          example: Delete
+        brandId:
+          type: string
+          description: Brand Id associated with the ticket
+          nullable: true
+        requestStatus:
+          $ref: '#/components/schemas/ExternalTicketState'
+        closeReason:
+          type: string
+          description: If closed, the reason for closing the request
+          nullable: true
+          example: Completed
+        ticketSource:
+          $ref: '#/components/schemas/TicketSource'
+        createdAt:
+          type: string
+          description: UTC Creation time of the request
+          format: date-time
+          nullable: true
+        dueDate:
+          type: string
+          description: UTC Due date of the request
+          format: date-time
+          nullable: true
+        ticketId:
+          type: string
+          description: Ticket ID of the request
+          nullable: true
+          example: eb640185-9e3d-48f5-bf74-d7a3120814e8
+        requestId:
+          type: string
+          description: Request ID
+          nullable: true
+          example: Z27OCDDO
+        formCustomData:
+          $ref: '#/components/schemas/FormCustomData'
+        customFields:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: Custom fields that are set from the update metadata endpoint
+          nullable: true
+        preferredLocale:
+          type: string
+          description: The requesting user's preferred locale
+          nullable: true
+        acceptedOrRejectedTime:
+          type: string
+          format: date-time
+          nullable: true
+        autoPilotState:
+          $ref: '#/components/schemas/AutoPilotState'
+        processingTasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcessingTaskInfo'
+          description: Status of the ticket's processing tasks
+          nullable: true
+        notes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublicNoteResponse'
+          description: Notes associated with the ticket
+          nullable: true
+        dataSubjectTypeInfo:
+          $ref: '#/components/schemas/DataSubjectTypeInfo'
+        requireAttention:
+          type: boolean
+          description: Flag indicating if the RequireAttention label is set
+        workflowId:
+          type: string
+          description: The workflow id assigned to the ticket. Null if the ticket has no workflow instance.
+          nullable: true
+          example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
+        workflowName:
+          type: string
+          description: The display name of the workflow assigned to the ticket.
+          nullable: true
+          example: Employees
+      additionalProperties: false
+    NoteTextRequest:
+      type: object
+      properties:
+        noteText:
+          type: string
+          description: The contents of the note
+          nullable: true
+          example: This is a note...
+      additionalProperties: false
+    IntegrationLogItem:
+      type: object
+      properties:
+        success:
+          type: boolean
+        id:
+          type: string
+          nullable: true
+        customMessage:
+          type: string
+          nullable: true
+        state:
+          $ref: '#/components/schemas/IntegrationState'
+        createdAt:
+          type: string
+          format: date-time
+        agentName:
+          type: string
+          nullable: true
+        agentEmail:
+          type: string
+          nullable: true
+        requestType:
+          $ref: '#/components/schemas/RequestType'
+        isManual:
+          type: boolean
+        retryCount:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    DueDateUpdateRequest:
+      type: object
+      properties:
+        dueDate:
+          type: string
+          nullable: true
+          example: '2023-05-20'
+      additionalProperties: false
+    ReasonEnum:
+      enum:
+      - Unknown
+      - Completed
+      - Rejected
+      - Canceled
+      - NewTicket
+      - Other
+      - EvidenceFinished
+      - Redacted
+      - NewForm
+      - EmailValidation
+      - ApiKey
+      - ManualCreation
+      - AgentEditEmailForwarding
+      - Import
+      - AcceptTicket
+      - RejectTicket
+      - DoneDeleting
+      - DoneCopying
+      - Reopened
+      - AutoTransition
+      type: string
+    ChangeWorkflowRequest:
+      required:
+      - workflowId
+      type: object
+      properties:
+        workflowId:
+          minLength: 1
+          type: string
+          description: Workflow id to assign to the ticket. Must belong to the same privacy right as the ticket.
+          example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
+      additionalProperties: false
+    RequireAttentionLogItem:
+      type: object
+      properties:
+        markedAsRequireAttention:
+          type: boolean
+        changeSource:
+          $ref: '#/components/schemas/StateChangeSource'
+        agentEmail:
+          type: string
+          nullable: true
+        agentName:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        apiKeyName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TicketMarkAsRequireAttentionRequest:
+      type: object
+      properties:
+        markedAsRequireAttention:
+          type: boolean
+      additionalProperties: false
+    PortalMessageResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageItem'
+          nullable: true
+      additionalProperties: false
+    ProcessingTaskInfo:
+      type: object
+      properties:
+        taskId:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        errorMsg:
+          type: string
+          nullable: true
+        status:
+          $ref: '#/components/schemas/ActionStatus'
+        lastChanged:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    TicketCloseType:
+      enum:
+      - Unknown
+      - Completed
+      - Rejected
+      - UserPulled
+      - Other
+      type: string
+    RequestsListResponse:
+      type: object
+      properties:
+        requestIds:
+          type: array
+          items:
+            type: string
+          nullable: true
+        tickets:
+          type: array
+          items:
+            $ref: '#/components/schemas/TicketListItem'
+          nullable: true
+        tokens:
+          $ref: '#/components/schemas/CursorTokens'
+      additionalProperties: false
+    IntegrationHistoryLog:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/IntegrationLogItem'
+          nullable: true
+      additionalProperties: false
+    MessageItem:
+      type: object
+      properties:
+        timeStamp:
+          type: string
+          format: date-time
+        fromName:
+          type: string
+          nullable: true
+        fromAddress:
+          type: string
+          nullable: true
+        payloadText:
+          type: string
+          nullable: true
+        payloadHtml:
+          type: string
+          nullable: true
+        subject:
+          type: string
+          nullable: true
+        mailDirection:
+          $ref: '#/components/schemas/MailDirection'
+        hasAttachments:
+          type: boolean
+        replyTo:
+          type: string
+          nullable: true
+        automatic:
+          type: boolean
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: "Authorization header using the Bearer scheme. \r\n\r\nEnter 'Bearer' [space] and then your API Key in the text input below.\r\n\r\nExample: 'Bearer 12345abcdef'"
+      name: Authorization
+      in: header

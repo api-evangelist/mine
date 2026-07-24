@@ -1,0 +1,117 @@
+openapi: 3.0.1
+info:
+  title: MineOS Aispm AssessmentTemplate API
+  version: v1.0
+servers:
+- url: https://api.portal.saymine.com/
+  description: MineOS EU API Endpoint
+- url: https://api.us.portal.saymine.com/
+  description: MineOS US API Endpoint
+security:
+- Bearer: []
+tags:
+- name: AssessmentTemplate
+paths:
+  /api/public-v1/template/List:
+    get:
+      tags:
+      - AssessmentTemplate
+      summary: Retrieves a list of assessment templates available for the company.
+      parameters:
+      - name: offset
+        in: query
+        description: The number of items to skip before starting to collect the result set.
+        schema:
+          type: integer
+          format: int32
+      - name: limit
+        in: query
+        description: The maximum number of items to return in the result set.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TemplatePublicResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+components:
+  schemas:
+    TemplatePublicResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        type:
+          $ref: '#/components/schemas/PageType'
+        dataSourceSpecific:
+          type: boolean
+          description: A flag indicating whether the template is a Data Source Specific template.
+      additionalProperties: false
+      description: A limited public response for template pages.
+    ErrorPublicResponse:
+      type: object
+      properties:
+        internalErrorCode:
+          $ref: '#/components/schemas/InternalErrorCode'
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PageType:
+      enum:
+      - Empty
+      - AI
+      - TIA
+      - PIA
+      - LIA
+      - PA
+      - AI_EU
+      - ROI
+      - Vendor
+      - Privacy
+      - DPIA
+      - HIPAA
+      - COPPA
+      - NIST_CSF_Risk
+      - Third_Party_DPIA
+      - AI_Risk_Model_Developer_Focused
+      - DORA_ICT_Third_Party_Criticality
+      - DPIA_Simplified_ICO
+      - DPIA_Standard_GDPR_V2
+      - DPIA_CCPA
+      - ADMT_CCPA
+      type: string
+    InternalErrorCode:
+      enum:
+      - GeneralError
+      - NotFound
+      - AlreadyExists
+      - InvalidArgument
+      type: string
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: "Authorization header using the Bearer scheme. \r\n\r\nEnter 'Bearer' [space] and then your API Key in the text input below.\r\n\r\nExample: 'Bearer 12345abcdef'"
+      name: Authorization
+      in: header

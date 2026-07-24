@@ -1,0 +1,558 @@
+openapi: 3.0.1
+info:
+  title: MineOS Aispm System API
+  version: v1.0
+servers:
+- url: https://api.portal.saymine.com/
+  description: MineOS EU API Endpoint
+- url: https://api.us.portal.saymine.com/
+  description: MineOS US API Endpoint
+security:
+- Bearer: []
+tags:
+- name: System
+paths:
+  /api/public-v1/system/List:
+    get:
+      tags:
+      - System
+      summary: List all the data sources in your company by state
+      parameters:
+      - name: state
+        in: query
+        description: The state of the requested data sources.
+        schema:
+          $ref: '#/components/schemas/SystemState'
+      - name: offset
+        in: query
+        description: The offset size for pagination. default is 0
+        schema:
+          type: integer
+          format: int32
+      - name: limit
+        in: query
+        description: The page size for pagination. default is 100
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SystemPublicLeanResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+  /api/public-v1/system/{id}:
+    get:
+      tags:
+      - System
+      summary: Get data source by Id
+      parameters:
+      - name: id
+        in: path
+        description: The id of the requested data source
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemPublicResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+    patch:
+      tags:
+      - System
+      summary: Update a Data Source properties in the inventory
+      parameters:
+      - name: id
+        in: path
+        description: The id of the requested data source to update
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: the patch request of the data source
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SystemPublicPatchDtoJsonPatchRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SystemPublicPatchDtoJsonPatchRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SystemPublicPatchDtoJsonPatchRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SystemPublicPatchDtoJsonPatchRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemPublicResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+  /api/public-v1/system/AddCatalogSystem:
+    post:
+      tags:
+      - System
+      summary: Add new Data Source from the catalog to the inventory
+      requestBody:
+        description: The request with the site domain which the requested data source related to
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/AddCatalogSystemPublicRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddCatalogSystemPublicRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AddCatalogSystemPublicRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AddCatalogSystemPublicRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemPublicResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+  /api/public-v1/system/AddCustomSystem:
+    post:
+      tags:
+      - System
+      summary: Add new Custom Data Source to the inventory
+      requestBody:
+        description: The request with the name for the new custom data source
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/AddCustomSystemPublicRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddCustomSystemPublicRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AddCustomSystemPublicRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AddCustomSystemPublicRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemPublicResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+  /api/public-v1/system/business-unit/list:
+    get:
+      tags:
+      - System
+      summary: List all the existing business units (departments) in your company
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BusinessUnitPublicResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+  /api/public-v1/system/{id}/ai-autofill:
+    post:
+      tags:
+      - System
+      summary: Trigger AI autofill suggestions for a data source
+      parameters:
+      - name: id
+        in: path
+        description: The id of the data source to autofill
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Optional custom prompt and correlation id. A correlation id is generated when not supplied.
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SystemAutofillTriggerPublicRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SystemAutofillTriggerPublicRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SystemAutofillTriggerPublicRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SystemAutofillTriggerPublicRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemAutofillTriggerPublicResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPublicResponse'
+components:
+  schemas:
+    PatchOperationType:
+      enum:
+      - Add
+      - Remove
+      - Replace
+      type: string
+    SystemAutofillTriggerPublicRequest:
+      type: object
+      properties:
+        customPrompt:
+          maxLength: 50000
+          type: string
+          description: Optional free-text prompt to steer the AI autofill.
+          nullable: true
+        correlationId:
+          type: string
+          description: Optional client-supplied correlation id. A value is generated when not supplied.
+          nullable: true
+        ownerEmail:
+          type: string
+          description: "The email address of the data source owner. When supplied and the email resolves to an\r\nagent in the company, the resulting run is attributed to that owner."
+          format: email
+          nullable: true
+      additionalProperties: false
+    BusinessUnitPublicResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        isCustom:
+          type: boolean
+      additionalProperties: false
+    SystemPublicPatchDtoJsonPatchRequest:
+      type: object
+      properties:
+        operations:
+          type: array
+          items:
+            $ref: '#/components/schemas/SystemPublicPatchDtoJsonPatchOperation'
+          nullable: true
+      additionalProperties: false
+    SystemPublicLeanResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SystemPublicResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        isCustom:
+          type: boolean
+        state:
+          $ref: '#/components/schemas/SystemState'
+        discoveryDate:
+          type: string
+          format: date-time
+          nullable: true
+        discoveryMethods:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataSourceOriginEnum'
+          nullable: true
+        serverLocations:
+          type: array
+          items:
+            type: string
+          nullable: true
+        ownerEmail:
+          type: string
+          nullable: true
+        stakeHolders:
+          type: array
+          items:
+            type: string
+          nullable: true
+        reviewStatus:
+          $ref: '#/components/schemas/ReviewStatus'
+        removalInfo:
+          $ref: '#/components/schemas/RemovalInfo'
+      additionalProperties: false
+    SystemPublicPatchDtoJsonPatchOperation:
+      required:
+      - operationType
+      - path
+      - value
+      type: object
+      properties:
+        operationType:
+          $ref: '#/components/schemas/PatchOperationType'
+        path:
+          minLength: 1
+          type: string
+        value: {}
+      additionalProperties: false
+    SystemState:
+      enum:
+      - Unknown
+      - Radar
+      - Inventory
+      - Trash
+      - Merged
+      type: string
+    ErrorPublicResponse:
+      type: object
+      properties:
+        internalErrorCode:
+          $ref: '#/components/schemas/InternalErrorCode'
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AddCatalogSystemPublicRequest:
+      required:
+      - domain
+      type: object
+      properties:
+        owner:
+          type: string
+          nullable: true
+        businessUnits:
+          type: array
+          items:
+            type: string
+          nullable: true
+        domain:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    StatusOfReview:
+      enum:
+      - Draft
+      - Pending
+      - Approved
+      - InEvaluation
+      - Rejected
+      type: string
+    RemovalInfo:
+      type: object
+      properties:
+        removalJustification:
+          type: string
+          nullable: true
+        removedBy:
+          type: string
+          nullable: true
+        removeDate:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    AddCustomSystemPublicRequest:
+      required:
+      - name
+      type: object
+      properties:
+        owner:
+          type: string
+          nullable: true
+        businessUnits:
+          type: array
+          items:
+            type: string
+          nullable: true
+        name:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    SystemAutofillTriggerPublicResponse:
+      type: object
+      properties:
+        runId:
+          type: integer
+          description: The id of the autofill run that was created. Use it to correlate suggestions and run status.
+          format: int32
+        correlationId:
+          type: string
+          description: "The correlation id associated with this autofill run. Echoes the value supplied in the\r\nrequest when present, otherwise a server-generated value."
+          nullable: true
+      additionalProperties: false
+    ReviewStatus:
+      type: object
+      properties:
+        lastActionDate:
+          type: string
+          format: date-time
+          nullable: true
+        reviewer:
+          type: string
+          nullable: true
+        agentReviewerId:
+          type: string
+          nullable: true
+        status:
+          $ref: '#/components/schemas/StatusOfReview'
+      additionalProperties: false
+    DataSourceOriginEnum:
+      enum:
+      - Unknown
+      - Manual
+      - GoogleSso
+      - Email
+      - Website
+      - Automatic
+      - AwsCloud
+      - OktaSso
+      - GcpCloud
+      - EntraSso
+      type: string
+    InternalErrorCode:
+      enum:
+      - GeneralError
+      - NotFound
+      - AlreadyExists
+      - InvalidArgument
+      type: string
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: "Authorization header using the Bearer scheme. \r\n\r\nEnter 'Bearer' [space] and then your API Key in the text input below.\r\n\r\nExample: 'Bearer 12345abcdef'"
+      name: Authorization
+      in: header

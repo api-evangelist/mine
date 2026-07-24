@@ -1,0 +1,84 @@
+openapi: 3.0.1
+info:
+  title: MineOS Aispm AispmEnrollmentTokens API
+  version: v1.0
+servers:
+- url: https://api.portal.saymine.com/
+  description: MineOS EU API Endpoint
+- url: https://api.us.portal.saymine.com/
+  description: MineOS US API Endpoint
+security:
+- Bearer: []
+tags:
+- name: AispmEnrollmentTokens
+paths:
+  /api/aispm/v1/enrollment-tokens:
+    post:
+      tags:
+      - AispmEnrollmentTokens
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/EnrollmentTokenRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrollmentTokenRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EnrollmentTokenRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EnrollmentTokenRequest'
+      responses:
+        '200':
+          description: Success
+  /api/aispm/v1/enrollment-tokens/rotate:
+    post:
+      tags:
+      - AispmEnrollmentTokens
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/EnrollmentTokenRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrollmentTokenRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EnrollmentTokenRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EnrollmentTokenRequest'
+      responses:
+        '200':
+          description: Success
+  /api/aispm/v1/enrollment-tokens/{tokenId}:
+    delete:
+      tags:
+      - AispmEnrollmentTokens
+      parameters:
+      - name: tokenId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+components:
+  schemas:
+    EnrollmentTokenRequest:
+      type: object
+      properties:
+        validDays:
+          type: integer
+          format: int32
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: "Authorization header using the Bearer scheme. \r\n\r\nEnter 'Bearer' [space] and then your API Key in the text input below.\r\n\r\nExample: 'Bearer 12345abcdef'"
+      name: Authorization
+      in: header

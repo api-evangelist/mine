@@ -1,0 +1,51 @@
+openapi: 3.0.1
+info:
+  title: MineOS Aispm AispmIngest API
+  version: v1.0
+servers:
+- url: https://api.portal.saymine.com/
+  description: MineOS EU API Endpoint
+- url: https://api.us.portal.saymine.com/
+  description: MineOS US API Endpoint
+security:
+- Bearer: []
+tags:
+- name: AispmIngest
+paths:
+  /ingest:
+    post:
+      tags:
+      - AispmIngest
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/AispmIngestMintRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AispmIngestMintRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AispmIngestMintRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AispmIngestMintRequest'
+      responses:
+        '200':
+          description: Success
+components:
+  schemas:
+    AispmIngestMintRequest:
+      type: object
+      properties:
+        reportId:
+          type: string
+          nullable: true
+      additionalProperties:
+        type: object
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: "Authorization header using the Bearer scheme. \r\n\r\nEnter 'Bearer' [space] and then your API Key in the text input below.\r\n\r\nExample: 'Bearer 12345abcdef'"
+      name: Authorization
+      in: header

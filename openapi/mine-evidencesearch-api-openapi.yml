@@ -1,0 +1,390 @@
+openapi: 3.0.1
+info:
+  title: MineOS Aispm EvidenceSearch API
+  version: v1.0
+servers:
+- url: https://api.portal.saymine.com/
+  description: MineOS EU API Endpoint
+- url: https://api.us.portal.saymine.com/
+  description: MineOS US API Endpoint
+security:
+- Bearer: []
+tags:
+- name: EvidenceSearch
+paths:
+  /api/EvidenceSearch/Request/{requestId}:
+    get:
+      tags:
+      - EvidenceSearch
+      summary: Search request by ID
+      parameters:
+      - name: requestId
+        in: path
+        description: Request ID
+        required: true
+        schema:
+          type: string
+        example: 5G1A43Z
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MineAppSearchResponse'
+components:
+  schemas:
+    ExternalRequestStateInfo:
+      type: object
+      properties:
+        changeSource:
+          $ref: '#/components/schemas/StateChangeSource'
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        reason:
+          $ref: '#/components/schemas/ReasonEnum'
+        state:
+          $ref: '#/components/schemas/ExternalTicketState'
+        agent:
+          type: string
+          nullable: true
+        agentEmail:
+          type: string
+          nullable: true
+      additionalProperties: false
+    FormCustomData:
+      type: object
+      properties:
+        state:
+          type: string
+          nullable: true
+        mobileNumber:
+          type: string
+          nullable: true
+        address:
+          type: string
+          nullable: true
+        url:
+          type: string
+          nullable: true
+        customQuestion:
+          $ref: '#/components/schemas/CustomQuestion'
+        authorizedAgentInfo:
+          $ref: '#/components/schemas/AuthorizedAgentInfo'
+        fileAttachment:
+          $ref: '#/components/schemas/FileAttachment'
+        formCustomEntries:
+          type: string
+          nullable: true
+        fullUrl:
+          type: string
+          nullable: true
+        referrer:
+          type: string
+          nullable: true
+      additionalProperties: false
+    StateChangeSource:
+      enum:
+      - Unknown
+      - DataAction
+      - Agent
+      - ApiKey
+      - BackCompat
+      - AutoRejectRule
+      - EvidenceFinder
+      - AutoRedactRule
+      - AutoCompleteRule
+      - AutoAcceptRule
+      - FormSubmission
+      - EmailValidation
+      - EmailForwarding
+      - ManualCreation
+      - Manual
+      - AutoClose
+      - Import
+      - AutoTransition
+      - InternalOrchestration
+      type: string
+    TicketType:
+      enum:
+      - Unknown
+      - Delete
+      - GetCopy
+      - DoNotSell
+      - Undetermined
+      - DoNotMail
+      - RightToEdit
+      type: string
+    AuthorizedAgentResponse:
+      type: object
+      properties:
+        authorizedAgentEmail:
+          type: string
+          nullable: true
+        verificationDocumentFileLabel:
+          type: string
+          nullable: true
+        verificationDocumentFileDownloadLink:
+          type: string
+          nullable: true
+      additionalProperties: false
+    AuthorizedAgentInfo:
+      type: object
+      properties:
+        authorizedAgentEmail:
+          type: string
+          nullable: true
+        verificationDocumentFile:
+          $ref: '#/components/schemas/FileAttachment'
+      additionalProperties: false
+    MineAppSearchResponse:
+      type: object
+      properties:
+        ownedItem:
+          $ref: '#/components/schemas/OwnedDsrItem'
+        error:
+          type: string
+          description: Error message if request is not found
+          nullable: true
+      additionalProperties: false
+    AutoPilotInfo:
+      type: object
+      properties:
+        state:
+          $ref: '#/components/schemas/AutoPilotState'
+        initiatingAgentId:
+          type: string
+          nullable: true
+        lastModified:
+          type: string
+          format: date-time
+          nullable: true
+        delayUntilTime:
+          type: string
+          format: date-time
+          nullable: true
+        assignedAtStateVersion:
+          type: integer
+          format: int32
+      additionalProperties: false
+    TicketSource:
+      enum:
+      - Unknown
+      - MineApp
+      - Form
+      - Api
+      - EmailForwarding
+      - Manual
+      - Import
+      type: string
+    OwnedDsrItem:
+      type: object
+      properties:
+        mineUserId:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        userEmail:
+          type: string
+          nullable: true
+        countryCode:
+          type: string
+          nullable: true
+        domain:
+          type: string
+          nullable: true
+        groupIdAssignment:
+          type: string
+          nullable: true
+        accept:
+          type: boolean
+        ticketType:
+          $ref: '#/components/schemas/TicketType'
+        privacyRightId:
+          type: string
+          nullable: true
+          readOnly: true
+        brandId:
+          type: string
+          nullable: true
+        ticketSource:
+          $ref: '#/components/schemas/TicketSource'
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        dueDate:
+          type: string
+          format: date-time
+          nullable: true
+        ticketState:
+          $ref: '#/components/schemas/ExternalRequestStateInfo'
+        actionId:
+          type: string
+          nullable: true
+        ticketId:
+          type: string
+          nullable: true
+        emailEvidence:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailEvidenceContract'
+          nullable: true
+        formCustomData:
+          $ref: '#/components/schemas/FormCustomData'
+        dataSubjectTypeInfo:
+          $ref: '#/components/schemas/DataSubjectTypeResponse'
+        customFields:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          nullable: true
+        preferredLocale:
+          type: string
+          nullable: true
+        notification:
+          type: boolean
+        targetAddress:
+          type: string
+          nullable: true
+        evidenceLastViewed:
+          type: string
+          format: date-time
+          nullable: true
+        acceptedOrRejectedTime:
+          type: string
+          format: date-time
+          nullable: true
+        autoPilotState:
+          $ref: '#/components/schemas/AutoPilotState'
+        autoPilotInfo:
+          $ref: '#/components/schemas/AutoPilotInfo'
+        requireAttentionInfo:
+          $ref: '#/components/schemas/TicketRequireAttentionResponse'
+      additionalProperties: false
+    AutoPilotState:
+      enum:
+      - NotAssigned
+      - Assigned
+      - TimeOut
+      type: string
+    ExternalTicketState:
+      enum:
+      - Unknown
+      - Open
+      - Closed
+      - Redacted
+      - Processing
+      - Notify
+      - Redacting
+      - Unverified
+      - NotReady
+      - Edit
+      - Pending
+      type: string
+    FileAttachment:
+      type: object
+      properties:
+        label:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        path:
+          type: string
+          nullable: true
+        expiryDate:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    EmailEvidenceContract:
+      type: object
+      properties:
+        fromAddress:
+          type: string
+          nullable: true
+        fromDisplayName:
+          type: string
+          nullable: true
+        replyTo:
+          type: array
+          items:
+            type: string
+          nullable: true
+        subjectLine:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+      additionalProperties: false
+    TicketRequireAttentionResponse:
+      type: object
+      properties:
+        markedAsRequireAttention:
+          type: boolean
+      additionalProperties: false
+    CustomQuestion:
+      type: object
+      properties:
+        question:
+          type: string
+          nullable: true
+        multiSelect:
+          type: boolean
+        answers:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    DataSubjectType:
+      type: object
+      additionalProperties: false
+    ReasonEnum:
+      enum:
+      - Unknown
+      - Completed
+      - Rejected
+      - Canceled
+      - NewTicket
+      - Other
+      - EvidenceFinished
+      - Redacted
+      - NewForm
+      - EmailValidation
+      - ApiKey
+      - ManualCreation
+      - AgentEditEmailForwarding
+      - Import
+      - AcceptTicket
+      - RejectTicket
+      - DoneDeleting
+      - DoneCopying
+      - Reopened
+      - AutoTransition
+      type: string
+    DataSubjectTypeResponse:
+      type: object
+      properties:
+        dataSubjectType:
+          $ref: '#/components/schemas/DataSubjectType'
+        dataSubjectTypeLabel:
+          type: string
+          nullable: true
+        authorizedAgentInfo:
+          $ref: '#/components/schemas/AuthorizedAgentResponse'
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: "Authorization header using the Bearer scheme. \r\n\r\nEnter 'Bearer' [space] and then your API Key in the text input below.\r\n\r\nExample: 'Bearer 12345abcdef'"
+      name: Authorization
+      in: header
