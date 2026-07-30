@@ -1,22 +1,331 @@
 aid: mine
 name: MINE
-description: MINE is a company surfaced as a portfolio company of battery-ventures and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Mine (MineOS) is a data privacy, governance, and AI security posture management
+  platform backed by Battery Ventures. Its MineOS product automates data mapping and
+  inventory, data subject / privacy rights requests (DSR), consent management, vendor
+  and third-party risk (TPRM) assessments, and AI governance (AISPM) for enterprises,
+  while the MineApp helps individuals reclaim their personal data. The MineOS public API
+  (OpenAPI 3.0.1, API-key Bearer auth, EU + US datacenter endpoints) exposes tickets /
+  privacy requests, data-source systems, assessments and templates, employees and
+  business units, AI agent and device discovery, and webhook subscriptions, plus a
+  hosted remote MCP server for agent access.
 url: https://raw.githubusercontent.com/api-evangelist/mine/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://cdn.prod.website-files.com/699ac7647b64bcef08a8aeaa/69c298d5668a7bb9c1d54c47_Open%20Graph%20image.jpg
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - battery-ventures
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: enriched-from-stub
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-apis: []
+- Data Privacy
+- Data Governance
+- Privacy Operations
+- Consent Management
+- AI Governance
+- Third-Party Risk
+- Compliance
+- Security
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: mine:mine-aispm-api
+  name: MINE Aispm API
+  description: The Aispm API from MINE — 1 operation(s) for aispm.
+  humanURL: https://developers.mineos.ai/docs/authentication
+  baseURL: https://api.portal.saymine.com/
+  tags:
+  - Aispm
+  properties:
+  - type: OpenAPI
+    url: openapi/mine-aispm-api-openapi.yml
+  - type: DataModel
+    url: data-model/mine-data-model.yml
+- aid: mine:mine-aispmdeviceflags-api
+  name: MINE AispmDeviceFlags API
+  description: The AispmDeviceFlags API from MINE — 1 operation(s) for aispmdeviceflags.
+  humanURL: https://developers.mineos.ai/docs/authentication
+  baseURL: https://api.portal.saymine.com/
+  tags:
+  - AispmDeviceFlags
+  properties:
+  - type: OpenAPI
+    url: openapi/mine-aispmdeviceflags-api-openapi.yml
+  - type: DataModel
+    url: data-model/mine-data-model.yml
+- aid: mine:mine-aispmenroll-api
+  name: MINE AispmEnroll API
+  description: The AispmEnroll API from MINE — 2 operation(s) for aispmenroll.
+  humanURL: https://developers.mineos.ai/docs/authentication
+  baseURL: https://api.portal.saymine.com/
+  tags:
+  - AispmEnroll
+  properties:
+  - type: OpenAPI
+    url: openapi/mine-aispmenroll-api-openapi.yml
+  - type: DataModel
+    url: data-model/mine-data-model.yml
+- aid: mine:mine-aispmenrollmenttokens-api
+  name: MINE AispmEnrollmentTokens API
+  description: The AispmEnrollmentTokens API from MINE — 3 operation(s) for aispmenrollmenttokens.
+  humanURL: https://developers.mineos.ai/docs/authentication
+  baseURL: https://api.portal.saymine.com/
+  tags:
+  - AispmEnrollmentTokens
+  properties:
+  - type: OpenAPI
+    url: openapi/mine-aispmenrollmenttokens-api-openapi.yml
+  - type: DataModel
+    url: data-model/mine-data-model.yml
+- aid: mine:mine-aispmingest-api
+  name: MINE AispmIngest API
+  description: The AispmIngest API from MINE — 1 operation(s) for aispmingest.
+  humanURL: https://developers.mineos.ai/docs/authentication
+  baseURL: https://api.portal.saymine.com/
+  tags:
+  - AispmIngest
+  properties:
+  - type: OpenAPI
+    url: openapi/mine-aispmingest-api-openapi.yml
+  - type: DataModel
+    url: data-model/mine-data-model.yml
+- aid: mine:mine-aispminsights-api
+  name: MINE AispmInsights API
+  description: The AispmInsights API from MINE — 1 operation(s) for aispminsights.
+  humanURL: https://developers.mineos.ai/docs/authentication
+  baseURL: https://api.portal.saymine.com/
+  tags:
+  - AispmInsights
+  properties:
+  - type: OpenAPI
+    url: openapi/mine-aispminsights-api-openapi.yml
+  - type: DataModel
+    url: data-model/mine-data-model.yml
+- aid: mine:mine-aispmpublicagents-api
+  name: MINE AispmPublicAgents API
+  description: The AispmPublicAgents API from MINE — 4 operation(s) for aispmpublicagents.
+  humanURL: https://developers.mineos.ai/docs/authentication
+  baseURL: https://api.portal.saymine.com/
+  tags:
+  - AispmPublicAgents
+  properties:
+  - type: OpenAPI
+    url: openapi/mine-aispmpublicagents-api-openapi.yml
+  - type: DataModel
+    url: data-model/mine-data-model.yml
+- aid: mine:mine-aispmpublicdevices-api
+  name: MINE AispmPublicDevices API
+  description: The AispmPublicDevices API from MINE — 2 operation(s) for aispmpublicdevices.
+  humanURL: https://developers.mineos.ai/docs/authentication
+  baseURL: https://api.portal.saymine.com/
+  tags:
+  - AispmPublicDevices
+  properties:
+  - type: OpenAPI
+    url: openapi/mine-aispmpublicdevices-api-openapi.yml
+  - type: DataModel
+    url: data-model/mine-data-model.yml
+- aid: mine:mine-assessment-api
+  name: MINE Assessment API
+  description: The Assessment API from MINE — 8 operation(s) for assessment.
+  humanURL: https://developers.mineos.ai/docs/authentication
+  baseURL: https://api.portal.saymine.com/
+  tags:
+  - Assessment
+  properties:
+  - type: OpenAPI
+    url: openapi/mine-assessment-api-openapi.yml
+  - type: DataModel
+    url: data-model/mine-data-model.yml
+- aid: mine:mine-assessmenttemplate-api
+  name: MINE AssessmentTemplate API
+  description: The AssessmentTemplate API from MINE — 1 operation(s) for assessmenttemplate.
+  humanURL: https://developers.mineos.ai/docs/authentication
+  baseURL: https://api.portal.saymine.com/
+  tags:
+  - AssessmentTemplate
+  properties:
+  - type: OpenAPI
+    url: openapi/mine-assessmenttemplate-api-openapi.yml
+  - type: DataModel
+    url: data-model/mine-data-model.yml
+- aid: mine:mine-employee-api
+  name: MINE Employee API
+  description: The Employee API from MINE — 1 operation(s) for employee.
+  humanURL: https://developers.mineos.ai/docs/authentication
+  baseURL: https://api.portal.saymine.com/
+  tags:
+  - Employee
+  properties:
+  - type: OpenAPI
+    url: openapi/mine-employee-api-openapi.yml
+  - type: DataModel
+    url: data-model/mine-data-model.yml
+- aid: mine:mine-evidencesearch-api
+  name: MINE EvidenceSearch API
+  description: The EvidenceSearch API from MINE — 1 operation(s) for evidencesearch.
+  humanURL: https://developers.mineos.ai/docs/authentication
+  baseURL: https://api.portal.saymine.com/
+  tags:
+  - EvidenceSearch
+  properties:
+  - type: OpenAPI
+    url: openapi/mine-evidencesearch-api-openapi.yml
+  - type: DataModel
+    url: data-model/mine-data-model.yml
+- aid: mine:mine-partners-api
+  name: MINE Partners API
+  description: The Partners API from MINE — 2 operation(s) for partners.
+  humanURL: https://developers.mineos.ai/docs/authentication
+  baseURL: https://api.portal.saymine.com/
+  tags:
+  - Partners
+  properties:
+  - type: OpenAPI
+    url: openapi/mine-partners-api-openapi.yml
+  - type: DataModel
+    url: data-model/mine-data-model.yml
+- aid: mine:mine-privacyrightspublic-api
+  name: MINE PrivacyRightsPublic API
+  description: The PrivacyRightsPublic API from MINE — 1 operation(s) for privacyrightspublic.
+  humanURL: https://developers.mineos.ai/docs/authentication
+  baseURL: https://api.portal.saymine.com/
+  tags:
+  - PrivacyRightsPublic
+  properties:
+  - type: OpenAPI
+    url: openapi/mine-privacyrightspublic-api-openapi.yml
+  - type: DataModel
+    url: data-model/mine-data-model.yml
+- aid: mine:mine-system-api
+  name: MINE System API
+  description: The System API from MINE — 6 operation(s) for system.
+  humanURL: https://developers.mineos.ai/docs/authentication
+  baseURL: https://api.portal.saymine.com/
+  tags:
+  - System
+  properties:
+  - type: OpenAPI
+    url: openapi/mine-system-api-openapi.yml
+  - type: DataModel
+    url: data-model/mine-data-model.yml
+- aid: mine:mine-test-api
+  name: MINE Test API
+  description: The Test API from MINE — 1 operation(s) for test.
+  humanURL: https://developers.mineos.ai/docs/authentication
+  baseURL: https://api.portal.saymine.com/
+  tags:
+  - Test
+  properties:
+  - type: OpenAPI
+    url: openapi/mine-test-api-openapi.yml
+  - type: DataModel
+    url: data-model/mine-data-model.yml
+- aid: mine:mine-tickets-api
+  name: MINE Tickets API
+  description: The Tickets API from MINE — 16 operation(s) for tickets.
+  humanURL: https://developers.mineos.ai/docs/authentication
+  baseURL: https://api.portal.saymine.com/
+  tags:
+  - Tickets
+  properties:
+  - type: OpenAPI
+    url: openapi/mine-tickets-api-openapi.yml
+  - type: DataModel
+    url: data-model/mine-data-model.yml
+- aid: mine:mine-webhooks-api
+  name: MINE Webhooks API
+  description: The Webhooks API from MINE — 6 operation(s) for webhooks.
+  humanURL: https://developers.mineos.ai/docs/authentication
+  baseURL: https://api.portal.saymine.com/
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/mine-webhooks-api-openapi.yml
+  - type: DataModel
+    url: data-model/mine-data-model.yml
+common:
+- type: AgenticAccess
+  url: agentic-access/mine-agentic-access.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DeveloperPortal
+  url: https://developers.mineos.ai/docs/authentication
+- type: Documentation
+  url: https://docs.mineos.ai/knowledge
+- type: APIReference
+  url: https://developers.mineos.ai/reference/get_api-public-v1-system-list.md
+- type: GettingStarted
+  url: https://developers.mineos.ai/docs/getting-started
+- type: Authentication
+  url: authentication/mine-authentication.yml
+- type: LLMsTxt
+  url: llms/mine-llms.txt
+- type: MCPServer
+  url: mcp/mine-mcp.yml
+- type: Webhooks
+  url: asyncapi/mine-webhooks.yml
+- type: RateLimits
+  url: rate-limits/mine-rate-limits.yml
+- type: ErrorCatalog
+  url: errors/mine-problem-types.yml
+- type: Conventions
+  url: conventions/mine-conventions.yml
+- type: Lifecycle
+  url: lifecycle/mine-lifecycle.yml
+- type: StatusPage
+  url: https://status.mineos.ai/
+- type: Conformance
+  url: conformance/mine-conformance.yml
+- type: Compliance
+  url: https://www.mineos.ai/about-security
+- type: TrustCenter
+  url: security/mine-trust-center.yml
+- type: Security
+  url: https://www.mineos.ai/about-security
+- type: VulnerabilityDisclosure
+  url: security/mine-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/mine-domain-security.yml
+- type: WellKnown
+  url: well-known/mine-well-known.yml
+- type: Postman
+  url: https://developers.mineos.ai/docs/postman-collection
+- type: GitHubOrganization
+  url: https://github.com/saymine
+- type: Blog
+  url: https://www.mineos.ai/hub/articles
+- type: Support
+  url: https://mineos.ai/get-in-touch
+- type: TermsOfService
+  url: https://www.mineos.ai/legal/portal-terms-of-service
+- type: PrivacyPolicy
+  url: https://www.mineos.ai/legal/portal-privacy-policy
+- type: Website
+  url: https://www.mineos.ai
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 7
+  pass: local-v1
