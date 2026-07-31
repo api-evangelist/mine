@@ -1,0 +1,41 @@
+generated: '2026-07-20'
+method: searched
+source: https://developers.mineos.ai/docs/errors, openapi/mine-openapi-original.json
+format: custom
+envelope:
+  schema: ErrorPublicResponse
+  fields:
+    internalErrorCode:
+      type: enum
+      values: [GeneralError, NotFound, AlreadyExists, InvalidArgument]
+    message:
+      type: string
+      nullable: true
+  content_type: application/json
+  notes: Not RFC 9457 application/problem+json; MineOS uses a custom error envelope.
+http_statuses:
+- status: 200
+  meaning: Everything worked as expected.
+- status: 400
+  meaning: The request was unacceptable, often due to a missing required parameter.
+  internalErrorCode: InvalidArgument
+- status: 401
+  meaning: No valid API key was provided.
+- status: 404
+  meaning: The requested resource doesn't exist.
+  internalErrorCode: NotFound
+- status: 409
+  meaning: Conflict — the resource already exists / state conflict.
+  internalErrorCode: AlreadyExists
+- status: 429
+  meaning: Too many requests hit the API too quickly.
+- status: 500
+  meaning: Something went wrong on Mine's end (rare).
+  internalErrorCode: GeneralError
+- status: 503
+  meaning: Something went wrong on Mine's end (rare).
+observed_in_spec:
+  '401': 46 operations
+  '404': 25 operations
+  '400': 37 operations
+  '409': 3 operations

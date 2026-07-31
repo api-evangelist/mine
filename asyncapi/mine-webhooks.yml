@@ -1,0 +1,37 @@
+generated: '2026-07-20'
+method: searched
+spec_type: Webhooks
+source: >-
+  https://developers.mineos.ai/reference/mcp.md,
+  https://developers.mineos.ai/docs/authentication,
+  openapi/mine-openapi-original.json
+summary: >-
+  MineOS ships a webhook surface (no published AsyncAPI document). Consumers register
+  endpoint(s) and subscribe to event types; MineOS POSTs events to the configured URL.
+  Maximum 30 webhook configurations per account.
+delivery:
+  transport: HTTP POST to subscriber endpoint
+  max_configurations: 30
+events:
+- name: TicketCreated
+  description: A privacy request / ticket was created.
+- name: TicketClosed
+  description: A privacy request / ticket was closed.
+- name: TprmTrigger
+  description: A Third-Party Risk Management (TPRM) event was triggered.
+- name: RequestCreated
+  description: A data subject request was created (documented event class).
+- name: RequestClosed
+  description: A data subject request was closed (documented event class).
+- name: SystemCreated
+  description: A new data source / system was created.
+- name: EmployeeInactive
+  description: An employee became inactive.
+management_operations:
+- {method: GET, path: '/api/Webhooks/Configurations', summary: Get all current webhook configurations}
+- {method: GET, path: '/api/Webhooks/Configurations/{id}', summary: Get webhook configuration for a specific id}
+- {method: POST, path: '/api/Webhooks/Subscribe', summary: Adds a new webhook endpoint}
+- {method: PATCH, path: '/api/Webhooks/Subscribe/{id}', summary: Update an existing webhook configuration}
+- {method: POST, path: '/api/Webhooks/Endpoint', summary: Sets webhook endpoint}
+- {method: DELETE, path: '/api/Webhooks/Endpoint', summary: Disables webhook endpoint}
+- {method: DELETE, path: '/api/Webhooks/Unsubscribe/{id}', summary: Deletes webhook endpoint}

@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: searched
+source: live probes of the MineOS website, developer portal, and API hosts
+notes: >-
+  No machine-readable /.well-known/ discovery documents were found. portal.saymine.com
+  returns HTTP 200 for /.well-known/security.txt but the body is the SPA HTML shell, not a
+  valid RFC 9116 security.txt, so it is recorded as absent. Absence of these documents is
+  valid, expected data.
+hosts:
+- host: https://developers.mineos.ai
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+- host: https://www.mineos.ai
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://api.portal.saymine.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+- host: https://portal.saymine.com
+  documents:
+  - {path: /.well-known/security.txt, status: 200, note: SPA HTML shell, not a valid security.txt}

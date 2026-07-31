@@ -1,0 +1,20 @@
+generated: '2026-07-20'
+method: searched
+source: https://developers.mineos.ai/docs/rate-limiting
+rate_limits:
+- scope: GET/OPTIONS requests
+  limit_count: 800
+  window: minute
+- scope: POST/PUT/PATCH/DELETE requests
+  limit_count: 800
+  window: minute
+on_exceed:
+  status: 429
+  message: Too Many Requests
+headers: []
+guidance: >-
+  Implement retry with exponential backoff to handle rate limiting. Specific rate-limit
+  response headers (X-RateLimit-*, Retry-After) are not documented.
+notes: >-
+  Also applies a deduplication window: request-create endpoints deduplicate within a
+  one-minute window by matching email and request type.

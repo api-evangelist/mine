@@ -1,0 +1,33 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for MineOS API
+  version: 1.0.0
+extends: openapi/mine-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: mine
+    x-apievangelist-company: Mine (MineOS)
+    x-apievangelist-backed-by: battery-ventures
+    x-apievangelist-categories:
+    - Data Privacy
+    - Data Governance
+    - Privacy Operations
+    - AI Governance
+    x-apievangelist-datacenters:
+    - {region: EU, base_url: 'https://api.portal.saymine.com/'}
+    - {region: US, base_url: 'https://api.us.portal.saymine.com/'}
+    x-apievangelist-mcp-server: https://developers.mineos.ai/mcp
+    x-apievangelist-rate-limit: 800 requests/minute per method class
+    x-apievangelist-pagination: cursor (CursorTokens before/after)
+    x-apievangelist-error-envelope: '{ internalErrorCode, message }'
+    x-apievangelist-webhooks: asyncapi/mine-webhooks.yml
+    x-apievangelist-compliance:
+    - SOC 2 Type 2
+    - ISO/IEC 27001
+    - GDPR
+    - CCPA
+    - HIPAA
+- target: $.components.securitySchemes.Bearer
+  update:
+    x-apievangelist-note: API-key Bearer token; max 10 keys per workspace; HTTPS required.

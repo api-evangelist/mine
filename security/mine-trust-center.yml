@@ -1,0 +1,20 @@
+generated: '2026-07-20'
+method: searched
+probe: true
+url: https://www.mineos.ai/about-security
+certifications:
+- SOC 2 Type 2
+- ISO/IEC 27001
+- GDPR
+- CCPA
+- HIPAA
+evidence:
+- source: https://www.mineos.ai/about-security
+  keywords: [soc 2 type 2, iso/iec 27001, gdpr, ccpa, hipaa, responsible disclosure]
+- source: https://docs.mineos.ai/knowledge/about-security
+  keywords: [security, compliance]
+notes: >-
+  MineOS documents its security and compliance posture on its About Security page
+  (mineos.ai/about-security) rather than a standalone trust.<domain> portal. Named
+  certifications/frameworks: SOC 2 Type 2, ISO/IEC 27001, plus GDPR, CCPA, and HIPAA
+  regulatory alignment. Infrastructure hosted on Google Cloud.

@@ -1,0 +1,47 @@
+generated: '2026-07-20'
+method: searched
+source: >-
+  https://developers.mineos.ai/docs/authentication,
+  https://developers.mineos.ai/docs/rate-limiting,
+  https://developers.mineos.ai/docs/errors,
+  openapi/mine-openapi-original.json
+authentication:
+  style: api-key
+  scheme: bearer
+  location: header
+  parameter: Authorization
+  format: 'Authorization: Bearer <APIKey>'
+  max_keys_per_workspace: 10
+  transport: HTTPS required (HTTP calls fail)
+  docs: https://developers.mineos.ai/docs/authentication
+  see: authentication/mine-authentication.yml
+idempotency:
+  supported: false
+  deduplication:
+    scope: request-create endpoints
+    window: 1 minute
+    key: matches on email + request type
+  notes: >-
+    No Idempotency-Key header contract. A one-minute deduplication window prevents duplicate
+    request creation, but this is not client-controlled idempotency.
+pagination:
+  style: cursor
+  tokens: {before: cursor before, after: cursor after}
+  schema: CursorTokens
+  params: [offset, limit]
+  notes: List endpoints use cursor-based tokens for navigation.
+versioning:
+  style: uri-path
+  see: lifecycle/mine-lifecycle.yml
+rate_limiting:
+  limit: 800 requests/minute per method class
+  on_exceed: 429
+  see: rate-limits/mine-rate-limits.yml
+errors:
+  envelope: '{ internalErrorCode, message }'
+  see: errors/mine-problem-types.yml
+data_retention:
+  closed_requests: excluded from list responses after 3 months
+datacenters:
+  note: Target the datacenter hosting your account (EU or US endpoint).
+  see: lifecycle/mine-lifecycle.yml

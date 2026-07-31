@@ -1,0 +1,31 @@
+generated: '2026-07-20'
+method: searched
+source: https://www.mineos.ai/about-security, openapi/mine-openapi-original.json
+standards:
+- id: soc2-type2
+  conforms: true
+  evidence: MineOS About Security page lists SOC 2 Type 2
+- id: iso-27001
+  conforms: true
+  evidence: MineOS About Security page lists ISO/IEC 27001
+- id: gdpr
+  conforms: true
+  evidence: GDPR compliance and data subject rights automation are core product/company posture
+- id: ccpa
+  conforms: true
+  evidence: CCPA compliance listed; "do not sell my personal information" flow published
+- id: hipaa
+  conforms: true
+  evidence: HIPAA listed on the security page
+- id: api-key-bearer-auth
+  conforms: true
+  evidence: OpenAPI securityScheme apiKey (Authorization Bearer) applied across operations
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors use a custom envelope {internalErrorCode, message}, not application/problem+json
+- id: oauth2
+  conforms: false
+  evidence: no oauth2 security schemes in the OpenAPI; API-key auth only
+- id: cursor-pagination
+  conforms: true
+  evidence: list endpoints use cursor tokens (CursorTokens {before, after})

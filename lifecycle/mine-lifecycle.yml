@@ -1,0 +1,22 @@
+generated: '2026-07-20'
+method: searched
+source: https://developers.mineos.ai/docs/authentication, https://status.mineos.ai/
+versioning:
+  scheme: uri-path
+  current: v1
+  notes: >-
+    API versions are carried in the URL path — public-v1 (privacy operations), aispm/v1
+    (AI security posture management), and partners-v1 (partners API). Ticket create/close
+    operations are explicitly versioned in the path (Create/v2, CloseV2).
+  docs: https://developers.mineos.ai/docs/authentication
+datacenters:
+- {region: EU, base_url: 'https://api.portal.saymine.com/'}
+- {region: US, base_url: 'https://api.us.portal.saymine.com/'}
+status_page: https://status.mineos.ai/
+data_retention:
+  closed_requests: Closed requests older than 3 months are excluded from list responses
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No formal deprecation/Sunset (RFC 8594) policy was found published.
+deprecated_operations: []

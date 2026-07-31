@@ -1,0 +1,235 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/mine-openapi-original.json
+summary:
+  entity_count: 140
+  entities_with_relationships: 55
+  domains:
+  - Privacy requests / tickets (DSR)
+  - Data sources / systems inventory
+  - Assessments & templates (vendor/TPRM)
+  - AI governance (AISPM: agents, devices, signals, vulnerabilities)
+  - Employees & business units
+  - Webhooks
+entities:
+- name: AgentDetailDto
+  relationships:
+  - {cardinality: has_one, entity: AgentBusinessPurposeDto, via: businessPurpose}
+  - {cardinality: has_many, entity: AgentToolDto, via: tools}
+  - {cardinality: has_many, entity: AgentSkillDto, via: skills}
+  - {cardinality: has_many, entity: AgentDeviceDto, via: devices}
+- name: AgentDeviceDto
+  relationships:
+  - {cardinality: has_one, entity: DeviceFullDto, via: device}
+- name: AgentListItemDto
+  relationships:
+  - {cardinality: has_one, entity: AgentBusinessPurposeDto, via: businessPurpose}
+- name: AgentSignalsDto
+  relationships:
+  - {cardinality: has_many, entity: AgentSignalDto, via: signals}
+- name: AgentVulnerabilitiesDto
+  relationships:
+  - {cardinality: has_many, entity: AgentVulnerabilityDto, via: vulnerabilities}
+- name: AssignedTicket
+  relationships:
+  - {cardinality: has_one, entity: AutoPilotState, via: autoPilotState}
+- name: AssignmentLog
+  relationships:
+  - {cardinality: has_many, entity: AssignmentLogItem, via: items}
+- name: AuthorizedAgentInfo
+  relationships:
+  - {cardinality: has_one, entity: FileAttachment, via: verificationDocumentFile}
+- name: AutoPilotInfo
+  relationships:
+  - {cardinality: has_one, entity: AutoPilotState, via: state}
+- name: CloseTicketRequest
+  relationships:
+  - {cardinality: has_one, entity: TicketCloseType, via: reason}
+- name: CustomIntegrationActionStatusRequest
+  relationships:
+  - {cardinality: has_one, entity: TicketCustomIntegrationStatus, via: status}
+  - {cardinality: has_one, entity: TicketCustomIntegrationAction, via: action}
+  - {cardinality: has_many, entity: Reference, via: files}
+- name: DataSubjectTypeInfo
+  relationships:
+  - {cardinality: has_one, entity: DataSubjectType, via: dataSubjectType}
+- name: DataSubjectTypeResponse
+  relationships:
+  - {cardinality: has_one, entity: DataSubjectType, via: dataSubjectType}
+  - {cardinality: has_one, entity: AuthorizedAgentResponse, via: authorizedAgentInfo}
+- name: DeviceAgentDto
+  relationships:
+  - {cardinality: has_many, entity: AgentToolDto, via: tools}
+  - {cardinality: has_many, entity: AgentSkillDto, via: skills}
+  - {cardinality: has_one, entity: AgentBusinessPurposeDto, via: businessPurpose}
+  - {cardinality: has_one, entity: PostureAnalysisRunSummaryDto, via: postureAnalysisRun}
+  - {cardinality: has_many, entity: AgentVulnerabilityDto, via: vulnerabilities}
+  - {cardinality: has_many, entity: AgentSignalDto, via: signals}
+- name: DeviceDetailDto
+  relationships:
+  - {cardinality: has_one, entity: DeviceAttributesDto, via: attributes}
+  - {cardinality: has_many, entity: DeviceAgentDto, via: agents}
+- name: DeviceFullDto
+  relationships:
+  - {cardinality: has_one, entity: DeviceAttributesDto, via: attributes}
+- name: ErrorPublicResponse
+  relationships:
+  - {cardinality: has_one, entity: InternalErrorCode, via: internalErrorCode}
+- name: ExternalRequestStateInfo
+  relationships:
+  - {cardinality: has_one, entity: StateChangeSource, via: changeSource}
+  - {cardinality: has_one, entity: ReasonEnum, via: reason}
+  - {cardinality: has_one, entity: ExternalTicketState, via: state}
+- name: FormCustomData
+  relationships:
+  - {cardinality: has_one, entity: CustomQuestion, via: customQuestion}
+  - {cardinality: has_one, entity: AuthorizedAgentInfo, via: authorizedAgentInfo}
+  - {cardinality: has_one, entity: FileAttachment, via: fileAttachment}
+- name: InputConfig
+  relationships:
+  - {cardinality: has_many, entity: InputOptions, via: inputOptions}
+- name: IntegrationHistoryLog
+  relationships:
+  - {cardinality: has_many, entity: IntegrationLogItem, via: items}
+- name: IntegrationLogItem
+  relationships:
+  - {cardinality: has_one, entity: IntegrationState, via: state}
+  - {cardinality: has_one, entity: RequestType, via: requestType}
+- name: LockStatusResponse
+  relationships:
+  - {cardinality: has_one, entity: CollabState, via: collabState}
+- name: MessageItem
+  relationships:
+  - {cardinality: has_one, entity: MailDirection, via: mailDirection}
+- name: MineAppSearchResponse
+  relationships:
+  - {cardinality: has_one, entity: OwnedDsrItem, via: ownedItem}
+- name: OwnedDsrItem
+  relationships:
+  - {cardinality: has_one, entity: TicketType, via: ticketType}
+  - {cardinality: has_one, entity: TicketSource, via: ticketSource}
+  - {cardinality: has_one, entity: ExternalRequestStateInfo, via: ticketState}
+  - {cardinality: has_many, entity: EmailEvidenceContract, via: emailEvidence}
+  - {cardinality: has_one, entity: FormCustomData, via: formCustomData}
+  - {cardinality: has_one, entity: DataSubjectTypeResponse, via: dataSubjectTypeInfo}
+  - {cardinality: has_one, entity: AutoPilotState, via: autoPilotState}
+  - {cardinality: has_one, entity: AutoPilotInfo, via: autoPilotInfo}
+  - {cardinality: has_one, entity: TicketRequireAttentionResponse, via: requireAttentionInfo}
+- name: PortalMessageResponse
+  relationships:
+  - {cardinality: has_many, entity: MessageItem, via: items}
+- name: PortalNotesResponse
+  relationships:
+  - {cardinality: has_many, entity: NoteResponse, via: items}
+- name: PrivacyRightResponse
+  relationships:
+  - {cardinality: has_many, entity: WorkflowSummary, via: workflows}
+  - {cardinality: has_many, entity: EligibleRegionResponse, via: eligibleRegions}
+- name: ProcessingTaskInfo
+  relationships:
+  - {cardinality: has_one, entity: ActionStatus, via: status}
+- name: PublicAssessmentPageResponse
+  relationships:
+  - {cardinality: has_one, entity: PageType, via: type}
+  - {cardinality: has_one, entity: State, via: state}
+  - {cardinality: has_one, entity: CollabState, via: collabState}
+  - {cardinality: has_many, entity: PublicSectionResponse, via: sections}
+  - {cardinality: has_many, entity: PublicTagResponse, via: tags}
+  - {cardinality: has_many, entity: PublicCollabInviteResponse, via: collabInvites}
+  - {cardinality: has_one, entity: LockStatusResponse, via: collabLockStatus}
+  - {cardinality: has_many, entity: AssessmentFormSubmission, via: formSubmissions}
+- name: PublicCollabInviteResponse
+  relationships:
+  - {cardinality: has_one, entity: InviteStatusEnum, via: status}
+- name: PublicCustomFieldReference
+  relationships:
+  - {cardinality: has_one, entity: CustomFieldInputType, via: inputType}
+  - {cardinality: has_one, entity: InputConfig, via: inputData}
+- name: PublicQuestionReferencedObjects
+  relationships:
+  - {cardinality: has_many, entity: PublicSystemReference, via: dataSources}
+  - {cardinality: has_many, entity: PublicExternalEntityReference, via: externalEntities}
+  - {cardinality: has_many, entity: PublicDataTypeReference, via: dataTypes}
+  - {cardinality: has_one, entity: PublicCustomFieldReference, via: customField}
+- name: PublicQuestionResponse
+  relationships:
+  - {cardinality: has_one, entity: AssessmentQuestionTypeEnum, via: type}
+  - {cardinality: has_one, entity: PublicQuestionReferencedObjects, via: referencedObjects}
+- name: PublicSectionResponse
+  relationships:
+  - {cardinality: has_many, entity: PublicQuestionResponse, via: questions}
+- name: RequestsListResponse
+  relationships:
+  - {cardinality: has_many, entity: TicketListItem, via: tickets}
+  - {cardinality: has_one, entity: CursorTokens, via: tokens}
+- name: RequireAttentionHistoryLog
+  relationships:
+  - {cardinality: has_many, entity: RequireAttentionLogItem, via: items}
+- name: RequireAttentionLogItem
+  relationships:
+  - {cardinality: has_one, entity: StateChangeSource, via: changeSource}
+- name: ReviewStatus
+  relationships:
+  - {cardinality: has_one, entity: StatusOfReview, via: status}
+- name: StateHistoryLog
+  relationships:
+  - {cardinality: has_many, entity: StateLogItem, via: items}
+- name: StateLogItem
+  relationships:
+  - {cardinality: has_one, entity: TicketStateEnum, via: state}
+  - {cardinality: has_one, entity: StateChangeSource, via: changeSource}
+  - {cardinality: has_one, entity: ReasonEnum, via: reason}
+- name: SystemPublicPatchDtoJsonPatchOperation
+  relationships:
+  - {cardinality: has_one, entity: PatchOperationType, via: operationType}
+- name: SystemPublicPatchDtoJsonPatchRequest
+  relationships:
+  - {cardinality: has_many, entity: SystemPublicPatchDtoJsonPatchOperation, via: operations}
+- name: SystemPublicResponse
+  relationships:
+  - {cardinality: has_one, entity: SystemState, via: state}
+  - {cardinality: has_many, entity: DataSourceOriginEnum, via: discoveryMethods}
+  - {cardinality: has_one, entity: ReviewStatus, via: reviewStatus}
+  - {cardinality: has_one, entity: RemovalInfo, via: removalInfo}
+- name: TemplatePublicResponse
+  relationships:
+  - {cardinality: has_one, entity: PageType, via: type}
+- name: TicketAssignAutoPilotResponse
+  relationships:
+  - {cardinality: has_many, entity: AssignedTicket, via: assignedTickets}
+- name: TicketInfo
+  relationships:
+  - {cardinality: has_one, entity: ExternalTicketState, via: requestStatus}
+  - {cardinality: has_one, entity: TicketSource, via: ticketSource}
+  - {cardinality: has_one, entity: FormCustomData, via: formCustomData}
+  - {cardinality: has_one, entity: AutoPilotState, via: autoPilotState}
+  - {cardinality: has_many, entity: ProcessingTaskInfo, via: processingTasks}
+  - {cardinality: has_many, entity: PublicNoteResponse, via: notes}
+  - {cardinality: has_one, entity: DataSubjectTypeInfo, via: dataSubjectTypeInfo}
+- name: TicketLogs
+  relationships:
+  - {cardinality: has_one, entity: PortalMessageResponse, via: conversation}
+  - {cardinality: has_one, entity: PortalNotesResponse, via: notes}
+  - {cardinality: has_one, entity: IntegrationHistoryLog, via: integrationsLogs}
+  - {cardinality: has_one, entity: StateHistoryLog, via: stateLogs}
+  - {cardinality: has_one, entity: AssignmentLog, via: assignmentLogs}
+  - {cardinality: has_one, entity: RequireAttentionHistoryLog, via: requireAttentionLogs}
+  - {cardinality: has_one, entity: WorkflowChangeHistoryLog, via: workflowChangesLogs}
+- name: TicketWorkflowResponse
+  relationships:
+  - {cardinality: has_many, entity: TicketWorkflowIntegration, via: integrations}
+- name: WebhookConfigurationResponse
+  relationships:
+  - {cardinality: has_many, entity: WebhookEventType, via: supportedEventTypes}
+- name: WebhookSubscribeRequest
+  relationships:
+  - {cardinality: has_many, entity: WebhookEventType, via: supportedEventTypes}
+- name: WebhookSubscriberPostRequest
+  relationships:
+  - {cardinality: has_many, entity: WebhookEventType, via: supportedEventTypes}
+- name: WorkflowChangeHistoryLog
+  relationships:
+  - {cardinality: has_many, entity: WorkflowChangeLogItemResponse, via: items}
+- name: WorkflowChangeLogItemResponse
+  relationships:
+  - {cardinality: has_one, entity: StateChangeSource, via: changeSource}

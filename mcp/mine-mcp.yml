@@ -1,0 +1,21 @@
+generated: '2026-07-20'
+method: searched
+status: published
+source: https://developers.mineos.ai/reference/mcp.md
+server:
+  name: mineos
+  transport: http
+  url: https://developers.mineos.ai/mcp
+  auth:
+    type: bearer
+    description: >-
+      Pass a MineOS API key as the Authorization Bearer header (the same key used for the
+      REST API), or provide the key to the agent and it will attach it.
+notes: >-
+  MineOS publishes an official hosted/remote MCP server. Every endpoint documented in the
+  API reference is exposed as an MCP tool, plus a documentation-search capability so agents
+  can discover endpoint functionality. Typically wired into a client via the mcp-remote
+  wrapper. Tool surface mirrors the OpenAPI operations in openapi/mine-openapi-original.json
+  (tickets/privacy requests, data-source systems, assessments, employees, AI agent/device
+  discovery, and webhook management).
+docs: https://developers.mineos.ai/reference/mcp.md

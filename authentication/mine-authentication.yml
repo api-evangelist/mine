@@ -1,0 +1,22 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/mine-openapi-original.json, openapi/mine-partners-openapi-original.json
+docs: https://developers.mineos.ai/docs/authentication
+notes: >-
+  API-key Bearer token. Create keys in the workspace under For Developers > API Keys;
+  the key is shown once. Max 10 active keys per workspace. HTTPS is required.
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: Bearer
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: "Authorization header using the Bearer scheme. \r\n\r\nEnter 'Bearer' [space]\
+    \ and then your API Key in the text input below.\r\n\r\nExample: 'Bearer 12345abcdef'"
+  sources:
+  - openapi/mine-openapi-original.json
+  - openapi/mine-partners-openapi-original.json
