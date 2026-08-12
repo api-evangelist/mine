@@ -266,6 +266,8 @@ apis:
   - type: DataModel
     url: data-model/mine-data-model.yml
 common:
+- type: Overlay
+  url: overlays/mine-openapi-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/mine-agentic-access.yml
 - type: AgentSkill
