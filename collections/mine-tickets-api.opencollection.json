@@ -1,0 +1,440 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MineOS Aispm Tickets API",
+    "version": "v1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tickets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/api/ticket/List",
+            "params": [
+              {
+                "name": "State",
+                "value": "Processing,Notify",
+                "type": "query",
+                "description": "Filter by list of ticket states. The default is all. Possible values are: [Open, Closed, Redacted, Processing, Notify, Delete, Redacting, Edit, Unverified]"
+              },
+              {
+                "name": "PrivacyRightIds",
+                "value": "delete",
+                "type": "query",
+                "description": "Filter by list of right ids. The default is all."
+              },
+              {
+                "name": "BrandIds",
+                "value": "",
+                "type": "query",
+                "description": "Filter by list of brand ids. The default is all."
+              },
+              {
+                "name": "MinCreatedAt",
+                "value": "2023-05-20",
+                "type": "query",
+                "description": "Filter by created at dates - return only requests that were created after the provided date at 00:00, in the format: yyyy-MM-dd."
+              },
+              {
+                "name": "MaxCreatedAt",
+                "value": "2023-05-20",
+                "type": "query",
+                "description": "Filter by created at dates - return only requests that were created before the provided date at 00:00, iin the format: yyyy-MM-dd"
+              },
+              {
+                "name": "MinClosedAt",
+                "value": "2024-04-20",
+                "type": "query",
+                "description": "Filter by closed at dates - return only requests that were closed after the provided date at 00:00, in the format: yyyy-MM-dd.\r\nRelevant for tickets that were closed after 13/03/2024."
+              },
+              {
+                "name": "MaxClosedAt",
+                "value": "2024-04-20",
+                "type": "query",
+                "description": "Filter by closed at dates - return only requests that were closed before the provided date at 00:00, iin the format: yyyy-MM-dd.\r\nRelevant for tickets that were closed after 13/03/2024."
+              },
+              {
+                "name": "After",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Before",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of tickets. Use the cursor tokens in the response to fetch the next or previous page.\r\nAll query filters are optional. Closed requests created more than 3 months ago are not included in the response."
+        },
+        {
+          "info": {
+            "name": "Get ticket",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/api/ticket/:ticketId",
+            "params": [
+              {
+                "name": "ticketId",
+                "value": "3664feb0-b48c-4a8a-a81d-1303a4efc64f",
+                "type": "path",
+                "description": "TicketID of the request to get info for"
+              }
+            ]
+          },
+          "docs": "Get ticket"
+        },
+        {
+          "info": {
+            "name": "Get ticket logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/api/ticket/:ticketId/log",
+            "params": [
+              {
+                "name": "ticketId",
+                "value": "3664feb0-b48c-4a8a-a81d-1303a4efc64f",
+                "type": "path",
+                "description": "TicketID of the request to get info for"
+              }
+            ]
+          },
+          "docs": "Get ticket logs"
+        },
+        {
+          "info": {
+            "name": "Update the due date of a request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/ticket/:ticketId/dueDate",
+            "params": [
+              {
+                "name": "ticketId",
+                "value": "3664feb0-b48c-4a8a-a81d-1303a4efc64f",
+                "type": "path",
+                "description": "TicketID of the request to upadte due date for"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the due date of a request"
+        },
+        {
+          "info": {
+            "name": "Create request [v2]",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/ticket/Create/v2",
+            "params": [
+              {
+                "name": "test",
+                "value": "false",
+                "type": "query",
+                "description": "When test is True a request will not actually be created"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Duplication handling - if there was already an attempt to create a ticket with the same email with the same request type in the last minute,\r\nwe return 202 with the existing ticket id and avoid creating another one"
+        },
+        {
+          "info": {
+            "name": "Create many requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/ticket/CreateMany",
+            "params": [
+              {
+                "name": "test",
+                "value": "false",
+                "type": "query",
+                "description": "When test is True no requests will actually be created"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Duplication handling - if there was already an attempt to create a request with the same email and the same request type in the last minute,\r\nwe return the existing request id and avoid creating another one.\r\nFailure in creating a request will be indicated in the response,\r\nif any request creation fails, the system continuous with the rest of the requests"
+        },
+        {
+          "info": {
+            "name": "Get metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/api/ticket/GetMetadata",
+            "params": [
+              {
+                "name": "ticketId",
+                "value": "3664feb0-b48c-4a8a-a81d-1303a4efc64f",
+                "type": "query",
+                "description": "TicketID of the request to update status for"
+              }
+            ]
+          },
+          "docs": "Used to read metadata or custom identifiers from the request."
+        },
+        {
+          "info": {
+            "name": "Update metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/ticket/UpdateMetadata",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Used to store metadata or custom identifiers on the request."
+        },
+        {
+          "info": {
+            "name": "Mark/unmark a ticket with the Require Attention label",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/ticket/:ticketId/require-attention",
+            "params": [
+              {
+                "name": "ticketId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Will pause any automatic ticket runs until marked as reviewed.\r\nWill not pause any data mutation process once the processing automation step has started"
+        },
+        {
+          "info": {
+            "name": "Assign a group to a request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/ticket/:ticketId/group-assignment",
+            "params": [
+              {
+                "name": "ticketId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assign a group to a request"
+        },
+        {
+          "info": {
+            "name": "Add a note",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/ticket/AddNote",
+            "params": [
+              {
+                "name": "ticketId",
+                "value": "3664feb0-b48c-4a8a-a81d-1303a4efc64f",
+                "type": "query",
+                "description": "The Request ID to add note for"
+              },
+              {
+                "name": "userId",
+                "value": "1135124226903180384",
+                "type": "query",
+                "description": "Optional. The User ID to add note on behalf of"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a note"
+        },
+        {
+          "info": {
+            "name": "Redact request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/ticket/Redact/:ticketId",
+            "params": [
+              {
+                "name": "ticketId",
+                "value": "eb640185-9e3d-48f5-bf74-d7a3120814e8",
+                "type": "path",
+                "description": "Ticket ID"
+              },
+              {
+                "name": "test",
+                "value": "false",
+                "type": "query",
+                "description": "When set to true, request will not actually be redacted"
+              }
+            ]
+          },
+          "docs": "Redact request"
+        },
+        {
+          "info": {
+            "name": "Close request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/ticket/CloseV2",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Close request"
+        },
+        {
+          "info": {
+            "name": "Start Autopilot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/ticket/EngageAutopilot/:ticketId",
+            "params": [
+              {
+                "name": "ticketId",
+                "value": "3664feb0-b48c-4a8a-a81d-1303a4efc64f",
+                "type": "path",
+                "description": "TicketID of the request to start autopilot for"
+              }
+            ]
+          },
+          "docs": "Start Autopilot"
+        },
+        {
+          "info": {
+            "name": "Update custom integration status [v2]",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/ticket/:ticketId/custom-integrations/:integrationId",
+            "params": [
+              {
+                "name": "ticketId",
+                "value": "3664feb0-b48c-4a8a-a81d-1303a4efc64f",
+                "type": "path",
+                "description": "TicketID of the associated request"
+              },
+              {
+                "name": "integrationId",
+                "value": "3664feb0-b48c-4a8a-a81d-1303a4efc64f",
+                "type": "path",
+                "description": "IntegrationID of the associated request"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update custom integration status [v2]"
+        },
+        {
+          "info": {
+            "name": "Get the workflow assigned to a ticket",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/api/ticket/:ticketId/workflow",
+            "params": [
+              {
+                "name": "ticketId",
+                "value": "3664feb0-b48c-4a8a-a81d-1303a4efc64f",
+                "type": "path",
+                "description": "TicketID of the request"
+              }
+            ]
+          },
+          "docs": "Returns the workflow id, display name, and the list of integrations attached to the ticket's workflow."
+        },
+        {
+          "info": {
+            "name": "Change the workflow assigned to a ticket",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/ticket/:ticketId/workflow",
+            "params": [
+              {
+                "name": "ticketId",
+                "value": "3664feb0-b48c-4a8a-a81d-1303a4efc64f",
+                "type": "path",
+                "description": "TicketID of the request"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Allowed only when the ticket has not yet started processing. If the requested workflow is the same as the\r\none already assigned, the request is a no-op and returns 200 without any side effect."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

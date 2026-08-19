@@ -1,0 +1,392 @@
+{
+  "item": [
+    {
+      "id": "1be1b052-6157-4809-93ac-4de9f0726245",
+      "name": "AispmPublicDevices",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5cb3dc06-867a-4b28-b391-a9e5a99cd69c",
+          "name": "Lists every device discovered for the authenticated tenant, including every device column plus the\r\nscanner version from its last scan run. Returns an empty array if the tenant has no discovered\r\ndevices yet — never a 404.",
+          "request": {
+            "name": "Lists every device discovered for the authenticated tenant, including every device column plus the\r\nscanner version from its last scan run. Returns an empty array if the tenant has no discovered\r\ndevices yet — never a 404.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "aispm",
+                "v1",
+                "public",
+                "devices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7e1ea3bd-58f6-4313-9891-22dd69677074",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "aispm",
+                    "v1",
+                    "public",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"c4fa6b36-055f-6c52-36cc-cbec6d16b0f5\",\n    \"deviceKey\": \"string\",\n    \"hardwareUuid\": \"string\",\n    \"platform\": \"string\",\n    \"hostname\": \"string\",\n    \"mdmSource\": \"string\",\n    \"mdmDeviceId\": \"string\",\n    \"ownerRawIdentifier\": \"string\",\n    \"ownerEmployeeId\": \"19c3a935-9e75-201e-1d0c-3109bf29a801\",\n    \"firstSeenAt\": \"2005-03-26T11:34:59.397Z\",\n    \"lastSeenAt\": \"2024-12-23T02:30:41.687Z\",\n    \"lastScanRunId\": \"6e4742d5-56bf-0972-8e2c-1eb30a92787a\",\n    \"scannerVersion\": \"string\",\n    \"attributes\": {\n      \"macAddresses\": [\n        \"string\",\n        \"string\"\n      ],\n      \"osVersion\": \"string\",\n      \"hardwareModel\": \"string\",\n      \"arch\": \"string\"\n    }\n  },\n  {\n    \"id\": \"cacecb52-284a-737b-d3d8-91d7d1c5342b\",\n    \"deviceKey\": \"string\",\n    \"hardwareUuid\": \"string\",\n    \"platform\": \"string\",\n    \"hostname\": \"string\",\n    \"mdmSource\": \"string\",\n    \"mdmDeviceId\": \"string\",\n    \"ownerRawIdentifier\": \"string\",\n    \"ownerEmployeeId\": \"4cd4fae7-5f50-3f48-a637-03e01bdc5cb2\",\n    \"firstSeenAt\": \"2014-01-31T04:28:23.469Z\",\n    \"lastSeenAt\": \"2004-05-14T12:24:08.859Z\",\n    \"lastScanRunId\": \"8fbfe8d9-b4bf-d671-58dc-1cd52e520460\",\n    \"scannerVersion\": \"string\",\n    \"attributes\": {\n      \"macAddresses\": [\n        \"string\",\n        \"string\"\n      ],\n      \"osVersion\": \"string\",\n      \"hardwareModel\": \"string\",\n      \"arch\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c68a99b-fa8d-4d28-a80e-ee17cb808e90",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "aispm",
+                    "v1",
+                    "public",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8732,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c1946c0-61a4-4c54-adf9-46cce422a933",
+          "name": "Retrieves full detail for one device: every device column plus every agent found on it, each fully\r\nexpanded (tools, skills, business purpose, posture analysis run summary, and both risk-factor\r\ncollections — vulnerabilities and signals, never unioned, D35).",
+          "request": {
+            "name": "Retrieves full detail for one device: every device column plus every agent found on it, each fully\r\nexpanded (tools, skills, business purpose, posture analysis run summary, and both risk-factor\r\ncollections — vulnerabilities and signals, never unioned, D35).",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "aispm",
+                "v1",
+                "public",
+                "devices",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) The device's unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "52d7bcaa-cc00-4d43-8f65-fc2c44c2f1eb",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "aispm",
+                    "v1",
+                    "public",
+                    "devices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The device's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"cc715f0a-8621-a5f6-1c9c-ed2ffc91b893\",\n  \"deviceKey\": \"string\",\n  \"hardwareUuid\": \"string\",\n  \"platform\": \"string\",\n  \"hostname\": \"string\",\n  \"mdmSource\": \"string\",\n  \"mdmDeviceId\": \"string\",\n  \"ownerRawIdentifier\": \"string\",\n  \"ownerEmployeeId\": \"09f4eb7c-06ae-cecb-c601-9012133361c1\",\n  \"firstSeenAt\": \"2004-05-27T22:45:18.043Z\",\n  \"lastSeenAt\": \"2022-07-17T05:11:09.799Z\",\n  \"lastScanRunId\": \"c5adb49a-e9c5-86c1-e8ed-3fa26ffc72f7\",\n  \"scannerVersion\": \"string\",\n  \"attributes\": {\n    \"macAddresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"osVersion\": \"string\",\n    \"hardwareModel\": \"string\",\n    \"arch\": \"string\"\n  },\n  \"agents\": [\n    {\n      \"id\": \"625e61c5-da84-c9cf-eb46-a9291f1ed8b8\",\n      \"displayName\": \"string\",\n      \"applicationType\": \"string\",\n      \"findingType\": \"string\",\n      \"status\": \"string\",\n      \"llms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"vendorId\": \"c8baf1fc-9980-f6f4-a348-29581bc87ff6\",\n      \"definitionSummary\": \"string\",\n      \"definitionExcerpt\": \"string\",\n      \"builtinCapabilities\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tools\": [\n        {\n          \"toolKey\": \"string\",\n          \"toolKind\": \"string\",\n          \"displayName\": \"string\",\n          \"resolutionState\": \"string\",\n          \"permissions\": \"string\",\n          \"effectivePermissions\": \"string\"\n        },\n        {\n          \"toolKey\": \"string\",\n          \"toolKind\": \"string\",\n          \"displayName\": \"string\",\n          \"resolutionState\": \"string\",\n          \"permissions\": \"string\",\n          \"effectivePermissions\": \"string\"\n        }\n      ],\n      \"skills\": [\n        {\n          \"skillKey\": \"string\",\n          \"displayName\": \"string\",\n          \"version\": \"string\"\n        },\n        {\n          \"skillKey\": \"string\",\n          \"displayName\": \"string\",\n          \"version\": \"string\"\n        }\n      ],\n      \"businessPurpose\": {\n        \"purpose\": \"string\",\n        \"confidence\": 23,\n        \"explanation\": \"string\",\n        \"insightsRunId\": \"c8cb4d75-2af6-13a8-df8f-bfec3e98af57\"\n      },\n      \"postureAnalysisRun\": {\n        \"id\": \"aedae88f-c603-d423-1253-792f28e1b062\",\n        \"skillspectorVersion\": \"string\",\n        \"status\": \"string\",\n        \"postureScore\": 8402,\n        \"completedAt\": \"1987-05-14T13:03:14.600Z\"\n      },\n      \"riskScore\": 2330,\n      \"riskLevel\": \"string\",\n      \"vulnerabilities\": [\n        {\n          \"vulnerabilityCode\": \"string\",\n          \"category\": \"string\",\n          \"name\": \"string\",\n          \"riskLevel\": \"string\",\n          \"confidence\": 9875,\n          \"scoreContribution\": 9173,\n          \"codeRef\": \"string\",\n          \"snippetHash\": \"string\",\n          \"attackSurface\": [\n            \"string\",\n            \"string\"\n          ],\n          \"remediation\": \"string\"\n        },\n        {\n          \"vulnerabilityCode\": \"string\",\n          \"category\": \"string\",\n          \"name\": \"string\",\n          \"riskLevel\": \"string\",\n          \"confidence\": 29,\n          \"scoreContribution\": 7473,\n          \"codeRef\": \"string\",\n          \"snippetHash\": \"string\",\n          \"attackSurface\": [\n            \"string\",\n            \"string\"\n          ],\n          \"remediation\": \"string\"\n        }\n      ],\n      \"signals\": [\n        {\n          \"signalType\": \"string\",\n          \"riskLevel\": \"string\",\n          \"scoreContribution\": 6658,\n          \"toolId\": \"32c68d25-cae1-5791-ae3f-4be890f5dae1\",\n          \"vendorRef\": \"37bedb9a-7b07-22f0-2526-c181d80f58e2\",\n          \"explanation\": \"string\",\n          \"dataTypes\": [\n            \"string\",\n            \"string\"\n          ],\n          \"link\": \"string\"\n        },\n        {\n          \"signalType\": \"string\",\n          \"riskLevel\": \"string\",\n          \"scoreContribution\": 1214,\n          \"toolId\": \"446c3330-edfb-31ad-6668-70c2ed6175f1\",\n          \"vendorRef\": \"29aad0b7-db26-1eda-3db7-a8c2992b24fa\",\n          \"explanation\": \"string\",\n          \"dataTypes\": [\n            \"string\",\n            \"string\"\n          ],\n          \"link\": \"string\"\n        }\n      ],\n      \"findingState\": \"string\",\n      \"findingFirstSeenAt\": \"2013-03-30T15:47:04.866Z\",\n      \"findingLastSeenAt\": \"1953-12-21T15:44:09.896Z\"\n    },\n    {\n      \"id\": \"824d6a35-57e7-9006-f2ba-2f3b81bec483\",\n      \"displayName\": \"string\",\n      \"applicationType\": \"string\",\n      \"findingType\": \"string\",\n      \"status\": \"string\",\n      \"llms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"vendorId\": \"56fcc104-7b72-5b8a-62df-7c67d2c8a7ef\",\n      \"definitionSummary\": \"string\",\n      \"definitionExcerpt\": \"string\",\n      \"builtinCapabilities\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tools\": [\n        {\n          \"toolKey\": \"string\",\n          \"toolKind\": \"string\",\n          \"displayName\": \"string\",\n          \"resolutionState\": \"string\",\n          \"permissions\": \"string\",\n          \"effectivePermissions\": \"string\"\n        },\n        {\n          \"toolKey\": \"string\",\n          \"toolKind\": \"string\",\n          \"displayName\": \"string\",\n          \"resolutionState\": \"string\",\n          \"permissions\": \"string\",\n          \"effectivePermissions\": \"string\"\n        }\n      ],\n      \"skills\": [\n        {\n          \"skillKey\": \"string\",\n          \"displayName\": \"string\",\n          \"version\": \"string\"\n        },\n        {\n          \"skillKey\": \"string\",\n          \"displayName\": \"string\",\n          \"version\": \"string\"\n        }\n      ],\n      \"businessPurpose\": {\n        \"purpose\": \"string\",\n        \"confidence\": 5277,\n        \"explanation\": \"string\",\n        \"insightsRunId\": \"6390f75c-b594-d5c0-4d6e-2839a6fd34da\"\n      },\n      \"postureAnalysisRun\": {\n        \"id\": \"0456f88d-a474-d77e-6c6e-97da6545625f\",\n        \"skillspectorVersion\": \"string\",\n        \"status\": \"string\",\n        \"postureScore\": 7836,\n        \"completedAt\": \"1987-01-18T19:04:49.558Z\"\n      },\n      \"riskScore\": 6270,\n      \"riskLevel\": \"string\",\n      \"vulnerabilities\": [\n        {\n          \"vulnerabilityCode\": \"string\",\n          \"category\": \"string\",\n          \"name\": \"string\",\n          \"riskLevel\": \"string\",\n          \"confidence\": 3304,\n          \"scoreContribution\": 4876,\n          \"codeRef\": \"string\",\n          \"snippetHash\": \"string\",\n          \"attackSurface\": [\n            \"string\",\n            \"string\"\n          ],\n          \"remediation\": \"string\"\n        },\n        {\n          \"vulnerabilityCode\": \"string\",\n          \"category\": \"string\",\n          \"name\": \"string\",\n          \"riskLevel\": \"string\",\n          \"confidence\": 5752,\n          \"scoreContribution\": 2812,\n          \"codeRef\": \"string\",\n          \"snippetHash\": \"string\",\n          \"attackSurface\": [\n            \"string\",\n            \"string\"\n          ],\n          \"remediation\": \"string\"\n        }\n      ],\n      \"signals\": [\n        {\n          \"signalType\": \"string\",\n          \"riskLevel\": \"string\",\n          \"scoreContribution\": 7019,\n          \"toolId\": \"4b6145f7-704c-8740-a863-91556663652a\",\n          \"vendorRef\": \"2b9986ca-b2da-66b9-30cb-1a9b1b3a3243\",\n          \"explanation\": \"string\",\n          \"dataTypes\": [\n            \"string\",\n            \"string\"\n          ],\n          \"link\": \"string\"\n        },\n        {\n          \"signalType\": \"string\",\n          \"riskLevel\": \"string\",\n          \"scoreContribution\": 2807,\n          \"toolId\": \"f3a19eea-2382-0eb3-7e44-aa14d7fcff3b\",\n          \"vendorRef\": \"dff5a9cc-e354-1a40-c163-55e9d2b1a9f0\",\n          \"explanation\": \"string\",\n          \"dataTypes\": [\n            \"string\",\n            \"string\"\n          ],\n          \"link\": \"string\"\n        }\n      ],\n      \"findingState\": \"string\",\n      \"findingFirstSeenAt\": \"2026-05-18T07:08:58.561Z\",\n      \"findingLastSeenAt\": \"1986-09-08T13:59:25.512Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b517775-dcd1-4650-aaf8-3f2ab31243a9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "aispm",
+                    "v1",
+                    "public",
+                    "devices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The device's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8732,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28bb4191-a2a1-4f0d-9e57-875810a7b4ce",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "aispm",
+                    "v1",
+                    "public",
+                    "devices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The device's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8732,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.portal.saymine.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0027e285-7430-4ac3-be2b-41bd61d0ba4a",
+    "name": "MineOS Aispm AispmPublicDevices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

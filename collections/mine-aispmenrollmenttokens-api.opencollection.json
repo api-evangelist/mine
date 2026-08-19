@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MineOS Aispm AispmEnrollmentTokens API",
+    "version": "v1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AispmEnrollmentTokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /api/aispm/v1/enrollment-tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/aispm/v1/enrollment-tokens",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "POST /api/aispm/v1/enrollment-tokens/rotate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/aispm/v1/enrollment-tokens/rotate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DELETE /api/aispm/v1/enrollment-tokens/{tokenId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.portal.saymine.com/api/aispm/v1/enrollment-tokens/:tokenId",
+            "params": [
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

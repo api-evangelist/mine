@@ -1,0 +1,531 @@
+{
+  "item": [
+    {
+      "id": "872f6d39-0388-4ad2-a459-0ef55ac74532",
+      "name": "Partners",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "28b7ff28-3dca-4723-b4d4-7487d2884455",
+          "name": "Create a new account",
+          "request": {
+            "name": "Create a new account",
+            "description": {
+              "content": "Creating an account results in an invite being sent to the email address in the request.\r\n            If the company already has an account, the request will be denied.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "Partners",
+                "ActivateAccount"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyName\": \"<string>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"userEmail\": \"<string>\",\n  \"cmpProductId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f6dd74fe-07ce-408c-9091-17f5e02d79be",
+              "name": "Returns the newly created account ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Partners",
+                    "ActivateAccount"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyName\": \"Acme Corp\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"userEmail\": \"johndoe@acmecorp.com\",\n  \"cmpProductId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accountId\": \"8d78993b-73ac-4fa1-a3d3-a8fca7a061c7\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa1e2e3f-a161-4636-bb59-5a880f3b83f5",
+              "name": "The request contains an invalid parameter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Partners",
+                    "ActivateAccount"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyName\": \"Acme Corp\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"userEmail\": \"johndoe@acmecorp.com\",\n  \"cmpProductId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f81fc6dd-4d41-4573-9884-5745e9c80c25",
+              "name": "The request is not authenticated properly",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Partners",
+                    "ActivateAccount"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyName\": \"Acme Corp\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"userEmail\": \"johndoe@acmecorp.com\",\n  \"cmpProductId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d485fea3-6d36-4fde-8861-2cad96626209",
+              "name": "The domain already has a company assigned to it",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Partners",
+                    "ActivateAccount"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyName\": \"Acme Corp\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"userEmail\": \"johndoe@acmecorp.com\",\n  \"cmpProductId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1b60458-c8e5-41b2-bc4e-46b9610f32cc",
+          "name": "Gets account information",
+          "request": {
+            "name": "Gets account information",
+            "description": {
+              "content": "A partner can only get information for accounts he is allowed to. Partners are automatically allowed to account created by them.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "Partners",
+                "AccountInfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accountId",
+                  "value": "<string>",
+                  "description": "(Required) The ID of the account to get information for"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a0000dbf-1f63-4829-93ac-cb8455221531",
+              "name": "Returns the information for the account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Partners",
+                    "AccountInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"privacyCenterUrl\": \"https://acmecorp.saymine.io/acmecorp\",\n  \"users\": 1,\n  \"closedRequests\": 10,\n  \"openRequests\": 3\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99aa7d28-68df-48e9-bf8d-0ccfaa7cddad",
+              "name": "The request contains an invalid parameter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Partners",
+                    "AccountInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c58484fc-e0c4-40ce-ac42-1245a7ac4a71",
+              "name": "The request is not authenticated properly",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Partners",
+                    "AccountInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5d73943c-bf1a-4698-a342-2d1ce00a15bf",
+              "name": "The partner is not authorized to access the account ID or it does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "Partners",
+                    "AccountInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.portal.saymine.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "087087cc-8a15-42ef-879e-8812a88c9bb7",
+    "name": "MineOS Aispm Partners API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

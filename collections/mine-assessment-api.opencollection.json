@@ -1,0 +1,187 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MineOS Aispm Assessment API",
+    "version": "v1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Assessment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves a list of assessments based on the provided type and pagination parameters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/api/public-v1/assessment/List",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The type of assessments to retrieve (e.g. PIA, DPIA, TIA)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The optional starting point for pagination. Defaults to 0."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The optional maximum number of assessments to retrieve. Defaults to 100."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of assessments based on the provided type and pagination parameters."
+        },
+        {
+          "info": {
+            "name": "Retrieves the details of a specific assessment based on its unique identifier.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/api/public-v1/assessment/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the assessment to retrieve."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific assessment based on its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Sends an invitation to collaborators for the specified assessment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/public-v1/assessment/:id/collaborators",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the assessment for which collaborators are being invited."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends an invitation to collaborators for the specified assessment."
+        },
+        {
+          "info": {
+            "name": "Adds a new Form submission content for a system.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/public-v1/assessment/form-submission",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new Form submission content for a system."
+        },
+        {
+          "info": {
+            "name": "Retrieves form submissions for a specific assessment based on its identifier.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/api/public-v1/assessment/:id/form-submission",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the assessment for which to retrieve form submissions."
+              }
+            ]
+          },
+          "docs": "Retrieves form submissions for a specific assessment based on its identifier."
+        },
+        {
+          "info": {
+            "name": "Creates a new assessment based on the provided template details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/public-v1/assessment/from-template",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new assessment based on the provided template details."
+        },
+        {
+          "info": {
+            "name": "Triggers a Third-Party Risk Management (TPRM) event based on the provided request details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/public-v1/tprm/trigger",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Triggers a Third-Party Risk Management (TPRM) event based on the provided request details."
+        },
+        {
+          "info": {
+            "name": "Uploads an attachment file for a specific form submission and triggers RAG indexing.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/public-v1/assessment/form-submission/:id/attachment",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the form submission."
+              },
+              {
+                "name": "filename",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Uploads an attachment file for a specific form submission and triggers RAG indexing."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

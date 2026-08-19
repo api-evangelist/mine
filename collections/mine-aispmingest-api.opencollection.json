@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MineOS Aispm AispmIngest API",
+    "version": "v1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AispmIngest",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /ingest",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/ingest",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,412 @@
+{
+  "item": [
+    {
+      "id": "5615a6a3-2f17-4c12-bbab-dd8ed27c617c",
+      "name": "PrivacyRightsPublic",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6f482936-e42d-466e-9c7b-527b71e22d5f",
+          "name": "Get privacy rights",
+          "request": {
+            "name": "Get privacy rights",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "public-v1",
+                "privacy-rights"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d24285ef-e2fc-4663-a499-d294fd146a8e",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "privacy-rights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"rightId\": \"IC8EfhUvoEen1k8bHBeN7B\",\n    \"name\": \"Unsubscribe\",\n    \"description\": \"Allows opting out of marketing communication.\",\n    \"enabled\": true,\n    \"rightProcessingType\": \"DataMutation | DataCollection\",\n    \"workflows\": [\n      {\n        \"workflowId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\",\n        \"workflowName\": \"Employees\",\n        \"isDefault\": true\n      },\n      {\n        \"workflowId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\",\n        \"workflowName\": \"Employees\",\n        \"isDefault\": true\n      }\n    ],\n    \"eligibleRegions\": [\n      {\n        \"continent\": \"EUR\",\n        \"country\": \"GB\",\n        \"state\": \"FL\"\n      },\n      {\n        \"continent\": \"EUR\",\n        \"country\": \"GB\",\n        \"state\": \"FL\"\n      }\n    ]\n  },\n  {\n    \"rightId\": \"IC8EfhUvoEen1k8bHBeN7B\",\n    \"name\": \"Unsubscribe\",\n    \"description\": \"Allows opting out of marketing communication.\",\n    \"enabled\": true,\n    \"rightProcessingType\": \"DataMutation | DataCollection\",\n    \"workflows\": [\n      {\n        \"workflowId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\",\n        \"workflowName\": \"Employees\",\n        \"isDefault\": true\n      },\n      {\n        \"workflowId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\",\n        \"workflowName\": \"Employees\",\n        \"isDefault\": true\n      }\n    ],\n    \"eligibleRegions\": [\n      {\n        \"continent\": \"EUR\",\n        \"country\": \"GB\",\n        \"state\": \"FL\"\n      },\n      {\n        \"continent\": \"EUR\",\n        \"country\": \"GB\",\n        \"state\": \"FL\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "373a2f39-0f69-45c1-8781-a084895eb216",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "privacy-rights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4a60d753-c00b-414a-8d53-8a4cfdddab5e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "privacy-rights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87ad4406-db20-466c-a56a-163b90b74311",
+          "name": "Create a privacy right",
+          "request": {
+            "name": "Create a privacy right",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "public-v1",
+                "privacy-rights"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"name\": \"<string>\",\n  \"operationType\": \"<string>\",\n  \"id\": \"<string>\",\n  \"enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a2bf5dc8-9b46-4b15-b917-db086cafb4a6",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "privacy-rights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Allows opting out of marketing communication.\",\n  \"name\": \"Unsubscribe\",\n  \"operationType\": \"DataMutation | DataCollection\",\n  \"id\": \"IC8EfhUvoEen1k8bHBeN7B\",\n  \"enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"privacyRightId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "273e82c4-607b-4daf-a4ab-0aa9a8277f07",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "privacy-rights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Allows opting out of marketing communication.\",\n  \"name\": \"Unsubscribe\",\n  \"operationType\": \"DataMutation | DataCollection\",\n  \"id\": \"IC8EfhUvoEen1k8bHBeN7B\",\n  \"enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "460acc2a-da1d-4ef7-ae1e-989847053bdb",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "privacy-rights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Allows opting out of marketing communication.\",\n  \"name\": \"Unsubscribe\",\n  \"operationType\": \"DataMutation | DataCollection\",\n  \"id\": \"IC8EfhUvoEen1k8bHBeN7B\",\n  \"enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.portal.saymine.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b45bda05-9d68-475f-a683-44dae83ab5d5",
+    "name": "MineOS Aispm PrivacyRightsPublic API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MineOS Aispm System API",
+    "version": "v1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "System",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all the data sources in your company by state",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/api/public-v1/system/List",
+            "params": [
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "The state of the requested data sources."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The offset size for pagination. default is 0"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The page size for pagination. default is 100"
+              }
+            ]
+          },
+          "docs": "List all the data sources in your company by state"
+        },
+        {
+          "info": {
+            "name": "Get data source by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/api/public-v1/system/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the requested data source"
+              }
+            ]
+          },
+          "docs": "Get data source by Id"
+        },
+        {
+          "info": {
+            "name": "Update a Data Source properties in the inventory",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.portal.saymine.com/api/public-v1/system/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the requested data source to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a Data Source properties in the inventory"
+        },
+        {
+          "info": {
+            "name": "Add new Data Source from the catalog to the inventory",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/public-v1/system/AddCatalogSystem",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add new Data Source from the catalog to the inventory"
+        },
+        {
+          "info": {
+            "name": "Add new Custom Data Source to the inventory",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/public-v1/system/AddCustomSystem",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add new Custom Data Source to the inventory"
+        },
+        {
+          "info": {
+            "name": "List all the existing business units (departments) in your company",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/api/public-v1/system/business-unit/list"
+          },
+          "docs": "List all the existing business units (departments) in your company"
+        },
+        {
+          "info": {
+            "name": "Trigger AI autofill suggestions for a data source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/public-v1/system/:id/ai-autofill",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the data source to autofill"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger AI autofill suggestions for a data source"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

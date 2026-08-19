@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MineOS Aispm Employee API",
+    "version": "v1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Employee",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves a list of the non-archived company Employees with pagination parameters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/api/public-v1/employee/List",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The optional starting point for pagination. If not provided, it defaults to 0."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The optional maximum number of employees to retrieve. If not provided, it defaults to 100."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of the non-archived company Employees with pagination parameters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

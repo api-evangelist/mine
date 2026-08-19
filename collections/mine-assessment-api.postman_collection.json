@@ -1,0 +1,2195 @@
+{
+  "item": [
+    {
+      "id": "347c2fda-cea0-4856-93f2-708a430ebd17",
+      "name": "Assessment",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b9b72ccb-48de-4a92-b7e2-8f958593f789",
+          "name": "Retrieves a list of assessments based on the provided type and pagination parameters.",
+          "request": {
+            "name": "Retrieves a list of assessments based on the provided type and pagination parameters.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "public-v1",
+                "assessment",
+                "List"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "The type of assessments to retrieve (e.g. PIA, DPIA, TIA)."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The optional starting point for pagination. Defaults to 0."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "The optional maximum number of assessments to retrieve. Defaults to 100."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b30c61a2-3a3a-4ad9-a873-c248f114d724",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    "List"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 6886,\n    \"name\": \"string\",\n    \"ownerId\": \"string\",\n    \"createdDate\": \"2023-11-02T15:56:30.880Z\",\n    \"updatedDate\": \"2014-07-12T01:03:07.778Z\",\n    \"createdBy\": \"string\",\n    \"updatedBy\": \"string\",\n    \"type\": \"<string>\",\n    \"state\": \"Draft\",\n    \"collabState\": \"None\",\n    \"templatePageId\": 363,\n    \"lastApprovedAt\": \"1984-04-27T00:41:52.845Z\",\n    \"isVendorSpecific\": false,\n    \"sections\": [\n      {\n        \"id\": 5524,\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"layout\": \"string\",\n        \"templateSectionId\": \"string\",\n        \"formControlId\": \"string\",\n        \"questions\": [\n          {\n            \"id\": 6956,\n            \"layout\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": \"string\",\n            \"name\": \"string\",\n            \"value\": {},\n            \"templateQuestionId\": \"string\",\n            \"formControlId\": \"string\",\n            \"referencedObjects\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": 334,\n            \"layout\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": \"string\",\n            \"name\": \"string\",\n            \"value\": {},\n            \"templateQuestionId\": \"string\",\n            \"formControlId\": \"string\",\n            \"referencedObjects\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"id\": 1032,\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"layout\": \"string\",\n        \"templateSectionId\": \"string\",\n        \"formControlId\": \"string\",\n        \"questions\": [\n          {\n            \"id\": 2299,\n            \"layout\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": \"string\",\n            \"name\": \"string\",\n            \"value\": {},\n            \"templateQuestionId\": \"string\",\n            \"formControlId\": \"string\",\n            \"referencedObjects\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": 8967,\n            \"layout\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": \"string\",\n            \"name\": \"string\",\n            \"value\": {},\n            \"templateQuestionId\": \"string\",\n            \"formControlId\": \"string\",\n            \"referencedObjects\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ],\n    \"tags\": [\n      {\n        \"id\": 457,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"type\": \"string\",\n        \"isDefault\": true\n      },\n      {\n        \"id\": 7113,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"type\": \"string\",\n        \"isDefault\": true\n      }\n    ],\n    \"collabInvites\": [\n      {\n        \"email\": \"string\",\n        \"status\": \"Expired\",\n        \"revoker\": \"string\",\n        \"isDone\": true,\n        \"inviter\": \"string\",\n        \"inviterEmail\": \"string\",\n        \"invitedAt\": \"1985-07-26T08:37:36.463Z\",\n        \"revokedAt\": \"1977-07-18T03:13:37.382Z\"\n      },\n      {\n        \"email\": \"string\",\n        \"status\": \"Expired\",\n        \"revoker\": \"string\",\n        \"isDone\": true,\n        \"inviter\": \"string\",\n        \"inviterEmail\": \"string\",\n        \"invitedAt\": \"1980-01-26T18:08:52.256Z\",\n        \"revokedAt\": \"1990-07-22T23:30:06.242Z\"\n      }\n    ],\n    \"collabLockStatus\": {\n      \"isLocked\": true,\n      \"lockedBy\": \"string\",\n      \"lockedAt\": \"2004-03-21T20:59:30.265Z\",\n      \"lockedUntil\": \"1989-06-01T02:24:08.798Z\",\n      \"collabState\": \"None\"\n    },\n    \"formSubmissions\": [\n      {\n        \"id\": 6928,\n        \"content\": \"string\",\n        \"systemId\": \"string\",\n        \"assessmentPageId\": 4473\n      },\n      {\n        \"id\": 8346,\n        \"content\": \"string\",\n        \"systemId\": \"string\",\n        \"assessmentPageId\": 7292\n      }\n    ],\n    \"logic\": \"string\",\n    \"layout\": \"string\",\n    \"reviewDate\": \"2000-04-29T11:11:44.511Z\",\n    \"stateUpdatedAt\": \"1957-12-04T13:49:24.206Z\",\n    \"vendorSpecificId\": \"string\",\n    \"dataSourceSpecific\": true\n  },\n  {\n    \"id\": 5853,\n    \"name\": \"string\",\n    \"ownerId\": \"string\",\n    \"createdDate\": \"2025-02-23T00:47:26.419Z\",\n    \"updatedDate\": \"1987-05-23T13:43:51.788Z\",\n    \"createdBy\": \"string\",\n    \"updatedBy\": \"string\",\n    \"type\": \"<string>\",\n    \"state\": \"Reject\",\n    \"collabState\": \"None\",\n    \"templatePageId\": 4750,\n    \"lastApprovedAt\": \"1962-01-20T15:35:48.020Z\",\n    \"isVendorSpecific\": true,\n    \"sections\": [\n      {\n        \"id\": 5473,\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"layout\": \"string\",\n        \"templateSectionId\": \"string\",\n        \"formControlId\": \"string\",\n        \"questions\": [\n          {\n            \"id\": 7082,\n            \"layout\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": \"string\",\n            \"name\": \"string\",\n            \"value\": {},\n            \"templateQuestionId\": \"string\",\n            \"formControlId\": \"string\",\n            \"referencedObjects\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": 4487,\n            \"layout\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": \"string\",\n            \"name\": \"string\",\n            \"value\": {},\n            \"templateQuestionId\": \"string\",\n            \"formControlId\": \"string\",\n            \"referencedObjects\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"id\": 8602,\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"layout\": \"string\",\n        \"templateSectionId\": \"string\",\n        \"formControlId\": \"string\",\n        \"questions\": [\n          {\n            \"id\": 830,\n            \"layout\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": \"string\",\n            \"name\": \"string\",\n            \"value\": {},\n            \"templateQuestionId\": \"string\",\n            \"formControlId\": \"string\",\n            \"referencedObjects\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": 4508,\n            \"layout\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": \"string\",\n            \"name\": \"string\",\n            \"value\": {},\n            \"templateQuestionId\": \"string\",\n            \"formControlId\": \"string\",\n            \"referencedObjects\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ],\n    \"tags\": [\n      {\n        \"id\": 7625,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"type\": \"string\",\n        \"isDefault\": false\n      },\n      {\n        \"id\": 1103,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"type\": \"string\",\n        \"isDefault\": false\n      }\n    ],\n    \"collabInvites\": [\n      {\n        \"email\": \"string\",\n        \"status\": \"Revoked\",\n        \"revoker\": \"string\",\n        \"isDone\": false,\n        \"inviter\": \"string\",\n        \"inviterEmail\": \"string\",\n        \"invitedAt\": \"2020-01-28T00:59:38.172Z\",\n        \"revokedAt\": \"1989-03-01T01:45:15.397Z\"\n      },\n      {\n        \"email\": \"string\",\n        \"status\": \"Expired\",\n        \"revoker\": \"string\",\n        \"isDone\": false,\n        \"inviter\": \"string\",\n        \"inviterEmail\": \"string\",\n        \"invitedAt\": \"1947-11-23T10:30:05.618Z\",\n        \"revokedAt\": \"2020-09-26T14:46:31.538Z\"\n      }\n    ],\n    \"collabLockStatus\": {\n      \"isLocked\": false,\n      \"lockedBy\": \"string\",\n      \"lockedAt\": \"1954-01-11T09:22:55.974Z\",\n      \"lockedUntil\": \"1987-10-18T09:13:32.245Z\",\n      \"collabState\": \"Shared\"\n    },\n    \"formSubmissions\": [\n      {\n        \"id\": 617,\n        \"content\": \"string\",\n        \"systemId\": \"string\",\n        \"assessmentPageId\": 8198\n      },\n      {\n        \"id\": 6963,\n        \"content\": \"string\",\n        \"systemId\": \"string\",\n        \"assessmentPageId\": 594\n      }\n    ],\n    \"logic\": \"string\",\n    \"layout\": \"string\",\n    \"reviewDate\": \"2025-07-18T07:20:14.072Z\",\n    \"stateUpdatedAt\": \"1985-01-28T18:05:57.432Z\",\n    \"vendorSpecificId\": \"string\",\n    \"dataSourceSpecific\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae57da9a-839d-41fc-9396-a097044fefb8",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    "List"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalErrorCode\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8b26d3f-2d92-4c89-a34c-bb8f2dac135b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    "List"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalErrorCode\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d6d79e5-c467-44de-9e14-b86d9e80f46f",
+          "name": "Retrieves the details of a specific assessment based on its unique identifier.",
+          "request": {
+            "name": "Retrieves the details of a specific assessment based on its unique identifier.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "public-v1",
+                "assessment",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the assessment to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "417978da-cb31-4c28-8b4b-0adfa83a1bc2",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the assessment to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 3795,\n    \"name\": \"string\",\n    \"ownerId\": \"string\",\n    \"createdDate\": \"1962-07-01T22:58:05.706Z\",\n    \"updatedDate\": \"1976-01-29T02:15:23.543Z\",\n    \"createdBy\": \"string\",\n    \"updatedBy\": \"string\",\n    \"type\": \"<string>\",\n    \"state\": \"Draft\",\n    \"collabState\": \"Submitted\",\n    \"templatePageId\": 9285,\n    \"lastApprovedAt\": \"2010-12-18T15:40:38.765Z\",\n    \"isVendorSpecific\": true,\n    \"sections\": [\n      {\n        \"id\": 8749,\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"layout\": \"string\",\n        \"templateSectionId\": \"string\",\n        \"formControlId\": \"string\",\n        \"questions\": [\n          {\n            \"id\": 4943,\n            \"layout\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": \"string\",\n            \"name\": \"string\",\n            \"value\": {},\n            \"templateQuestionId\": \"string\",\n            \"formControlId\": \"string\",\n            \"referencedObjects\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": 2380,\n            \"layout\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": \"string\",\n            \"name\": \"string\",\n            \"value\": {},\n            \"templateQuestionId\": \"string\",\n            \"formControlId\": \"string\",\n            \"referencedObjects\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"id\": 140,\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"layout\": \"string\",\n        \"templateSectionId\": \"string\",\n        \"formControlId\": \"string\",\n        \"questions\": [\n          {\n            \"id\": 7551,\n            \"layout\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": \"string\",\n            \"name\": \"string\",\n            \"value\": {},\n            \"templateQuestionId\": \"string\",\n            \"formControlId\": \"string\",\n            \"referencedObjects\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": 5174,\n            \"layout\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": \"string\",\n            \"name\": \"string\",\n            \"value\": {},\n            \"templateQuestionId\": \"string\",\n            \"formControlId\": \"string\",\n            \"referencedObjects\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ],\n    \"tags\": [\n      {\n        \"id\": 1374,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"type\": \"string\",\n        \"isDefault\": true\n      },\n      {\n        \"id\": 2327,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"type\": \"string\",\n        \"isDefault\": false\n      }\n    ],\n    \"collabInvites\": [\n      {\n        \"email\": \"string\",\n        \"status\": \"Revoked\",\n        \"revoker\": \"string\",\n        \"isDone\": false,\n        \"inviter\": \"string\",\n        \"inviterEmail\": \"string\",\n        \"invitedAt\": \"2016-10-20T17:51:44.040Z\",\n        \"revokedAt\": \"1969-06-18T08:07:17.250Z\"\n      },\n      {\n        \"email\": \"string\",\n        \"status\": \"Revoked\",\n        \"revoker\": \"string\",\n        \"isDone\": true,\n        \"inviter\": \"string\",\n        \"inviterEmail\": \"string\",\n        \"invitedAt\": \"1978-09-17T03:21:29.479Z\",\n        \"revokedAt\": \"2018-10-08T13:47:22.170Z\"\n      }\n    ],\n    \"collabLockStatus\": {\n      \"isLocked\": true,\n      \"lockedBy\": \"string\",\n      \"lockedAt\": \"2017-01-06T10:48:58.836Z\",\n      \"lockedUntil\": \"2017-05-17T14:39:48.711Z\",\n      \"collabState\": \"Submitted\"\n    },\n    \"formSubmissions\": [\n      {\n        \"id\": 2676,\n        \"content\": \"string\",\n        \"systemId\": \"string\",\n        \"assessmentPageId\": 428\n      },\n      {\n        \"id\": 1769,\n        \"content\": \"string\",\n        \"systemId\": \"string\",\n        \"assessmentPageId\": 4070\n      }\n    ],\n    \"logic\": \"string\",\n    \"layout\": \"string\",\n    \"reviewDate\": \"1981-11-17T22:28:04.282Z\",\n    \"stateUpdatedAt\": \"1973-12-25T09:01:45.190Z\",\n    \"vendorSpecificId\": \"string\",\n    \"dataSourceSpecific\": false\n  },\n  {\n    \"id\": 1195,\n    \"name\": \"string\",\n    \"ownerId\": \"string\",\n    \"createdDate\": \"1966-12-02T04:35:54.270Z\",\n    \"updatedDate\": \"1950-02-07T13:51:00.265Z\",\n    \"createdBy\": \"string\",\n    \"updatedBy\": \"string\",\n    \"type\": \"<string>\",\n    \"state\": \"InProgress\",\n    \"collabState\": \"Submitted\",\n    \"templatePageId\": 4977,\n    \"lastApprovedAt\": \"1976-12-12T01:08:40.080Z\",\n    \"isVendorSpecific\": true,\n    \"sections\": [\n      {\n        \"id\": 8929,\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"layout\": \"string\",\n        \"templateSectionId\": \"string\",\n        \"formControlId\": \"string\",\n        \"questions\": [\n          {\n            \"id\": 1463,\n            \"layout\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": \"string\",\n            \"name\": \"string\",\n            \"value\": {},\n            \"templateQuestionId\": \"string\",\n            \"formControlId\": \"string\",\n            \"referencedObjects\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": 6829,\n            \"layout\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": \"string\",\n            \"name\": \"string\",\n            \"value\": {},\n            \"templateQuestionId\": \"string\",\n            \"formControlId\": \"string\",\n            \"referencedObjects\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"id\": 5597,\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"layout\": \"string\",\n        \"templateSectionId\": \"string\",\n        \"formControlId\": \"string\",\n        \"questions\": [\n          {\n            \"id\": 7608,\n            \"layout\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": \"string\",\n            \"name\": \"string\",\n            \"value\": {},\n            \"templateQuestionId\": \"string\",\n            \"formControlId\": \"string\",\n            \"referencedObjects\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": 2231,\n            \"layout\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": \"string\",\n            \"name\": \"string\",\n            \"value\": {},\n            \"templateQuestionId\": \"string\",\n            \"formControlId\": \"string\",\n            \"referencedObjects\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ],\n    \"tags\": [\n      {\n        \"id\": 8548,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"type\": \"string\",\n        \"isDefault\": true\n      },\n      {\n        \"id\": 7194,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"type\": \"string\",\n        \"isDefault\": false\n      }\n    ],\n    \"collabInvites\": [\n      {\n        \"email\": \"string\",\n        \"status\": \"Expired\",\n        \"revoker\": \"string\",\n        \"isDone\": false,\n        \"inviter\": \"string\",\n        \"inviterEmail\": \"string\",\n        \"invitedAt\": \"2024-01-15T13:35:39.070Z\",\n        \"revokedAt\": \"2008-11-21T05:22:01.207Z\"\n      },\n      {\n        \"email\": \"string\",\n        \"status\": \"Invited\",\n        \"revoker\": \"string\",\n        \"isDone\": true,\n        \"inviter\": \"string\",\n        \"inviterEmail\": \"string\",\n        \"invitedAt\": \"1969-11-12T13:09:30.428Z\",\n        \"revokedAt\": \"2003-12-04T14:01:20.163Z\"\n      }\n    ],\n    \"collabLockStatus\": {\n      \"isLocked\": true,\n      \"lockedBy\": \"string\",\n      \"lockedAt\": \"1955-05-09T10:24:56.393Z\",\n      \"lockedUntil\": \"1985-09-04T17:50:24.534Z\",\n      \"collabState\": \"Shared\"\n    },\n    \"formSubmissions\": [\n      {\n        \"id\": 9788,\n        \"content\": \"string\",\n        \"systemId\": \"string\",\n        \"assessmentPageId\": 4208\n      },\n      {\n        \"id\": 7998,\n        \"content\": \"string\",\n        \"systemId\": \"string\",\n        \"assessmentPageId\": 1824\n      }\n    ],\n    \"logic\": \"string\",\n    \"layout\": \"string\",\n    \"reviewDate\": \"2003-12-07T04:42:12.647Z\",\n    \"stateUpdatedAt\": \"1998-03-16T23:46:59.475Z\",\n    \"vendorSpecificId\": \"string\",\n    \"dataSourceSpecific\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "158b8733-1eee-4ee1-b1bb-363971b2778d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the assessment to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalErrorCode\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57728d1d-71e6-4fca-abc6-99c923ece335",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the assessment to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalErrorCode\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e011736-28f4-4329-ab63-facee8b94ad9",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the assessment to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalErrorCode\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9e89a43-82ab-48e1-95af-766f780db3d0",
+          "name": "Sends an invitation to collaborators for the specified assessment.",
+          "request": {
+            "name": "Sends an invitation to collaborators for the specified assessment.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "public-v1",
+                "assessment",
+                ":id",
+                "collaborators"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the assessment for which collaborators are being invited."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"emailAddresses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"requestor\": \"<string>\",\n  \"inviteMessage\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6de32801-cbf4-40e1-9971-d761e7107bde",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    ":id",
+                    "collaborators"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the assessment for which collaborators are being invited."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailAddresses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"requestor\": \"<string>\",\n  \"inviteMessage\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "823303c4-ef65-49fa-b8d6-cfcd7eabdd83",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    ":id",
+                    "collaborators"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the assessment for which collaborators are being invited."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailAddresses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"requestor\": \"<string>\",\n  \"inviteMessage\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalErrorCode\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8921195e-93ab-4c83-9d6d-9a22473798a9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    ":id",
+                    "collaborators"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the assessment for which collaborators are being invited."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailAddresses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"requestor\": \"<string>\",\n  \"inviteMessage\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalErrorCode\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "821b09dd-c25b-4eef-bc4a-c8373582079e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    ":id",
+                    "collaborators"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the assessment for which collaborators are being invited."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailAddresses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"requestor\": \"<string>\",\n  \"inviteMessage\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalErrorCode\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0cff2a5-e7cd-440b-9ede-d5476f3a20c3",
+          "name": "Adds a new Form submission content for a system.",
+          "request": {
+            "name": "Adds a new Form submission content for a system.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "public-v1",
+                "assessment",
+                "form-submission"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"systemId\": \"<string>\",\n  \"content\": \"<string>\",\n  \"assessmentId\": \"<integer>\",\n  \"requestorEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "89d0f7c8-f095-43d5-bddf-fc39595804cc",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    "form-submission"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"systemId\": \"<string>\",\n  \"content\": \"<string>\",\n  \"assessmentId\": \"<integer>\",\n  \"requestorEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9127,\n  \"formSubmissionId\": 8804,\n  \"content\": \"string\",\n  \"requestorEmails\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c7e016f-3c2a-411f-bd32-88f9f695a978",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    "form-submission"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"systemId\": \"<string>\",\n  \"content\": \"<string>\",\n  \"assessmentId\": \"<integer>\",\n  \"requestorEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalErrorCode\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a7eecd6-3974-4063-8f84-920163b94de5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    "form-submission"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"systemId\": \"<string>\",\n  \"content\": \"<string>\",\n  \"assessmentId\": \"<integer>\",\n  \"requestorEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalErrorCode\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d94c6c69-d0ed-421b-aae2-4b2b66bf98ae",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    "form-submission"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"systemId\": \"<string>\",\n  \"content\": \"<string>\",\n  \"assessmentId\": \"<integer>\",\n  \"requestorEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalErrorCode\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ae5edc9-5452-4490-9c88-c74d0c722eed",
+          "name": "Retrieves form submissions for a specific assessment based on its identifier.",
+          "request": {
+            "name": "Retrieves form submissions for a specific assessment based on its identifier.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "public-v1",
+                "assessment",
+                ":id",
+                "form-submission"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the assessment for which to retrieve form submissions."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bda9c464-bae9-41bb-a0a3-c210060369cc",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    ":id",
+                    "form-submission"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the assessment for which to retrieve form submissions."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2814,\n    \"formSubmissionId\": 1964,\n    \"content\": \"string\",\n    \"requestorEmails\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"id\": 9428,\n    \"formSubmissionId\": 5592,\n    \"content\": \"string\",\n    \"requestorEmails\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2637ded-456d-4bd3-970a-8099614d2afc",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    ":id",
+                    "form-submission"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the assessment for which to retrieve form submissions."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalErrorCode\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46185f51-9376-4a71-95c4-5aa59b6ffb1a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    ":id",
+                    "form-submission"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the assessment for which to retrieve form submissions."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalErrorCode\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f131ba04-14ed-4e5a-9487-205f7631dc64",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    ":id",
+                    "form-submission"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the assessment for which to retrieve form submissions."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalErrorCode\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ec91c27-8c1c-4eb3-9b29-d6acf0867ed5",
+          "name": "Creates a new assessment based on the provided template details.",
+          "request": {
+            "name": "Creates a new assessment based on the provided template details.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "public-v1",
+                "assessment",
+                "from-template"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"templateId\": \"<integer>\",\n  \"systemId\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"formSubmissionId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "949d201e-a357-4373-a39e-54e4f54f1c7e",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    "from-template"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"templateId\": \"<integer>\",\n  \"systemId\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"formSubmissionId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7741,\n  \"name\": \"string\",\n  \"ownerId\": \"string\",\n  \"createdDate\": \"2015-02-09T13:55:47.107Z\",\n  \"updatedDate\": \"1991-01-26T08:23:12.994Z\",\n  \"createdBy\": \"string\",\n  \"updatedBy\": \"string\",\n  \"type\": \"<string>\",\n  \"state\": \"InProgress\",\n  \"collabState\": \"Shared\",\n  \"templatePageId\": 201,\n  \"lastApprovedAt\": \"1979-08-24T15:54:51.600Z\",\n  \"isVendorSpecific\": false,\n  \"sections\": [\n    {\n      \"id\": 6852,\n      \"name\": \"string\",\n      \"label\": \"string\",\n      \"layout\": \"string\",\n      \"templateSectionId\": \"string\",\n      \"formControlId\": \"string\",\n      \"questions\": [\n        {\n          \"id\": 4852,\n          \"layout\": \"string\",\n          \"type\": \"DataSubjects\",\n          \"label\": \"string\",\n          \"name\": \"string\",\n          \"value\": {},\n          \"templateQuestionId\": \"string\",\n          \"formControlId\": \"string\",\n          \"referencedObjects\": {\n            \"dataSources\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"externalEntities\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"dataTypes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"customField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"id\": 2998,\n          \"layout\": \"string\",\n          \"type\": \"BusinessPurpose\",\n          \"label\": \"string\",\n          \"name\": \"string\",\n          \"value\": {},\n          \"templateQuestionId\": \"string\",\n          \"formControlId\": \"string\",\n          \"referencedObjects\": {\n            \"dataSources\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"externalEntities\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"dataTypes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"customField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    },\n    {\n      \"id\": 4181,\n      \"name\": \"string\",\n      \"label\": \"string\",\n      \"layout\": \"string\",\n      \"templateSectionId\": \"string\",\n      \"formControlId\": \"string\",\n      \"questions\": [\n        {\n          \"id\": 1030,\n          \"layout\": \"string\",\n          \"type\": \"DropdownCustomField\",\n          \"label\": \"string\",\n          \"name\": \"string\",\n          \"value\": {},\n          \"templateQuestionId\": \"string\",\n          \"formControlId\": \"string\",\n          \"referencedObjects\": {\n            \"dataSources\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"externalEntities\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"dataTypes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"customField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"id\": 9963,\n          \"layout\": \"string\",\n          \"type\": \"BusinessPurpose\",\n          \"label\": \"string\",\n          \"name\": \"string\",\n          \"value\": {},\n          \"templateQuestionId\": \"string\",\n          \"formControlId\": \"string\",\n          \"referencedObjects\": {\n            \"dataSources\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"externalEntities\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"dataTypes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"customField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    }\n  ],\n  \"tags\": [\n    {\n      \"id\": 4922,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"string\",\n      \"isDefault\": true\n    },\n    {\n      \"id\": 9371,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"string\",\n      \"isDefault\": true\n    }\n  ],\n  \"collabInvites\": [\n    {\n      \"email\": \"string\",\n      \"status\": \"Invited\",\n      \"revoker\": \"string\",\n      \"isDone\": true,\n      \"inviter\": \"string\",\n      \"inviterEmail\": \"string\",\n      \"invitedAt\": \"2025-04-07T06:12:23.413Z\",\n      \"revokedAt\": \"1960-07-08T21:45:48.388Z\"\n    },\n    {\n      \"email\": \"string\",\n      \"status\": \"Expired\",\n      \"revoker\": \"string\",\n      \"isDone\": false,\n      \"inviter\": \"string\",\n      \"inviterEmail\": \"string\",\n      \"invitedAt\": \"2020-05-21T07:37:58.930Z\",\n      \"revokedAt\": \"1988-11-01T07:19:17.736Z\"\n    }\n  ],\n  \"collabLockStatus\": {\n    \"isLocked\": false,\n    \"lockedBy\": \"string\",\n    \"lockedAt\": \"1951-03-04T06:25:15.205Z\",\n    \"lockedUntil\": \"1967-12-23T06:59:49.239Z\",\n    \"collabState\": \"None\"\n  },\n  \"formSubmissions\": [\n    {\n      \"id\": 9776,\n      \"content\": \"string\",\n      \"systemId\": \"string\",\n      \"assessmentPageId\": 3456\n    },\n    {\n      \"id\": 5596,\n      \"content\": \"string\",\n      \"systemId\": \"string\",\n      \"assessmentPageId\": 8682\n    }\n  ],\n  \"logic\": \"string\",\n  \"layout\": \"string\",\n  \"reviewDate\": \"1963-06-22T10:03:14.653Z\",\n  \"stateUpdatedAt\": \"2024-09-05T17:33:40.247Z\",\n  \"vendorSpecificId\": \"string\",\n  \"dataSourceSpecific\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc044fd8-e1d4-4304-8a06-376309a0e2dc",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    "from-template"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"templateId\": \"<integer>\",\n  \"systemId\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"formSubmissionId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalErrorCode\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba05b199-7750-463d-afe6-f1b4ec425cca",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    "from-template"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"templateId\": \"<integer>\",\n  \"systemId\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"formSubmissionId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalErrorCode\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8cbef169-a2b2-418e-8845-e4f70ed1024e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    "from-template"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"templateId\": \"<integer>\",\n  \"systemId\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"formSubmissionId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalErrorCode\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82b39c76-8628-4027-9d30-8358f4c3d52e",
+          "name": "Triggers a Third-Party Risk Management (TPRM) event based on the provided request details.",
+          "request": {
+            "name": "Triggers a Third-Party Risk Management (TPRM) event based on the provided request details.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "public-v1",
+                "tprm",
+                "trigger"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"systemId\": \"<string>\",\n  \"requestedBusinessUnits\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"formSubmissionId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bf5a08e9-b72f-453d-bb2f-eae2dd3d31ac",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "tprm",
+                    "trigger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"systemId\": \"<string>\",\n  \"requestedBusinessUnits\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"formSubmissionId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "835de268-5f68-473d-94c3-c4ded152c0b3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "tprm",
+                    "trigger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"systemId\": \"<string>\",\n  \"requestedBusinessUnits\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"formSubmissionId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalErrorCode\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9cb58d5a-4543-4a69-a0e7-d3f18bbc49d0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "tprm",
+                    "trigger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"systemId\": \"<string>\",\n  \"requestedBusinessUnits\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"formSubmissionId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalErrorCode\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45576a5a-11c3-46e1-9046-1af576c35296",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "tprm",
+                    "trigger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"systemId\": \"<string>\",\n  \"requestedBusinessUnits\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"formSubmissionId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalErrorCode\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c5ff60bb-ef5c-4d14-ba1c-ff3685924014",
+          "name": "Uploads an attachment file for a specific form submission and triggers RAG indexing.",
+          "request": {
+            "name": "Uploads an attachment file for a specific form submission and triggers RAG indexing.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "public-v1",
+                "assessment",
+                "form-submission",
+                ":id",
+                "attachment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filename",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the form submission."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f6305ff2-9197-445b-85ef-ebc5b41a2984",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    "form-submission",
+                    ":id",
+                    "attachment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filename",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the form submission."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1b59d6a3-520e-454d-a830-81e1c7feb802",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    "form-submission",
+                    ":id",
+                    "attachment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filename",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the form submission."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalErrorCode\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d7d6722-890c-487c-b56a-09a7eeccc4b4",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    "form-submission",
+                    ":id",
+                    "attachment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filename",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the form submission."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalErrorCode\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74c86e03-4810-4d20-93f6-8cf0341d00e5",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "public-v1",
+                    "assessment",
+                    "form-submission",
+                    ":id",
+                    "attachment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filename",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the form submission."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalErrorCode\": \"NotFound\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.portal.saymine.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ea805011-2e3b-43ff-9400-47bdaaa09dad",
+    "name": "MineOS Aispm Assessment API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

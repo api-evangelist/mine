@@ -1,0 +1,826 @@
+{
+  "item": [
+    {
+      "id": "657f3c66-d47f-476e-ab9d-e098603a4dbc",
+      "name": "AispmPublicAgents",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8a58e335-be0b-4d5e-9771-503d4237a7ee",
+          "name": "Lists every AI agent discovered for the authenticated tenant, with rollups derived on read: device\r\ncount, current posture score, current risk score/level, and business-purpose classification (D26).\r\nReturns an empty array if the tenant has no discovered agents yet — never a 404.",
+          "request": {
+            "name": "Lists every AI agent discovered for the authenticated tenant, with rollups derived on read: device\r\ncount, current posture score, current risk score/level, and business-purpose classification (D26).\r\nReturns an empty array if the tenant has no discovered agents yet — never a 404.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "aispm",
+                "v1",
+                "public",
+                "agents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d11027f9-e370-4e24-8d56-d2d68cb6ff5c",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "aispm",
+                    "v1",
+                    "public",
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"352b20b9-d4f9-a1a4-2d10-4ccf1c6e4f3a\",\n    \"displayName\": \"string\",\n    \"applicationType\": \"string\",\n    \"findingType\": \"string\",\n    \"status\": \"string\",\n    \"llms\": [\n      \"string\",\n      \"string\"\n    ],\n    \"vendorId\": \"ff55925e-7d27-ea6f-81bb-ff6c2277389c\",\n    \"deviceCount\": 2662,\n    \"firstSeenAt\": \"1950-11-10T15:23:33.887Z\",\n    \"lastSeenAt\": \"2001-05-02T20:15:59.064Z\",\n    \"postureScore\": 7437,\n    \"riskScore\": 4814,\n    \"riskLevel\": \"string\",\n    \"businessPurpose\": {\n      \"purpose\": \"string\",\n      \"confidence\": 6905,\n      \"explanation\": \"string\",\n      \"insightsRunId\": \"e8420fb9-01f6-b47b-0262-424f75e5e52d\"\n    }\n  },\n  {\n    \"id\": \"cab4e814-7cf4-1d73-31af-caec5acc81f3\",\n    \"displayName\": \"string\",\n    \"applicationType\": \"string\",\n    \"findingType\": \"string\",\n    \"status\": \"string\",\n    \"llms\": [\n      \"string\",\n      \"string\"\n    ],\n    \"vendorId\": \"0af4885b-d3e0-100e-7f97-117969ff59b8\",\n    \"deviceCount\": 71,\n    \"firstSeenAt\": \"2019-03-17T21:39:15.470Z\",\n    \"lastSeenAt\": \"1972-07-18T14:12:45.016Z\",\n    \"postureScore\": 1420,\n    \"riskScore\": 4203,\n    \"riskLevel\": \"string\",\n    \"businessPurpose\": {\n      \"purpose\": \"string\",\n      \"confidence\": 6219,\n      \"explanation\": \"string\",\n      \"insightsRunId\": \"628c3e49-14cc-5169-8b13-04e2490bc320\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee19b3b9-81e8-469c-a284-de1d0c75150e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "aispm",
+                    "v1",
+                    "public",
+                    "agents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 1685,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a0785a6-24e6-4b44-b600-d528d9968b95",
+          "name": "Retrieves full detail for one discovered agent: its tools, skills, every device it was found on\r\n(each fully expanded), its business-purpose classification, and its current risk/posture scores.",
+          "request": {
+            "name": "Retrieves full detail for one discovered agent: its tools, skills, every device it was found on\r\n(each fully expanded), its business-purpose classification, and its current risk/posture scores.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "aispm",
+                "v1",
+                "public",
+                "agents",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) The agent's unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0332af5-d028-4a50-9c68-f192ef0ea3d3",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "aispm",
+                    "v1",
+                    "public",
+                    "agents",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The agent's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"b3fdabbc-2067-0923-dc54-a55165dfc715\",\n  \"displayName\": \"string\",\n  \"applicationType\": \"string\",\n  \"findingType\": \"string\",\n  \"status\": \"string\",\n  \"llms\": [\n    \"string\",\n    \"string\"\n  ],\n  \"vendorId\": \"5032b4ff-6fca-1f71-2ee2-b338f0ab6d5b\",\n  \"deviceCount\": 8934,\n  \"firstSeenAt\": \"1947-09-13T03:00:09.406Z\",\n  \"lastSeenAt\": \"2004-05-15T03:14:58.434Z\",\n  \"postureScore\": 1300,\n  \"riskScore\": 6619,\n  \"riskLevel\": \"string\",\n  \"businessPurpose\": {\n    \"purpose\": \"string\",\n    \"confidence\": 7915,\n    \"explanation\": \"string\",\n    \"insightsRunId\": \"1fc2ac34-4c40-e88e-10e4-6b1343430f52\"\n  },\n  \"definitionSummary\": \"string\",\n  \"definitionExcerpt\": \"string\",\n  \"builtinCapabilities\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tools\": [\n    {\n      \"toolKey\": \"string\",\n      \"toolKind\": \"string\",\n      \"displayName\": \"string\",\n      \"resolutionState\": \"string\",\n      \"permissions\": \"string\",\n      \"effectivePermissions\": \"string\"\n    },\n    {\n      \"toolKey\": \"string\",\n      \"toolKind\": \"string\",\n      \"displayName\": \"string\",\n      \"resolutionState\": \"string\",\n      \"permissions\": \"string\",\n      \"effectivePermissions\": \"string\"\n    }\n  ],\n  \"skills\": [\n    {\n      \"skillKey\": \"string\",\n      \"displayName\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"skillKey\": \"string\",\n      \"displayName\": \"string\",\n      \"version\": \"string\"\n    }\n  ],\n  \"devices\": [\n    {\n      \"state\": \"string\",\n      \"firstSeenAt\": \"2026-02-12T10:40:01.560Z\",\n      \"lastSeenAt\": \"1964-11-01T09:38:54.039Z\",\n      \"device\": {\n        \"id\": \"5d343e42-c0bf-5087-3105-e7314ce37084\",\n        \"deviceKey\": \"string\",\n        \"hardwareUuid\": \"string\",\n        \"platform\": \"string\",\n        \"hostname\": \"string\",\n        \"mdmSource\": \"string\",\n        \"mdmDeviceId\": \"string\",\n        \"ownerRawIdentifier\": \"string\",\n        \"ownerEmployeeId\": \"8e2306cf-1ad7-0d70-c8a5-3b81b9ac1bc1\",\n        \"firstSeenAt\": \"2000-09-06T21:04:42.891Z\",\n        \"lastSeenAt\": \"2006-09-01T04:21:14.254Z\",\n        \"lastScanRunId\": \"3dae0949-fa80-b991-b8b0-4c8b0cc70d51\",\n        \"scannerVersion\": \"string\",\n        \"attributes\": {\n          \"macAddresses\": [\n            \"string\",\n            \"string\"\n          ],\n          \"osVersion\": \"string\",\n          \"hardwareModel\": \"string\",\n          \"arch\": \"string\"\n        }\n      }\n    },\n    {\n      \"state\": \"string\",\n      \"firstSeenAt\": \"1989-09-02T09:40:30.189Z\",\n      \"lastSeenAt\": \"2000-03-02T04:51:04.237Z\",\n      \"device\": {\n        \"id\": \"c622a2ea-9e4e-b60b-7957-21407c04f320\",\n        \"deviceKey\": \"string\",\n        \"hardwareUuid\": \"string\",\n        \"platform\": \"string\",\n        \"hostname\": \"string\",\n        \"mdmSource\": \"string\",\n        \"mdmDeviceId\": \"string\",\n        \"ownerRawIdentifier\": \"string\",\n        \"ownerEmployeeId\": \"80b4b405-6ace-3227-3b3d-c867bacabb77\",\n        \"firstSeenAt\": \"2017-02-21T14:25:15.424Z\",\n        \"lastSeenAt\": \"1993-03-25T08:20:08.052Z\",\n        \"lastScanRunId\": \"bef876e6-440b-7a24-9e7f-d33d8f4f03a2\",\n        \"scannerVersion\": \"string\",\n        \"attributes\": {\n          \"macAddresses\": [\n            \"string\",\n            \"string\"\n          ],\n          \"osVersion\": \"string\",\n          \"hardwareModel\": \"string\",\n          \"arch\": \"string\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d6a0372f-ba80-4c41-8dea-02b507ecb3b3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "aispm",
+                    "v1",
+                    "public",
+                    "agents",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The agent's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 1685,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2601a28c-0280-4449-8716-592deaae85ab",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "aispm",
+                    "v1",
+                    "public",
+                    "agents",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The agent's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 1685,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20edde43-0989-4bf8-8db2-c8703b267b0f",
+          "name": "Returns the vulnerabilities found on the agent's current posture-analysis run, joined to the\r\nvulnerability catalog. Served separately from M:Mine.Portal.Module.AispmAgentsDemo.Api.PublicApi.AispmPublicAgentsController.GetAgentSignals(System.Guid,System.Threading.CancellationToken) — the two risk-factor\r\ncollections are never unioned (D35). If the agent has no completed posture run yet, returns an\r\nempty list with null run/score fields rather than a 404.",
+          "request": {
+            "name": "Returns the vulnerabilities found on the agent's current posture-analysis run, joined to the\r\nvulnerability catalog. Served separately from M:Mine.Portal.Module.AispmAgentsDemo.Api.PublicApi.AispmPublicAgentsController.GetAgentSignals(System.Guid,System.Threading.CancellationToken) — the two risk-factor\r\ncollections are never unioned (D35). If the agent has no completed posture run yet, returns an\r\nempty list with null run/score fields rather than a 404.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "aispm",
+                "v1",
+                "public",
+                "agents",
+                ":id",
+                "vulnerabilities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) The agent's unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f90118c4-75ce-4e54-9167-b4f0c960b6f7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "aispm",
+                    "v1",
+                    "public",
+                    "agents",
+                    ":id",
+                    "vulnerabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The agent's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"postureAnalysisRunId\": \"5209ecc7-3868-9a60-66da-3c1ada4b8699\",\n  \"postureScore\": 2773,\n  \"vulnerabilities\": [\n    {\n      \"vulnerabilityCode\": \"string\",\n      \"category\": \"string\",\n      \"name\": \"string\",\n      \"riskLevel\": \"string\",\n      \"confidence\": 9359,\n      \"scoreContribution\": 4166,\n      \"codeRef\": \"string\",\n      \"snippetHash\": \"string\",\n      \"attackSurface\": [\n        \"string\",\n        \"string\"\n      ],\n      \"remediation\": \"string\"\n    },\n    {\n      \"vulnerabilityCode\": \"string\",\n      \"category\": \"string\",\n      \"name\": \"string\",\n      \"riskLevel\": \"string\",\n      \"confidence\": 1256,\n      \"scoreContribution\": 687,\n      \"codeRef\": \"string\",\n      \"snippetHash\": \"string\",\n      \"attackSurface\": [\n        \"string\",\n        \"string\"\n      ],\n      \"remediation\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df23bea9-a4cc-4bcf-a779-bab46f9023a5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "aispm",
+                    "v1",
+                    "public",
+                    "agents",
+                    ":id",
+                    "vulnerabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The agent's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 1685,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8743635-6209-4098-b990-d173cbc391cf",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "aispm",
+                    "v1",
+                    "public",
+                    "agents",
+                    ":id",
+                    "vulnerabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The agent's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 1685,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c2a2430-bee5-4e13-a6a6-293a5f9fdd70",
+          "name": "Returns the governance signals from the agent's current insights run — the second, separately\r\nserved risk-factor collection (never unioned with vulnerabilities, D35). If the agent has no\r\ncompleted insights run yet, returns an empty list with null run/score fields rather than a 404.",
+          "request": {
+            "name": "Returns the governance signals from the agent's current insights run — the second, separately\r\nserved risk-factor collection (never unioned with vulnerabilities, D35). If the agent has no\r\ncompleted insights run yet, returns an empty list with null run/score fields rather than a 404.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "aispm",
+                "v1",
+                "public",
+                "agents",
+                ":id",
+                "signals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) The agent's unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e3a84f00-a32c-44b6-9ccc-d760269c1cf4",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "aispm",
+                    "v1",
+                    "public",
+                    "agents",
+                    ":id",
+                    "signals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The agent's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"insightsRunId\": \"7d86657a-69f4-31a6-1305-d8c5a201fdf4\",\n  \"riskScore\": 5255,\n  \"riskLevel\": \"string\",\n  \"signals\": [\n    {\n      \"signalType\": \"string\",\n      \"riskLevel\": \"string\",\n      \"scoreContribution\": 3528,\n      \"toolId\": \"b7ece44c-f1c9-f836-c427-0fb059e996f7\",\n      \"vendorRef\": \"f76aeacf-fec7-29a1-843a-fa087b018448\",\n      \"explanation\": \"string\",\n      \"dataTypes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"link\": \"string\"\n    },\n    {\n      \"signalType\": \"string\",\n      \"riskLevel\": \"string\",\n      \"scoreContribution\": 3785,\n      \"toolId\": \"884cbbb0-bc8e-28ee-8a71-c5bed630b71c\",\n      \"vendorRef\": \"4e9ecdbf-7933-4933-ea98-8673bf3e5d78\",\n      \"explanation\": \"string\",\n      \"dataTypes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"link\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "796aa295-7cca-4834-a255-73843a9445f1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "aispm",
+                    "v1",
+                    "public",
+                    "agents",
+                    ":id",
+                    "signals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The agent's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 1685,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3644bb3f-481e-4fdb-bb57-916a7024dfee",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "aispm",
+                    "v1",
+                    "public",
+                    "agents",
+                    ":id",
+                    "signals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) The agent's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 1685,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.portal.saymine.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5b017a89-c4fe-4fe9-b10f-1ab16a76a937",
+    "name": "MineOS Aispm AispmPublicAgents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

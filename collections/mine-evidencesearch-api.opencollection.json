@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MineOS Aispm EvidenceSearch API",
+    "version": "v1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "EvidenceSearch",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search request by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/api/EvidenceSearch/Request/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "5G1A43Z",
+                "type": "path",
+                "description": "Request ID"
+              }
+            ]
+          },
+          "docs": "Search request by ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

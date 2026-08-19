@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MineOS Aispm Webhooks API",
+    "version": "v1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all current webhook configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/api/Webhooks/Configurations"
+          },
+          "docs": "Get all current webhook configurations"
+        },
+        {
+          "info": {
+            "name": "Get webhook configuration for a specific Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/api/Webhooks/Configurations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Use 'default' for main Id or UUID"
+              }
+            ]
+          },
+          "docs": "Get webhook configuration for a specific Id"
+        },
+        {
+          "info": {
+            "name": "Adds a new webhook endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/Webhooks/Subscribe",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This will always add a new webhook endpoint, even if a similar webhook url has already been configured\r\nMax number of webhook configurations is 30\r\nSupported event types: TicketCreated, TprmTrigger, TicketClosed"
+        },
+        {
+          "info": {
+            "name": "Update an existing webhook configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.portal.saymine.com/api/Webhooks/Subscribe/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing webhook configuration"
+        },
+        {
+          "info": {
+            "name": "Sets webhook endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/Webhooks/Endpoint",
+            "params": [
+              {
+                "name": "url",
+                "value": "",
+                "type": "query",
+                "description": "The URL of the new endpoint. Will replace any existing endpoint."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This will replace any existing endpoint that is currently set, either from the UI or a previous API call."
+        },
+        {
+          "info": {
+            "name": "Disables webhook endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.portal.saymine.com/api/Webhooks/Endpoint"
+          },
+          "docs": "This will disable any existing endpoint that is currently set, either from the UI or a previous API call."
+        },
+        {
+          "info": {
+            "name": "Deletes webhook endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.portal.saymine.com/api/Webhooks/Unsubscribe/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes webhook endpoint"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

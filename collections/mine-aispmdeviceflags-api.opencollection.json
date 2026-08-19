@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MineOS Aispm AispmDeviceFlags API",
+    "version": "v1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AispmDeviceFlags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /device-flags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/device-flags"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

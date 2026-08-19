@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MineOS Aispm AispmPublicDevices API",
+    "version": "v1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AispmPublicDevices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists every device discovered for the authenticated tenant, including every device column plus the\r\nscanner version from its last scan run. Returns an empty array if the tenant has no discovered\r\ndevices yet — never a 404.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/api/aispm/v1/public/devices"
+          },
+          "docs": "Lists every device discovered for the authenticated tenant, including every device column plus the\r\nscanner version from its last scan run. Returns an empty array if the tenant has no discovered\r\ndevices yet — never a 404."
+        },
+        {
+          "info": {
+            "name": "Retrieves full detail for one device: every device column plus every agent found on it, each fully\r\nexpanded (tools, skills, business purpose, posture analysis run summary, and both risk-factor\r\ncollections — vulnerabilities and signals, never unioned, D35).",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/api/aispm/v1/public/devices/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The device's unique identifier."
+              }
+            ]
+          },
+          "docs": "Retrieves full detail for one device: every device column plus every agent found on it, each fully\r\nexpanded (tools, skills, business purpose, posture analysis run summary, and both risk-factor\r\ncollections — vulnerabilities and signals, never unioned, D35)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

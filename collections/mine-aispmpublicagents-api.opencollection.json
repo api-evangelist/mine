@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MineOS Aispm AispmPublicAgents API",
+    "version": "v1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AispmPublicAgents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists every AI agent discovered for the authenticated tenant, with rollups derived on read: device\r\ncount, current posture score, current risk score/level, and business-purpose classification (D26).\r\nReturns an empty array if the tenant has no discovered agents yet — never a 404.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/api/aispm/v1/public/agents"
+          },
+          "docs": "Lists every AI agent discovered for the authenticated tenant, with rollups derived on read: device\r\ncount, current posture score, current risk score/level, and business-purpose classification (D26).\r\nReturns an empty array if the tenant has no discovered agents yet — never a 404."
+        },
+        {
+          "info": {
+            "name": "Retrieves full detail for one discovered agent: its tools, skills, every device it was found on\r\n(each fully expanded), its business-purpose classification, and its current risk/posture scores.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/api/aispm/v1/public/agents/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The agent's unique identifier."
+              }
+            ]
+          },
+          "docs": "Retrieves full detail for one discovered agent: its tools, skills, every device it was found on\r\n(each fully expanded), its business-purpose classification, and its current risk/posture scores."
+        },
+        {
+          "info": {
+            "name": "Returns the vulnerabilities found on the agent's current posture-analysis run, joined to the\r\nvulnerability catalog. Served separately from M:Mine.Portal.Module.AispmAgentsDemo.Api.PublicApi.AispmPublicAgentsController.GetAgentSignals(System.Guid,System.Threading.CancellationToken) — the two risk-factor\r\ncollections are never unioned (D35). If the agent has no completed posture run yet, returns an\r\nempty list with null run/score fields rather than a 404.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/api/aispm/v1/public/agents/:id/vulnerabilities",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The agent's unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns the vulnerabilities found on the agent's current posture-analysis run, joined to the\r\nvulnerability catalog. Served separately from M:Mine.Portal.Module.AispmAgentsDemo.Api.PublicApi.AispmPublicAgentsController.GetAgentSignals(System.Guid,System.Threading.CancellationToken) — the two risk-factor\r\ncollections are never unioned (D35). If the agent has no completed posture run yet, returns an\r\nempty list with null run/score fields rather than a 404."
+        },
+        {
+          "info": {
+            "name": "Returns the governance signals from the agent's current insights run — the second, separately\r\nserved risk-factor collection (never unioned with vulnerabilities, D35). If the agent has no\r\ncompleted insights run yet, returns an empty list with null run/score fields rather than a 404.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/api/aispm/v1/public/agents/:id/signals",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The agent's unique identifier."
+              }
+            ]
+          },
+          "docs": "Returns the governance signals from the agent's current insights run — the second, separately\r\nserved risk-factor collection (never unioned with vulnerabilities, D35). If the agent has no\r\ncompleted insights run yet, returns an empty list with null run/score fields rather than a 404."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

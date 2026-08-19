@@ -1,0 +1,146 @@
+{
+  "item": [
+    {
+      "id": "c7270b11-a858-4a51-a8bc-990610e36411",
+      "name": "EvidenceSearch",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d13867b7-13f0-4770-923f-e36e4a6035c0",
+          "name": "Search request by ID",
+          "request": {
+            "name": "Search request by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "EvidenceSearch",
+                "Request",
+                ":requestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) Request ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ec56d5a2-dd65-4573-89c8-f8d60cf525e3",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "EvidenceSearch",
+                    "Request",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) Request ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ownedItem\": {\n    \"mineUserId\": \"string\",\n    \"name\": \"string\",\n    \"userEmail\": \"string\",\n    \"countryCode\": \"string\",\n    \"domain\": \"string\",\n    \"groupIdAssignment\": \"string\",\n    \"accept\": false,\n    \"ticketType\": \"DoNotMail\",\n    \"privacyRightId\": \"string\",\n    \"brandId\": \"string\",\n    \"ticketSource\": \"Unknown\",\n    \"createdAt\": \"1956-09-03T18:15:56.380Z\",\n    \"dueDate\": \"1955-11-21T22:46:19.886Z\",\n    \"ticketState\": {\n      \"changeSource\": \"EmailForwarding\",\n      \"createdAt\": \"2000-01-06T19:59:25.816Z\",\n      \"reason\": \"AgentEditEmailForwarding\",\n      \"state\": \"Closed\",\n      \"agent\": \"string\",\n      \"agentEmail\": \"string\"\n    },\n    \"actionId\": \"string\",\n    \"ticketId\": \"string\",\n    \"emailEvidence\": [\n      {\n        \"fromAddress\": \"string\",\n        \"fromDisplayName\": \"string\",\n        \"replyTo\": [\n          \"string\",\n          \"string\"\n        ],\n        \"subjectLine\": \"string\",\n        \"timestamp\": \"1946-11-18T10:00:42.736Z\"\n      },\n      {\n        \"fromAddress\": \"string\",\n        \"fromDisplayName\": \"string\",\n        \"replyTo\": [\n          \"string\",\n          \"string\"\n        ],\n        \"subjectLine\": \"string\",\n        \"timestamp\": \"1953-06-04T02:10:51.043Z\"\n      }\n    ],\n    \"formCustomData\": {\n      \"state\": \"string\",\n      \"mobileNumber\": \"string\",\n      \"address\": \"string\",\n      \"url\": \"string\",\n      \"customQuestion\": {\n        \"question\": \"string\",\n        \"multiSelect\": true,\n        \"answers\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"authorizedAgentInfo\": {\n        \"authorizedAgentEmail\": \"string\",\n        \"verificationDocumentFile\": {\n          \"label\": \"string\",\n          \"name\": \"string\",\n          \"path\": \"string\",\n          \"expiryDate\": \"1973-09-05T09:23:28.053Z\"\n        }\n      },\n      \"fileAttachment\": {\n        \"label\": \"string\",\n        \"name\": \"string\",\n        \"path\": \"string\",\n        \"expiryDate\": \"1977-06-11T10:49:04.893Z\"\n      },\n      \"formCustomEntries\": \"string\",\n      \"fullUrl\": \"string\",\n      \"referrer\": \"string\"\n    },\n    \"dataSubjectTypeInfo\": {\n      \"dataSubjectType\": {},\n      \"dataSubjectTypeLabel\": \"string\",\n      \"authorizedAgentInfo\": {\n        \"authorizedAgentEmail\": \"string\",\n        \"verificationDocumentFileLabel\": \"string\",\n        \"verificationDocumentFileDownloadLink\": \"string\"\n      }\n    },\n    \"customFields\": {\n      \"key_0\": \"string\"\n    },\n    \"preferredLocale\": \"string\",\n    \"notification\": true,\n    \"targetAddress\": \"string\",\n    \"evidenceLastViewed\": \"1988-11-04T02:58:33.153Z\",\n    \"acceptedOrRejectedTime\": \"1984-06-16T21:21:25.539Z\",\n    \"autoPilotState\": \"Assigned\",\n    \"autoPilotInfo\": {\n      \"state\": \"TimeOut\",\n      \"initiatingAgentId\": \"string\",\n      \"lastModified\": \"1982-06-14T04:01:55.352Z\",\n      \"delayUntilTime\": \"1961-12-05T05:04:13.668Z\",\n      \"assignedAtStateVersion\": 718\n    },\n    \"requireAttentionInfo\": {\n      \"markedAsRequireAttention\": false\n    }\n  },\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.portal.saymine.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fb360ea8-ea7b-4030-87ed-e775b4b887b6",
+    "name": "MineOS Aispm EvidenceSearch API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

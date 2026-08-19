@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MineOS Aispm Partners API",
+    "version": "v1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Partners",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/Partners/ActivateAccount",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creating an account results in an invite being sent to the email address in the request.\r\n            If the company already has an account, the request will be denied."
+        },
+        {
+          "info": {
+            "name": "Gets account information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/api/Partners/AccountInfo",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the account to get information for"
+              }
+            ]
+          },
+          "docs": "A partner can only get information for accounts he is allowed to. Partners are automatically allowed to account created by them."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

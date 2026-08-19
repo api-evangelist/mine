@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MineOS Aispm PrivacyRightsPublic API",
+    "version": "v1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "PrivacyRightsPublic",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get privacy rights",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.portal.saymine.com/api/public-v1/privacy-rights"
+          },
+          "docs": "Get privacy rights"
+        },
+        {
+          "info": {
+            "name": "Create a privacy right",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.portal.saymine.com/api/public-v1/privacy-rights",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a privacy right"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

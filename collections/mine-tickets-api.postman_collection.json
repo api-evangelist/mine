@@ -1,0 +1,3899 @@
+{
+  "item": [
+    {
+      "id": "640a4b64-b09b-482b-99ff-446e6f15becf",
+      "name": "Tickets",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cc360a96-e445-491c-9f56-5a7d5bee1eff",
+          "name": "List all requests",
+          "request": {
+            "name": "List all requests",
+            "description": {
+              "content": "Returns a paginated list of tickets. Use the cursor tokens in the response to fetch the next or previous page.\r\nAll query filters are optional. Closed requests created more than 3 months ago are not included in the response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "ticket",
+                "List"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "State",
+                  "value": "<string>",
+                  "description": "Filter by list of ticket states. The default is all. Possible values are: [Open, Closed, Redacted, Processing, Notify, Delete, Redacting, Edit, Unverified]"
+                },
+                {
+                  "disabled": false,
+                  "key": "PrivacyRightIds",
+                  "value": "<string>",
+                  "description": "Filter by list of right ids. The default is all."
+                },
+                {
+                  "disabled": false,
+                  "key": "BrandIds",
+                  "value": "<string>",
+                  "description": "Filter by list of brand ids. The default is all."
+                },
+                {
+                  "disabled": false,
+                  "key": "MinCreatedAt",
+                  "value": "<string>",
+                  "description": "Filter by created at dates - return only requests that were created after the provided date at 00:00, in the format: yyyy-MM-dd."
+                },
+                {
+                  "disabled": false,
+                  "key": "MaxCreatedAt",
+                  "value": "<string>",
+                  "description": "Filter by created at dates - return only requests that were created before the provided date at 00:00, iin the format: yyyy-MM-dd"
+                },
+                {
+                  "disabled": false,
+                  "key": "MinClosedAt",
+                  "value": "<string>",
+                  "description": "Filter by closed at dates - return only requests that were closed after the provided date at 00:00, in the format: yyyy-MM-dd.\r\nRelevant for tickets that were closed after 13/03/2024."
+                },
+                {
+                  "disabled": false,
+                  "key": "MaxClosedAt",
+                  "value": "<string>",
+                  "description": "Filter by closed at dates - return only requests that were closed before the provided date at 00:00, iin the format: yyyy-MM-dd.\r\nRelevant for tickets that were closed after 13/03/2024."
+                },
+                {
+                  "disabled": false,
+                  "key": "After",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Before",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0925b4d8-4da2-41cb-9452-816af13d9753",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    "List"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "State",
+                      "value": "Processing,Notify"
+                    },
+                    {
+                      "key": "PrivacyRightIds",
+                      "value": "delete"
+                    },
+                    {
+                      "key": "BrandIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "MinCreatedAt",
+                      "value": "2023-05-20"
+                    },
+                    {
+                      "key": "MaxCreatedAt",
+                      "value": "2023-05-20"
+                    },
+                    {
+                      "key": "MinClosedAt",
+                      "value": "2024-04-20"
+                    },
+                    {
+                      "key": "MaxClosedAt",
+                      "value": "2024-04-20"
+                    },
+                    {
+                      "key": "After",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tickets\": [\n    {\n      \"ticketId\": \"string\",\n      \"requestId\": \"string\",\n      \"workflowId\": \"string\",\n      \"workflowName\": \"string\"\n    },\n    {\n      \"ticketId\": \"string\",\n      \"requestId\": \"string\",\n      \"workflowId\": \"string\",\n      \"workflowName\": \"string\"\n    }\n  ],\n  \"tokens\": {\n    \"before\": \"string\",\n    \"after\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ba98a83-71f1-4d24-9c22-86a8c92238d6",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    "List"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "State",
+                      "value": "Processing,Notify"
+                    },
+                    {
+                      "key": "PrivacyRightIds",
+                      "value": "delete"
+                    },
+                    {
+                      "key": "BrandIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "MinCreatedAt",
+                      "value": "2023-05-20"
+                    },
+                    {
+                      "key": "MaxCreatedAt",
+                      "value": "2023-05-20"
+                    },
+                    {
+                      "key": "MinClosedAt",
+                      "value": "2024-04-20"
+                    },
+                    {
+                      "key": "MaxClosedAt",
+                      "value": "2024-04-20"
+                    },
+                    {
+                      "key": "After",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98c57fe9-9d89-47f9-8eef-30e310d37da1",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    "List"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "State",
+                      "value": "Processing,Notify"
+                    },
+                    {
+                      "key": "PrivacyRightIds",
+                      "value": "delete"
+                    },
+                    {
+                      "key": "BrandIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "MinCreatedAt",
+                      "value": "2023-05-20"
+                    },
+                    {
+                      "key": "MaxCreatedAt",
+                      "value": "2023-05-20"
+                    },
+                    {
+                      "key": "MinClosedAt",
+                      "value": "2024-04-20"
+                    },
+                    {
+                      "key": "MaxClosedAt",
+                      "value": "2024-04-20"
+                    },
+                    {
+                      "key": "After",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "Size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6bf220d1-34c7-48dc-a696-39127d8142d9",
+          "name": "Get ticket",
+          "request": {
+            "name": "Get ticket",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "ticket",
+                ":ticketId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ticketId",
+                  "description": "(Required) TicketID of the request to get info for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "306dc52e-3ec7-4225-aaf5-ea3198430258",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the request to get info for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"John Doe\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"userEmail\": \"johnd@example.com\",\n  \"countryCode\": \"US\",\n  \"domain\": \"acme.com\",\n  \"groupIdAssignment\": \"123456789\",\n  \"privacyRightId\": \"Delete\",\n  \"brandId\": \"string\",\n  \"requestStatus\": \"Unverified\",\n  \"closeReason\": \"Completed\",\n  \"ticketSource\": \"Api\",\n  \"createdAt\": \"1988-04-01T07:57:08.749Z\",\n  \"dueDate\": \"2019-10-09T17:03:11.717Z\",\n  \"ticketId\": \"eb640185-9e3d-48f5-bf74-d7a3120814e8\",\n  \"requestId\": \"Z27OCDDO\",\n  \"formCustomData\": {\n    \"state\": \"string\",\n    \"mobileNumber\": \"string\",\n    \"address\": \"string\",\n    \"url\": \"string\",\n    \"customQuestion\": {\n      \"question\": \"string\",\n      \"multiSelect\": false,\n      \"answers\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"authorizedAgentInfo\": {\n      \"authorizedAgentEmail\": \"string\",\n      \"verificationDocumentFile\": {\n        \"label\": \"string\",\n        \"name\": \"string\",\n        \"path\": \"string\",\n        \"expiryDate\": \"2013-04-26T11:24:26.584Z\"\n      }\n    },\n    \"fileAttachment\": {\n      \"label\": \"string\",\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"expiryDate\": \"2026-05-12T17:12:27.177Z\"\n    },\n    \"formCustomEntries\": \"string\",\n    \"fullUrl\": \"string\",\n    \"referrer\": \"string\"\n  },\n  \"customFields\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"preferredLocale\": \"string\",\n  \"acceptedOrRejectedTime\": \"2022-01-23T09:03:21.190Z\",\n  \"autoPilotState\": \"TimeOut\",\n  \"processingTasks\": [\n    {\n      \"taskId\": \"string\",\n      \"name\": \"string\",\n      \"errorMsg\": \"string\",\n      \"status\": \"Expired\",\n      \"lastChanged\": \"1947-11-12T22:24:31.783Z\"\n    },\n    {\n      \"taskId\": \"string\",\n      \"name\": \"string\",\n      \"errorMsg\": \"string\",\n      \"status\": \"PartialCompleted\",\n      \"lastChanged\": \"1974-01-24T10:21:35.953Z\"\n    }\n  ],\n  \"notes\": [\n    {\n      \"createdAt\": \"2003-08-18T15:56:08.341Z\",\n      \"text\": \"string\",\n      \"createdBy\": \"string\"\n    },\n    {\n      \"createdAt\": \"1999-07-10T12:58:24.833Z\",\n      \"text\": \"string\",\n      \"createdBy\": \"string\"\n    }\n  ],\n  \"dataSubjectTypeInfo\": {\n    \"dataSubjectType\": {},\n    \"dataSubjectTypeLabel\": \"string\"\n  },\n  \"requireAttention\": true,\n  \"workflowId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\",\n  \"workflowName\": \"Employees\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49fb0d75-033b-4fa3-9897-db7e0100bfc9",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the request to get info for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a4256ce-b1b3-4412-bdd0-5fa19dc5b5c5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the request to get info for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b0c45319-2dd9-443e-8f91-81f8785bfb9f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the request to get info for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "08425af2-304b-4f96-b08a-6e199a98666c",
+          "name": "Get ticket logs",
+          "request": {
+            "name": "Get ticket logs",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "ticket",
+                ":ticketId",
+                "log"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ticketId",
+                  "description": "(Required) TicketID of the request to get info for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c516db2b-9ab2-420b-ae85-840274def9a4",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "log"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the request to get info for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"conversation\": {\n    \"items\": [\n      {\n        \"timeStamp\": \"2019-03-02T17:01:41.885Z\",\n        \"fromName\": \"string\",\n        \"fromAddress\": \"string\",\n        \"payloadText\": \"string\",\n        \"payloadHtml\": \"string\",\n        \"subject\": \"string\",\n        \"mailDirection\": \"Inbound\",\n        \"hasAttachments\": false,\n        \"replyTo\": \"string\",\n        \"automatic\": false\n      },\n      {\n        \"timeStamp\": \"2006-05-22T04:25:10.078Z\",\n        \"fromName\": \"string\",\n        \"fromAddress\": \"string\",\n        \"payloadText\": \"string\",\n        \"payloadHtml\": \"string\",\n        \"subject\": \"string\",\n        \"mailDirection\": \"Outbound\",\n        \"hasAttachments\": true,\n        \"replyTo\": \"string\",\n        \"automatic\": true\n      }\n    ]\n  },\n  \"notes\": {\n    \"items\": [\n      {\n        \"createdAt\": \"1990-01-27T23:25:19.182Z\",\n        \"agentName\": \"string\",\n        \"agentEmail\": \"string\",\n        \"noteText\": \"string\"\n      },\n      {\n        \"createdAt\": \"1991-06-26T15:05:27.897Z\",\n        \"agentName\": \"string\",\n        \"agentEmail\": \"string\",\n        \"noteText\": \"string\"\n      }\n    ]\n  },\n  \"integrationsLogs\": {\n    \"items\": [\n      {\n        \"success\": true,\n        \"id\": \"string\",\n        \"customMessage\": \"string\",\n        \"state\": \"NotStarted\",\n        \"createdAt\": \"2002-08-06T06:29:24.873Z\",\n        \"agentName\": \"string\",\n        \"agentEmail\": \"string\",\n        \"requestType\": \"Fetch\",\n        \"isManual\": true,\n        \"retryCount\": 3662\n      },\n      {\n        \"success\": false,\n        \"id\": \"string\",\n        \"customMessage\": \"string\",\n        \"state\": \"Failed\",\n        \"createdAt\": \"1975-06-21T14:06:38.386Z\",\n        \"agentName\": \"string\",\n        \"agentEmail\": \"string\",\n        \"requestType\": \"Unknown\",\n        \"isManual\": true,\n        \"retryCount\": 6348\n      }\n    ]\n  },\n  \"stateLogs\": {\n    \"items\": [\n      {\n        \"state\": \"Notify\",\n        \"changeSource\": \"ManualCreation\",\n        \"reason\": \"ApiKey\",\n        \"agentEmail\": \"string\",\n        \"agentName\": \"string\",\n        \"createdAt\": \"1976-04-11T08:17:26.723Z\",\n        \"apiKeyName\": \"string\"\n      },\n      {\n        \"state\": \"NotReady\",\n        \"changeSource\": \"AutoAcceptRule\",\n        \"reason\": \"Rejected\",\n        \"agentEmail\": \"string\",\n        \"agentName\": \"string\",\n        \"createdAt\": \"1996-08-21T21:59:31.431Z\",\n        \"apiKeyName\": \"string\"\n      }\n    ]\n  },\n  \"assignmentLogs\": {\n    \"items\": [\n      {\n        \"createdAt\": \"1957-07-17T18:28:17.428Z\",\n        \"agentName\": \"string\",\n        \"agentEmail\": \"string\",\n        \"groupNameAssignment\": \"string\"\n      },\n      {\n        \"createdAt\": \"1949-12-14T22:23:22.309Z\",\n        \"agentName\": \"string\",\n        \"agentEmail\": \"string\",\n        \"groupNameAssignment\": \"string\"\n      }\n    ]\n  },\n  \"requireAttentionLogs\": {\n    \"items\": [\n      {\n        \"markedAsRequireAttention\": false,\n        \"changeSource\": \"DataAction\",\n        \"agentEmail\": \"string\",\n        \"agentName\": \"string\",\n        \"createdAt\": \"1967-12-23T17:08:48.561Z\",\n        \"apiKeyName\": \"string\"\n      },\n      {\n        \"markedAsRequireAttention\": false,\n        \"changeSource\": \"EmailValidation\",\n        \"agentEmail\": \"string\",\n        \"agentName\": \"string\",\n        \"createdAt\": \"2012-12-04T17:00:11.608Z\",\n        \"apiKeyName\": \"string\"\n      }\n    ]\n  },\n  \"workflowChangesLogs\": {\n    \"items\": [\n      {\n        \"createdAt\": \"1999-07-03T01:38:28.984Z\",\n        \"changeSource\": \"Import\",\n        \"agentName\": \"string\",\n        \"agentEmail\": \"string\",\n        \"apiKeyName\": \"string\",\n        \"fromWorkflowId\": \"string\",\n        \"fromWorkflowName\": \"string\",\n        \"toWorkflowId\": \"string\",\n        \"toWorkflowName\": \"string\"\n      },\n      {\n        \"createdAt\": \"1992-09-04T20:44:37.621Z\",\n        \"changeSource\": \"BackCompat\",\n        \"agentName\": \"string\",\n        \"agentEmail\": \"string\",\n        \"apiKeyName\": \"string\",\n        \"fromWorkflowId\": \"string\",\n        \"fromWorkflowName\": \"string\",\n        \"toWorkflowId\": \"string\",\n        \"toWorkflowName\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f187bb67-5240-4c85-b110-b8094cfe8d2b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "log"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the request to get info for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71a7e074-e35f-47ba-8add-7de0b6d27ca9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "log"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the request to get info for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "96d30a40-eb25-4434-b6df-735d917eeea4",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "log"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the request to get info for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ebef92e8-1afa-4119-a68d-5d7e1803d23f",
+          "name": "Update the due date of a request",
+          "request": {
+            "name": "Update the due date of a request",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "ticket",
+                ":ticketId",
+                "dueDate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ticketId",
+                  "description": "(Required) TicketID of the request to upadte due date for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dueDate\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ef21d7f4-7762-49c7-81c2-683de6c4097a",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "dueDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the request to upadte due date for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dueDate\": \"2023-05-20\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0756b779-3a31-457c-9e34-faae1293acc7",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "dueDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the request to upadte due date for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dueDate\": \"2023-05-20\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c0355b8-e88f-4f3b-90ad-b2e404669219",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "dueDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the request to upadte due date for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dueDate\": \"2023-05-20\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "875c573c-329f-42f6-8fd8-f0ad216627b0",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "dueDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the request to upadte due date for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dueDate\": \"2023-05-20\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4b6fb86-0bec-4c3b-bc9d-707ee876ddd8",
+          "name": "Create request [v2]",
+          "request": {
+            "name": "Create request [v2]",
+            "description": {
+              "content": "Duplication handling - if there was already an attempt to create a ticket with the same email with the same request type in the last minute,\r\nwe return 202 with the existing ticket id and avoid creating another one",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "ticket",
+                "Create",
+                "v2"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "test",
+                  "value": "<boolean>",
+                  "description": "When test is True a request will not actually be created"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"countryCode\": \"<string>\",\n  \"email\": \"<string>\",\n  \"requestTypeId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"state\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"customFields\": {\n    \"key_0\": \"<string>\"\n  },\n  \"brandId\": \"<string>\",\n  \"isAuthorizedAgent\": \"<boolean>\",\n  \"authorizedAgentEmail\": \"<string>\",\n  \"isUnverified\": \"<boolean>\",\n  \"workflowId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "89d4efbc-9e02-407c-8720-2b4707b872c4",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    "Create",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "test",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"countryCode\": \"US\",\n  \"email\": \"johndoe@example.com\",\n  \"requestTypeId\": \"delete\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"state\": \"AL\",\n  \"locale\": \"en-US\",\n  \"customFields\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"brandId\": \"<string>\",\n  \"isAuthorizedAgent\": false,\n  \"authorizedAgentEmail\": \"johndoe-parent@example.com\",\n  \"isUnverified\": false,\n  \"workflowId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ticketId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "549f7073-4546-450e-a55d-b4c1e1edad42",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    "Create",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "test",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"countryCode\": \"US\",\n  \"email\": \"johndoe@example.com\",\n  \"requestTypeId\": \"delete\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"state\": \"AL\",\n  \"locale\": \"en-US\",\n  \"customFields\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"brandId\": \"<string>\",\n  \"isAuthorizedAgent\": false,\n  \"authorizedAgentEmail\": \"johndoe-parent@example.com\",\n  \"isUnverified\": false,\n  \"workflowId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ticketId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64fe2b9c-b7a0-47dc-aff3-276d3c9733b5",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    "Create",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "test",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"countryCode\": \"US\",\n  \"email\": \"johndoe@example.com\",\n  \"requestTypeId\": \"delete\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"state\": \"AL\",\n  \"locale\": \"en-US\",\n  \"customFields\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"brandId\": \"<string>\",\n  \"isAuthorizedAgent\": false,\n  \"authorizedAgentEmail\": \"johndoe-parent@example.com\",\n  \"isUnverified\": false,\n  \"workflowId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2fd74712-0294-4204-a7f7-ae6005c70533",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    "Create",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "test",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"countryCode\": \"US\",\n  \"email\": \"johndoe@example.com\",\n  \"requestTypeId\": \"delete\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"state\": \"AL\",\n  \"locale\": \"en-US\",\n  \"customFields\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"brandId\": \"<string>\",\n  \"isAuthorizedAgent\": false,\n  \"authorizedAgentEmail\": \"johndoe-parent@example.com\",\n  \"isUnverified\": false,\n  \"workflowId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8baccd6-df1c-4c64-a2a9-d2d6f57468de",
+          "name": "Create many requests",
+          "request": {
+            "name": "Create many requests",
+            "description": {
+              "content": "Duplication handling - if there was already an attempt to create a request with the same email and the same request type in the last minute,\r\nwe return the existing request id and avoid creating another one.\r\nFailure in creating a request will be indicated in the response,\r\nif any request creation fails, the system continuous with the rest of the requests",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "ticket",
+                "CreateMany"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "test",
+                  "value": "<boolean>",
+                  "description": "When test is True no requests will actually be created"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"countryCode\": \"<string>\",\n    \"email\": \"<string>\",\n    \"requestTypeId\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"state\": \"<string>\",\n    \"locale\": \"<string>\",\n    \"customFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"brandId\": \"<string>\",\n    \"isAuthorizedAgent\": \"<boolean>\",\n    \"authorizedAgentEmail\": \"<string>\",\n    \"isUnverified\": \"<boolean>\",\n    \"workflowId\": \"<string>\"\n  },\n  {\n    \"countryCode\": \"<string>\",\n    \"email\": \"<string>\",\n    \"requestTypeId\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"state\": \"<string>\",\n    \"locale\": \"<string>\",\n    \"customFields\": {\n      \"key_0\": \"<string>\"\n    },\n    \"brandId\": \"<string>\",\n    \"isAuthorizedAgent\": \"<boolean>\",\n    \"authorizedAgentEmail\": \"<string>\",\n    \"isUnverified\": \"<boolean>\",\n    \"workflowId\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "be158dc1-bfad-45ad-8774-2e8d54c3ed68",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    "CreateMany"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "test",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"countryCode\": \"US\",\n    \"email\": \"johndoe@example.com\",\n    \"requestTypeId\": \"delete\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"state\": \"AL\",\n    \"locale\": \"en-US\",\n    \"customFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"brandId\": \"<string>\",\n    \"isAuthorizedAgent\": false,\n    \"authorizedAgentEmail\": \"johndoe-parent@example.com\",\n    \"isUnverified\": false,\n    \"workflowId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\"\n  },\n  {\n    \"countryCode\": \"US\",\n    \"email\": \"johndoe@example.com\",\n    \"requestTypeId\": \"delete\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"state\": \"AL\",\n    \"locale\": \"en-US\",\n    \"customFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"brandId\": \"<string>\",\n    \"isAuthorizedAgent\": false,\n    \"authorizedAgentEmail\": \"johndoe-parent@example.com\",\n    \"isUnverified\": false,\n    \"workflowId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"ticketId\": \"string\",\n    \"alreadyExists\": false,\n    \"emailAddress\": \"string\",\n    \"success\": false,\n    \"error\": \"string\"\n  },\n  {\n    \"ticketId\": \"string\",\n    \"alreadyExists\": false,\n    \"emailAddress\": \"string\",\n    \"success\": false,\n    \"error\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01e9c086-258f-41ae-8d33-57989abd2d27",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    "CreateMany"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "test",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"countryCode\": \"US\",\n    \"email\": \"johndoe@example.com\",\n    \"requestTypeId\": \"delete\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"state\": \"AL\",\n    \"locale\": \"en-US\",\n    \"customFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"brandId\": \"<string>\",\n    \"isAuthorizedAgent\": false,\n    \"authorizedAgentEmail\": \"johndoe-parent@example.com\",\n    \"isUnverified\": false,\n    \"workflowId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\"\n  },\n  {\n    \"countryCode\": \"US\",\n    \"email\": \"johndoe@example.com\",\n    \"requestTypeId\": \"delete\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"state\": \"AL\",\n    \"locale\": \"en-US\",\n    \"customFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"brandId\": \"<string>\",\n    \"isAuthorizedAgent\": false,\n    \"authorizedAgentEmail\": \"johndoe-parent@example.com\",\n    \"isUnverified\": false,\n    \"workflowId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48158724-c2a0-495c-89cb-7058f11b7cee",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    "CreateMany"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "test",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"countryCode\": \"US\",\n    \"email\": \"johndoe@example.com\",\n    \"requestTypeId\": \"delete\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"state\": \"AL\",\n    \"locale\": \"en-US\",\n    \"customFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"brandId\": \"<string>\",\n    \"isAuthorizedAgent\": false,\n    \"authorizedAgentEmail\": \"johndoe-parent@example.com\",\n    \"isUnverified\": false,\n    \"workflowId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\"\n  },\n  {\n    \"countryCode\": \"US\",\n    \"email\": \"johndoe@example.com\",\n    \"requestTypeId\": \"delete\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"state\": \"AL\",\n    \"locale\": \"en-US\",\n    \"customFields\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"brandId\": \"<string>\",\n    \"isAuthorizedAgent\": false,\n    \"authorizedAgentEmail\": \"johndoe-parent@example.com\",\n    \"isUnverified\": false,\n    \"workflowId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ac83929-b5b0-43fc-8743-a67a679731bf",
+          "name": "Get metadata",
+          "request": {
+            "name": "Get metadata",
+            "description": {
+              "content": "Used to read metadata or custom identifiers from the request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "ticket",
+                "GetMetadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ticketId",
+                  "value": "<string>",
+                  "description": "TicketID of the request to update status for"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f86d52f8-5e68-43e5-8977-cd0001a2bb6a",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    "GetMetadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ticketId",
+                      "value": "3664feb0-b48c-4a8a-a81d-1303a4efc64f"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"customFields\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35feacce-0736-4804-a5d5-e2680bfa8d39",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    "GetMetadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ticketId",
+                      "value": "3664feb0-b48c-4a8a-a81d-1303a4efc64f"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "320b43e1-b88e-4432-9a7b-6d7df32b0924",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    "GetMetadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ticketId",
+                      "value": "3664feb0-b48c-4a8a-a81d-1303a4efc64f"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4019a25e-bb5b-4636-b92a-d893fc0a6a44",
+          "name": "Update metadata",
+          "request": {
+            "name": "Update metadata",
+            "description": {
+              "content": "Used to store metadata or custom identifiers on the request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "ticket",
+                "UpdateMetadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customFields\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"ticketId\": \"<string>\",\n  \"test\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "21d2ad27-101f-454c-877c-ab3baa4ce5b2",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    "UpdateMetadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customFields\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"ticketId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\",\n  \"test\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ba0a53fc-b44c-4462-9dd6-a620677428e0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    "UpdateMetadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customFields\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"ticketId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\",\n  \"test\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "11f07042-ff5b-4617-bd0b-71856dfad954",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    "UpdateMetadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customFields\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"ticketId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\",\n  \"test\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2bbb3662-1fef-47c4-83b0-ae5effe3fc9e",
+          "name": "Mark/unmark a ticket with the Require Attention label",
+          "request": {
+            "name": "Mark/unmark a ticket with the Require Attention label",
+            "description": {
+              "content": "Will pause any automatic ticket runs until marked as reviewed.\r\nWill not pause any data mutation process once the processing automation step has started",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "ticket",
+                ":ticketId",
+                "require-attention"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ticketId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"markedAsRequireAttention\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0cb4f55f-691a-404f-b0d7-da5c70e80f96",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "require-attention"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"markedAsRequireAttention\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6d1e606d-2391-4d87-a823-740bfbe32898",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "require-attention"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"markedAsRequireAttention\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "40433348-111c-453f-a478-8b610ae84546",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "require-attention"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"markedAsRequireAttention\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d67af0e-3ecc-4239-a333-c8a18c4d70d6",
+          "name": "Assign a group to a request",
+          "request": {
+            "name": "Assign a group to a request",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "ticket",
+                ":ticketId",
+                "group-assignment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ticketId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"groupId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "14b0dbf8-7091-453c-8fd9-13556982b767",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "group-assignment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d8c3201a-9832-4363-abb7-2fc73832ea5e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "group-assignment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "05ca54fe-51d2-4925-ac08-94ac83f2f8b3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "group-assignment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1b98a23-48cf-4aeb-9d3c-8505f749338b",
+          "name": "Add a note",
+          "request": {
+            "name": "Add a note",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "ticket",
+                "AddNote"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ticketId",
+                  "value": "<string>",
+                  "description": "The Request ID to add note for"
+                },
+                {
+                  "disabled": false,
+                  "key": "userId",
+                  "value": "<string>",
+                  "description": "Optional. The User ID to add note on behalf of"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"noteText\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8b7b150d-812c-490c-8a44-f61f5bccc3ab",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    "AddNote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ticketId",
+                      "value": "3664feb0-b48c-4a8a-a81d-1303a4efc64f"
+                    },
+                    {
+                      "key": "userId",
+                      "value": "1135124226903180384"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"noteText\": \"This is a note...\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "698d9ab2-b29b-40f5-9f71-acca692f33d1",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    "AddNote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ticketId",
+                      "value": "3664feb0-b48c-4a8a-a81d-1303a4efc64f"
+                    },
+                    {
+                      "key": "userId",
+                      "value": "1135124226903180384"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"noteText\": \"This is a note...\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d05d5229-5f7d-4c38-8c6a-1ba1ad8cb95a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    "AddNote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ticketId",
+                      "value": "3664feb0-b48c-4a8a-a81d-1303a4efc64f"
+                    },
+                    {
+                      "key": "userId",
+                      "value": "1135124226903180384"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"noteText\": \"This is a note...\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b19a799b-eadd-408c-a7af-ef3b6c13b84f",
+          "name": "Redact request",
+          "request": {
+            "name": "Redact request",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "ticket",
+                "Redact",
+                ":ticketId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "test",
+                  "value": "<boolean>",
+                  "description": "When set to true, request will not actually be redacted"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ticketId",
+                  "description": "(Required) Ticket ID"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "231f9de9-f5f2-4b16-b447-03c550df99cc",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    "Redact",
+                    ":ticketId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "test",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) Ticket ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5037ef1-f904-452f-acaf-93aa7364139a",
+          "name": "Close request",
+          "request": {
+            "name": "Close request",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "ticket",
+                "CloseV2"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ticketId\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"test\": \"<boolean>\",\n  \"skipAutomation\": \"<boolean>\",\n  \"templateId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "466a3b3d-f039-4a8f-98fd-e65ddea6a73b",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    "CloseV2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ticketId\": \"eb640185-9e3d-48f5-bf74-d7a3120814e8\",\n  \"reason\": \"<string>\",\n  \"test\": false,\n  \"skipAutomation\": false,\n  \"templateId\": \"5f44e478-7fca-477c-94e4-a5a1e39da5d6\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f8f9f092-e1f3-4441-9459-61c2427866fb",
+          "name": "Start Autopilot",
+          "request": {
+            "name": "Start Autopilot",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "ticket",
+                "EngageAutopilot",
+                ":ticketId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ticketId",
+                  "description": "(Required) TicketID of the request to start autopilot for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "20ef2576-b01c-4cf9-9562-cf5089303ab7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    "EngageAutopilot",
+                    ":ticketId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the request to start autopilot for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assignedTickets\": [\n    {\n      \"id\": \"string\",\n      \"autoPilotState\": \"NotAssigned\",\n      \"message\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"autoPilotState\": \"Assigned\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7e8e20e-04e2-47a8-9b77-03c213f8d2d3",
+          "name": "Update custom integration status [v2]",
+          "request": {
+            "name": "Update custom integration status [v2]",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "ticket",
+                ":ticketId",
+                "custom-integrations",
+                ":integrationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ticketId",
+                  "description": "(Required) TicketID of the associated request"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "integrationId",
+                  "description": "(Required) IntegrationID of the associated request"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"<string>\",\n  \"status\": \"<string>\",\n  \"test\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"files\": [\n    {\n      \"fileName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"fileName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "71fbcbd5-42fe-4cd9-ae91-3b4df58191df",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "custom-integrations",
+                    ":integrationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the associated request"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "integrationId",
+                      "description": "(Required) IntegrationID of the associated request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"<string>\",\n  \"status\": \"<string>\",\n  \"test\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"files\": [\n    {\n      \"fileName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"fileName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "69e902c3-00d9-4f34-946d-5c3373bd52fa",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "custom-integrations",
+                    ":integrationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the associated request"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "integrationId",
+                      "description": "(Required) IntegrationID of the associated request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"<string>\",\n  \"status\": \"<string>\",\n  \"test\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"files\": [\n    {\n      \"fileName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"fileName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "00374eda-d82e-43f1-b0cd-cf98fe5612b1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "custom-integrations",
+                    ":integrationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the associated request"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "integrationId",
+                      "description": "(Required) IntegrationID of the associated request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"<string>\",\n  \"status\": \"<string>\",\n  \"test\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"files\": [\n    {\n      \"fileName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"fileName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd8606af-ddbb-45a0-9a6e-78076f77b445",
+          "name": "Get the workflow assigned to a ticket",
+          "request": {
+            "name": "Get the workflow assigned to a ticket",
+            "description": {
+              "content": "Returns the workflow id, display name, and the list of integrations attached to the ticket's workflow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "ticket",
+                ":ticketId",
+                "workflow"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ticketId",
+                  "description": "(Required) TicketID of the request"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "77a59042-909a-42c2-b681-8b0b462bc72a",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"workflowId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\",\n  \"workflowName\": \"Employees\",\n  \"integrations\": [\n    {\n      \"taskId\": \"string\",\n      \"systemId\": \"string\",\n      \"displayName\": \"string\"\n    },\n    {\n      \"taskId\": \"string\",\n      \"systemId\": \"string\",\n      \"displayName\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ab7bea0-8466-45fd-b269-dceb44cf2997",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3a682e60-6c2b-4780-a8dd-fab5fbeb99f4",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "369ca815-151a-4a4b-9c2a-14a7a274243f",
+          "name": "Change the workflow assigned to a ticket",
+          "request": {
+            "name": "Change the workflow assigned to a ticket",
+            "description": {
+              "content": "Allowed only when the ticket has not yet started processing. If the requested workflow is the same as the\r\none already assigned, the request is a no-op and returns 200 without any side effect.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "ticket",
+                ":ticketId",
+                "workflow"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ticketId",
+                  "description": "(Required) TicketID of the request"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"workflowId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0e90af10-fc3a-46bc-b59d-7d5d657e10bd",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflowId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"workflowId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\",\n  \"workflowName\": \"Employees\",\n  \"integrations\": [\n    {\n      \"taskId\": \"string\",\n      \"systemId\": \"string\",\n      \"displayName\": \"string\"\n    },\n    {\n      \"taskId\": \"string\",\n      \"systemId\": \"string\",\n      \"displayName\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b05ccbb8-5eed-4a1c-b2ec-9948385417d3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflowId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48681abc-33a6-47d0-9959-c3fdf0a680d3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflowId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e3ae6bc3-d98e-4ed0-981d-951147031f06",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflowId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8434d63-2722-41fd-8880-03d50aabd278",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "ticket",
+                    ":ticketId",
+                    "workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketId",
+                      "description": "(Required) TicketID of the request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflowId\": \"3664feb0-b48c-4a8a-a81d-1303a4efc64f\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.portal.saymine.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "44c625db-7a3e-4797-aaa5-4f8f03a94bf6",
+    "name": "MineOS Aispm Tickets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}
