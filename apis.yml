@@ -234,7 +234,8 @@ apis:
   description: The Test API from MINE — 1 operation(s) for test.
   humanURL: https://developers.mineos.ai/docs/authentication
   baseURL: https://api.portal.saymine.com/
-  tags:
+  tags: []
+  tags_raw:
   - Test
   properties:
   - type: OpenAPI
@@ -259,6 +260,8 @@ apis:
   humanURL: https://developers.mineos.ai/docs/authentication
   baseURL: https://api.portal.saymine.com/
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
