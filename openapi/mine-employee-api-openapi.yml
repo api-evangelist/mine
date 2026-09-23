@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: MineOS Aispm Employee API
+  title: MineOS Employee API
   version: v1.0
 servers:
 - url: https://api.portal.saymine.com/
@@ -16,7 +16,7 @@ paths:
     get:
       tags:
       - Employee
-      summary: Retrieves a list of the non-archived company Employees with pagination parameters.
+      summary: Retrieves a list of the non-archived company Employees with pagination…
       parameters:
       - name: offset
         in: query
@@ -51,32 +51,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorPublicResponse'
+      operationId: getApiPublicV1EmployeeList
+      x-operation-id-source: derived
 components:
   schemas:
+    EmployeePublicResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+        lastName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     ErrorPublicResponse:
       type: object
       properties:
         internalErrorCode:
           $ref: '#/components/schemas/InternalErrorCode'
         message:
-          type: string
-          nullable: true
-      additionalProperties: false
-    EmployeePublicResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          nullable: true
-        email:
-          type: string
-          nullable: true
-        firstName:
-          type: string
-          nullable: true
-        lastName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     InternalErrorCode:
       enum:
@@ -88,6 +95,6 @@ components:
   securitySchemes:
     Bearer:
       type: apiKey
-      description: "Authorization header using the Bearer scheme. \r\n\r\nEnter 'Bearer' [space] and then your API Key in the text input below.\r\n\r\nExample: 'Bearer 12345abcdef'"
+      description: "Authorization header using the Bearer scheme. \n\nEnter 'Bearer' [space] and then your API Key in the text input below.\n\nExample: 'Bearer 12345abcdef'"
       name: Authorization
       in: header

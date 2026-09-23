@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: MineOS Aispm Webhooks API
+  title: MineOS Webhooks API
   version: v1.0
 servers:
 - url: https://api.portal.saymine.com/
@@ -28,6 +28,8 @@ paths:
           description: Bad Request
         '401':
           description: Unauthorized
+      operationId: getApiWebhooksConfigurations
+      x-operation-id-source: derived
   /api/Webhooks/Configurations/{id}:
     get:
       tags:
@@ -53,12 +55,18 @@ paths:
           description: Unauthorized
         '404':
           description: Not Found
+      operationId: getApiWebhooksConfigurationsById
+      x-operation-id-source: derived
   /api/Webhooks/Subscribe:
     post:
       tags:
       - Webhooks
       summary: Adds a new webhook endpoint
-      description: "This will always add a new webhook endpoint, even if a similar webhook url has already been configured\r\nMax number of webhook configurations is 30\r\nSupported event types: TicketCreated, TprmTrigger, TicketClosed"
+      description: 'This will always add a new webhook endpoint, even if a similar webhook url has already been configured
+
+        Max number of webhook configurations is 30
+
+        Supported event types: TicketCreated, TprmTrigger, TicketClosed'
       requestBody:
         description: ''
         content:
@@ -85,6 +93,8 @@ paths:
           description: Bad Request
         '401':
           description: Unauthorized
+      operationId: postApiWebhooksSubscribe
+      x-operation-id-source: derived
   /api/Webhooks/Subscribe/{id}:
     patch:
       tags:
@@ -125,6 +135,8 @@ paths:
           description: Unauthorized
         '404':
           description: Not Found
+      operationId: patchApiWebhooksSubscribeById
+      x-operation-id-source: derived
   /api/Webhooks/Endpoint:
     post:
       tags:
@@ -167,6 +179,8 @@ paths:
           description: Bad Request
         '401':
           description: Unauthorized
+      operationId: postApiWebhooksEndpoint
+      x-operation-id-source: derived
     delete:
       tags:
       - Webhooks
@@ -179,6 +193,8 @@ paths:
           description: Bad Request
         '401':
           description: Unauthorized
+      operationId: deleteApiWebhooksEndpoint
+      x-operation-id-source: derived
   /api/Webhooks/Unsubscribe/{id}:
     delete:
       tags:
@@ -197,6 +213,8 @@ paths:
           description: Bad Request
         '401':
           description: Unauthorized
+      operationId: deleteApiWebhooksUnsubscribeById
+      x-operation-id-source: derived
 components:
   schemas:
     WebhookEventType:
@@ -212,6 +230,53 @@ components:
       - ExitRequireAttention
       - SystemStatusChange
       type: string
+    WebhookConfigurationsResponse:
+      type: object
+      properties:
+        items:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/WebhookConfigurationResponse'
+      additionalProperties: false
+    WebhookConfigurationResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        enabled:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        lastModified:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        endpoint:
+          type:
+          - string
+          - 'null'
+        headerName:
+          type:
+          - string
+          - 'null'
+        headerValue:
+          type:
+          - string
+          - 'null'
+        supportedEventTypes:
+          uniqueItems: true
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/WebhookEventType'
+      additionalProperties: false
     WebhookSubscribeRequest:
       required:
       - supportedEventTypes
@@ -230,23 +295,16 @@ components:
           description: The list of event types that the webhook will subscribe to.
         headerName:
           maxLength: 50
-          type: string
+          type:
+          - string
+          - 'null'
           description: Custom Header Name
-          nullable: true
         headerValue:
           maxLength: 50
-          type: string
+          type:
+          - string
+          - 'null'
           description: Custom Header Value
-          nullable: true
-      additionalProperties: false
-    WebhookConfigurationsResponse:
-      type: object
-      properties:
-        items:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/WebhookConfigurationResponse'
-          nullable: true
       additionalProperties: false
     WebhookSubscriberPostRequest:
       required:
@@ -266,53 +324,25 @@ components:
           description: The list of event types that the webhook will subscribe to.
         headerName:
           maxLength: 50
-          type: string
+          type:
+          - string
+          - 'null'
           description: Custom Header Name
-          nullable: true
         headerValue:
           maxLength: 50
-          type: string
+          type:
+          - string
+          - 'null'
           description: Custom Header Value
-          nullable: true
         id:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The Id for the desired webhook subscription.
-          nullable: true
-      additionalProperties: false
-    WebhookConfigurationResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          nullable: true
-        enabled:
-          type: boolean
-        createdAt:
-          type: string
-          format: date-time
-        lastModified:
-          type: string
-          format: date-time
-          nullable: true
-        endpoint:
-          type: string
-          nullable: true
-        headerName:
-          type: string
-          nullable: true
-        headerValue:
-          type: string
-          nullable: true
-        supportedEventTypes:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/WebhookEventType'
-          nullable: true
       additionalProperties: false
   securitySchemes:
     Bearer:
       type: apiKey
-      description: "Authorization header using the Bearer scheme. \r\n\r\nEnter 'Bearer' [space] and then your API Key in the text input below.\r\n\r\nExample: 'Bearer 12345abcdef'"
+      description: "Authorization header using the Bearer scheme. \n\nEnter 'Bearer' [space] and then your API Key in the text input below.\n\nExample: 'Bearer 12345abcdef'"
       name: Authorization
       in: header

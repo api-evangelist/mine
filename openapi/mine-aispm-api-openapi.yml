@@ -1,7 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: MineOS Aispm API
-  version: v1.0
+  title: Mine Aispm API
+  version: '1.0'
+  description: 'Operations tagged Aispm across 2 of this provider''s published API definitions: mine-openapi-original.json, mine-partners-openapi-original.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.portal.saymine.com/
   description: MineOS EU API Endpoint
@@ -19,10 +20,22 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Get api aispm ping
+      x-summary-source: derived
+      operationId: getApiAispmV1Ping
+      x-operation-id-source: derived
+    servers:
+    - url: https://api.portal.saymine.com/
+      description: MineOS EU API Endpoint
+    - url: https://api.us.portal.saymine.com/
+      description: MineOS US API Endpoint
 components:
   securitySchemes:
     Bearer:
       type: apiKey
-      description: "Authorization header using the Bearer scheme. \r\n\r\nEnter 'Bearer' [space] and then your API Key in the text input below.\r\n\r\nExample: 'Bearer 12345abcdef'"
+      description: "Authorization header using the Bearer scheme. \n\nEnter 'Bearer' [space] and then your API Key in the text input below.\n\nExample: 'Bearer 12345abcdef'"
       name: Authorization
       in: header
+x-refined-from:
+- mine-openapi-original.json
+- mine-partners-openapi-original.json

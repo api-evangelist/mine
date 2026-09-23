@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: MineOS Aispm Test API
+  title: MineOS Test API
   version: v1.0
 servers:
 - url: https://api.portal.saymine.com/
@@ -26,10 +26,12 @@ paths:
                 type: string
         '401':
           description: Unauthorized
+      operationId: getApiTestMe
+      x-operation-id-source: derived
 components:
   securitySchemes:
     Bearer:
       type: apiKey
-      description: "Authorization header using the Bearer scheme. \r\n\r\nEnter 'Bearer' [space] and then your API Key in the text input below.\r\n\r\nExample: 'Bearer 12345abcdef'"
+      description: "Authorization header using the Bearer scheme. \n\nEnter 'Bearer' [space] and then your API Key in the text input below.\n\nExample: 'Bearer 12345abcdef'"
       name: Authorization
       in: header

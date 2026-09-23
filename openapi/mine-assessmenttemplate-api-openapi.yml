@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: MineOS Aispm AssessmentTemplate API
+  title: MineOS Assessment Template API
   version: v1.0
 servers:
 - url: https://api.portal.saymine.com/
@@ -16,7 +16,7 @@ paths:
     get:
       tags:
       - AssessmentTemplate
-      summary: Retrieves a list of assessment templates available for the company.
+      summary: Retrieves a list of assessment templates available for the company
       parameters:
       - name: offset
         in: query
@@ -51,6 +51,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorPublicResponse'
+      operationId: getApiPublicV1TemplateList
+      x-operation-id-source: derived
 components:
   schemas:
     TemplatePublicResponse:
@@ -60,8 +62,9 @@ components:
           type: integer
           format: int32
         name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         type:
           $ref: '#/components/schemas/PageType'
         dataSourceSpecific:
@@ -69,15 +72,6 @@ components:
           description: A flag indicating whether the template is a Data Source Specific template.
       additionalProperties: false
       description: A limited public response for template pages.
-    ErrorPublicResponse:
-      type: object
-      properties:
-        internalErrorCode:
-          $ref: '#/components/schemas/InternalErrorCode'
-        message:
-          type: string
-          nullable: true
-      additionalProperties: false
     PageType:
       enum:
       - Empty
@@ -102,6 +96,16 @@ components:
       - DPIA_CCPA
       - ADMT_CCPA
       type: string
+    ErrorPublicResponse:
+      type: object
+      properties:
+        internalErrorCode:
+          $ref: '#/components/schemas/InternalErrorCode'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     InternalErrorCode:
       enum:
       - GeneralError
@@ -112,6 +116,6 @@ components:
   securitySchemes:
     Bearer:
       type: apiKey
-      description: "Authorization header using the Bearer scheme. \r\n\r\nEnter 'Bearer' [space] and then your API Key in the text input below.\r\n\r\nExample: 'Bearer 12345abcdef'"
+      description: "Authorization header using the Bearer scheme. \n\nEnter 'Bearer' [space] and then your API Key in the text input below.\n\nExample: 'Bearer 12345abcdef'"
       name: Authorization
       in: header

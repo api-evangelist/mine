@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: MineOS Aispm System API
+  title: MineOS System API
   version: v1.0
 servers:
 - url: https://api.portal.saymine.com/
@@ -56,6 +56,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorPublicResponse'
+      operationId: getApiPublicV1SystemList
+      x-operation-id-source: derived
   /api/public-v1/system/{id}:
     get:
       tags:
@@ -93,6 +95,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorPublicResponse'
+      operationId: getApiPublicV1SystemById
+      x-operation-id-source: derived
     patch:
       tags:
       - System
@@ -144,6 +148,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorPublicResponse'
+      operationId: patchApiPublicV1SystemById
+      x-operation-id-source: derived
   /api/public-v1/system/AddCatalogSystem:
     post:
       tags:
@@ -189,6 +195,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorPublicResponse'
+      operationId: postApiPublicV1SystemAddCatalogSystem
+      x-operation-id-source: derived
   /api/public-v1/system/AddCustomSystem:
     post:
       tags:
@@ -234,6 +242,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorPublicResponse'
+      operationId: postApiPublicV1SystemAddCustomSystem
+      x-operation-id-source: derived
   /api/public-v1/system/business-unit/list:
     get:
       tags:
@@ -260,6 +270,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorPublicResponse'
+      operationId: getApiPublicV1SystemBusinessUnitList
+      x-operation-id-source: derived
   /api/public-v1/system/{id}/ai-autofill:
     post:
       tags:
@@ -318,102 +330,155 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorPublicResponse'
+      operationId: postApiPublicV1SystemByIdAiAutofill
+      x-operation-id-source: derived
 components:
   schemas:
+    SystemAutofillTriggerPublicRequest:
+      type: object
+      properties:
+        customPrompt:
+          maxLength: 50000
+          type:
+          - string
+          - 'null'
+          description: Optional free-text prompt to steer the AI autofill.
+        correlationId:
+          type:
+          - string
+          - 'null'
+          description: Optional client-supplied correlation id. A value is generated when not supplied.
+        ownerEmail:
+          type:
+          - string
+          - 'null'
+          description: 'The email address of the data source owner. When supplied and the email resolves to an
+
+            agent in the company, the resulting run is attributed to that owner.'
+          format: email
+      additionalProperties: false
+    SystemPublicLeanResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SystemState:
+      enum:
+      - Unknown
+      - Radar
+      - Inventory
+      - Trash
+      - Merged
+      type: string
+    AddCatalogSystemPublicRequest:
+      required:
+      - domain
+      type: object
+      properties:
+        owner:
+          type:
+          - string
+          - 'null'
+        businessUnits:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        domain:
+          minLength: 1
+          type: string
+      additionalProperties: false
     PatchOperationType:
       enum:
       - Add
       - Remove
       - Replace
       type: string
-    SystemAutofillTriggerPublicRequest:
-      type: object
-      properties:
-        customPrompt:
-          maxLength: 50000
-          type: string
-          description: Optional free-text prompt to steer the AI autofill.
-          nullable: true
-        correlationId:
-          type: string
-          description: Optional client-supplied correlation id. A value is generated when not supplied.
-          nullable: true
-        ownerEmail:
-          type: string
-          description: "The email address of the data source owner. When supplied and the email resolves to an\r\nagent in the company, the resulting run is attributed to that owner."
-          format: email
-          nullable: true
-      additionalProperties: false
-    BusinessUnitPublicResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          nullable: true
-        name:
-          type: string
-          nullable: true
-        isCustom:
-          type: boolean
-      additionalProperties: false
-    SystemPublicPatchDtoJsonPatchRequest:
-      type: object
-      properties:
-        operations:
-          type: array
-          items:
-            $ref: '#/components/schemas/SystemPublicPatchDtoJsonPatchOperation'
-          nullable: true
-      additionalProperties: false
-    SystemPublicLeanResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          nullable: true
-        name:
-          type: string
-          nullable: true
-      additionalProperties: false
     SystemPublicResponse:
       type: object
       properties:
         id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         isCustom:
           type: boolean
         state:
           $ref: '#/components/schemas/SystemState'
         discoveryDate:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         discoveryMethods:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/DataSourceOriginEnum'
-          nullable: true
         serverLocations:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
-          nullable: true
         ownerEmail:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         stakeHolders:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
-          nullable: true
         reviewStatus:
           $ref: '#/components/schemas/ReviewStatus'
         removalInfo:
           $ref: '#/components/schemas/RemovalInfo'
+      additionalProperties: false
+    BusinessUnitPublicResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        isCustom:
+          type: boolean
+      additionalProperties: false
+    RemovalInfo:
+      type: object
+      properties:
+        removalJustification:
+          type:
+          - string
+          - 'null'
+        removedBy:
+          type:
+          - string
+          - 'null'
+        removeDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
       additionalProperties: false
     SystemPublicPatchDtoJsonPatchOperation:
       required:
@@ -429,106 +494,24 @@ components:
           type: string
         value: {}
       additionalProperties: false
-    SystemState:
-      enum:
-      - Unknown
-      - Radar
-      - Inventory
-      - Trash
-      - Merged
-      type: string
-    ErrorPublicResponse:
-      type: object
-      properties:
-        internalErrorCode:
-          $ref: '#/components/schemas/InternalErrorCode'
-        message:
-          type: string
-          nullable: true
-      additionalProperties: false
-    AddCatalogSystemPublicRequest:
-      required:
-      - domain
-      type: object
-      properties:
-        owner:
-          type: string
-          nullable: true
-        businessUnits:
-          type: array
-          items:
-            type: string
-          nullable: true
-        domain:
-          minLength: 1
-          type: string
-      additionalProperties: false
-    StatusOfReview:
-      enum:
-      - Draft
-      - Pending
-      - Approved
-      - InEvaluation
-      - Rejected
-      type: string
-    RemovalInfo:
-      type: object
-      properties:
-        removalJustification:
-          type: string
-          nullable: true
-        removedBy:
-          type: string
-          nullable: true
-        removeDate:
-          type: string
-          format: date-time
-          nullable: true
-      additionalProperties: false
     AddCustomSystemPublicRequest:
       required:
       - name
       type: object
       properties:
         owner:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         businessUnits:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
-          nullable: true
         name:
           minLength: 1
           type: string
-      additionalProperties: false
-    SystemAutofillTriggerPublicResponse:
-      type: object
-      properties:
-        runId:
-          type: integer
-          description: The id of the autofill run that was created. Use it to correlate suggestions and run status.
-          format: int32
-        correlationId:
-          type: string
-          description: "The correlation id associated with this autofill run. Echoes the value supplied in the\r\nrequest when present, otherwise a server-generated value."
-          nullable: true
-      additionalProperties: false
-    ReviewStatus:
-      type: object
-      properties:
-        lastActionDate:
-          type: string
-          format: date-time
-          nullable: true
-        reviewer:
-          type: string
-          nullable: true
-        agentReviewerId:
-          type: string
-          nullable: true
-        status:
-          $ref: '#/components/schemas/StatusOfReview'
       additionalProperties: false
     DataSourceOriginEnum:
       enum:
@@ -550,9 +533,71 @@ components:
       - AlreadyExists
       - InvalidArgument
       type: string
+    SystemPublicPatchDtoJsonPatchRequest:
+      type: object
+      properties:
+        operations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SystemPublicPatchDtoJsonPatchOperation'
+      additionalProperties: false
+    SystemAutofillTriggerPublicResponse:
+      type: object
+      properties:
+        runId:
+          type: integer
+          description: The id of the autofill run that was created. Use it to correlate suggestions and run status.
+          format: int32
+        correlationId:
+          type:
+          - string
+          - 'null'
+          description: 'The correlation id associated with this autofill run. Echoes the value supplied in the
+
+            request when present, otherwise a server-generated value.'
+      additionalProperties: false
+    StatusOfReview:
+      enum:
+      - Draft
+      - Pending
+      - Approved
+      - InEvaluation
+      - Rejected
+      type: string
+    ErrorPublicResponse:
+      type: object
+      properties:
+        internalErrorCode:
+          $ref: '#/components/schemas/InternalErrorCode'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ReviewStatus:
+      type: object
+      properties:
+        lastActionDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        reviewer:
+          type:
+          - string
+          - 'null'
+        agentReviewerId:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/StatusOfReview'
+      additionalProperties: false
   securitySchemes:
     Bearer:
       type: apiKey
-      description: "Authorization header using the Bearer scheme. \r\n\r\nEnter 'Bearer' [space] and then your API Key in the text input below.\r\n\r\nExample: 'Bearer 12345abcdef'"
+      description: "Authorization header using the Bearer scheme. \n\nEnter 'Bearer' [space] and then your API Key in the text input below.\n\nExample: 'Bearer 12345abcdef'"
       name: Authorization
       in: header

@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: MineOS Aispm Partners API
-  version: v1.0
+  title: Partners API
+  version: v1
 servers:
 - url: https://api.portal.saymine.com/
   description: MineOS EU API Endpoint
@@ -17,7 +17,9 @@ paths:
       tags:
       - Partners
       summary: Create a new account
-      description: "Creating an account results in an invite being sent to the email address in the request.\r\n            If the company already has an account, the request will be denied."
+      description: 'Creating an account results in an invite being sent to the email address in the request.
+
+        If the company already has an account, the request will be denied.'
       requestBody:
         content:
           application/json-patch+json:
@@ -45,6 +47,8 @@ paths:
           description: The request is not authenticated properly
         '409':
           description: The domain already has a company assigned to it
+      operationId: postApiPartnersActivateAccount
+      x-operation-id-source: derived
   /api/Partners/AccountInfo:
     get:
       tags:
@@ -71,15 +75,18 @@ paths:
           description: The request is not authenticated properly
         '403':
           description: The partner is not authorized to access the account ID or it does not exist
+      operationId: getApiPartnersAccountInfo
+      x-operation-id-source: derived
 components:
   schemas:
     InfoResponse:
       type: object
       properties:
         privacyCenterUrl:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Privacy Center URL
-          nullable: true
           example: https://acmecorp.saymine.io/acmecorp
         users:
           type: integer
@@ -101,9 +108,10 @@ components:
       type: object
       properties:
         accountId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Account ID of the newly created account.
-          nullable: true
           example: 8d78993b-73ac-4fa1-a3d3-a8fca7a061c7
       additionalProperties: false
     ActivationRequest:
@@ -116,7 +124,9 @@ components:
         userEmail:
           minLength: 1
           type: string
-          description: "Email address of the first user to have access to the new account.\r\nthe email address provided must be a business account (not a free domain like gmail/outlook/...)"
+          description: 'Email address of the first user to have access to the new account.
+
+            the email address provided must be a business account (not a free domain like gmail/outlook/...)'
           example: johndoe@acmecorp.com
         companyName:
           minLength: 1
@@ -124,9 +134,10 @@ components:
           description: Name of the company for which the account is created.
           example: Acme Corp
         cmpProductId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: 'Optional: If the customer for which the account is being created has a CMP solution, insert its product ID here so it will be linked from the platform. If you are not sure the product ID of you CMP solution, reach out to us.'
-          nullable: true
         domains:
           type: array
           items:
@@ -136,6 +147,6 @@ components:
   securitySchemes:
     Bearer:
       type: apiKey
-      description: "Authorization header using the Bearer scheme. \r\n\r\nEnter 'Bearer' [space] and then your API Key in the text input below.\r\n\r\nExample: 'Bearer 12345abcdef'"
+      description: "Authorization header using the Bearer scheme. \n\nEnter 'Bearer' [space] and then your API Key in the text input below.\n\nExample: 'Bearer 12345abcdef'"
       name: Authorization
       in: header
