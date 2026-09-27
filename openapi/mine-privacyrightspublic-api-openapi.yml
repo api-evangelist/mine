@@ -69,14 +69,27 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    PrivacyRightCreationResponse:
+    EligibleRegionResponse:
       type: object
       properties:
-        privacyRightId:
+        continent:
           type:
           - string
           - 'null'
-          description: The unique identifier of the created privacy right
+          description: The continent code of the eligible region.
+          example: EUR
+        country:
+          type:
+          - string
+          - 'null'
+          description: The ISO country code of the eligible region.
+          example: GB
+        state:
+          type:
+          - string
+          - 'null'
+          description: The state/province code of the eligible region, when applicable.
+          example: FL
       additionalProperties: false
     PrivacyRightResponse:
       type: object
@@ -124,25 +137,14 @@ components:
             $ref: '#/components/schemas/EligibleRegionResponse'
           description: The regions in which this privacy right is eligible to be exercised.
       additionalProperties: false
-    WorkflowSummary:
+    PrivacyRightCreationResponse:
       type: object
       properties:
-        workflowId:
+        privacyRightId:
           type:
           - string
           - 'null'
-          description: Workflow id.
-          example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
-        workflowName:
-          type:
-          - string
-          - 'null'
-          description: Workflow display name.
-          example: Employees
-        isDefault:
-          type: boolean
-          description: True when this is the right's default workflow.
-          example: true
+          description: The unique identifier of the created privacy right
       additionalProperties: false
     PrivacyRightRequest:
       required:
@@ -183,27 +185,25 @@ components:
           description: Indicates whether the privacy right is enabled. If true will automatically appear in the privacy form.
           example: true
       additionalProperties: false
-    EligibleRegionResponse:
+    WorkflowSummary:
       type: object
       properties:
-        continent:
+        workflowId:
           type:
           - string
           - 'null'
-          description: The continent code of the eligible region.
-          example: EUR
-        country:
+          description: Workflow id.
+          example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
+        workflowName:
           type:
           - string
           - 'null'
-          description: The ISO country code of the eligible region.
-          example: GB
-        state:
-          type:
-          - string
-          - 'null'
-          description: The state/province code of the eligible region, when applicable.
-          example: FL
+          description: Workflow display name.
+          example: Employees
+        isDefault:
+          type: boolean
+          description: True when this is the right's default workflow.
+          example: true
       additionalProperties: false
   securitySchemes:
     Bearer:

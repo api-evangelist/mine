@@ -49,6 +49,16 @@ created: '2026-07-17'
 modified: '2026-07-20'
 tags:
 - Company
+- Privacy
+- Data Governance
+- Privacy Operations
+- Consent Management
+- AI Governance
+- Third-Party Risk Management
+- Compliance
+- Security
+tags_raw:
+- Company
 - Data Privacy
 - Data Governance
 - Privacy Operations
@@ -262,6 +272,8 @@ apis:
   humanURL: https://developers.mineos.ai/docs/authentication
   baseURL: https://api.portal.saymine.com/
   tags:
+  - Ticketing
+  tags_raw:
   - Tickets
   properties:
   - type: OpenAPI
