@@ -75,14 +75,6 @@ paths:
       description: MineOS US API Endpoint
 components:
   schemas:
-    RenewRequest:
-      type: object
-      properties:
-        csr:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     EnrollmentRequest:
       type: object
       properties:
@@ -90,6 +82,14 @@ components:
           type:
           - string
           - 'null'
+        csr:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    RenewRequest:
+      type: object
+      properties:
         csr:
           type:
           - string

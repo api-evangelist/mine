@@ -81,188 +81,7 @@ paths:
       description: MineOS US API Endpoint
 components:
   schemas:
-    AgentVulnerabilityDto:
-      type: object
-      properties:
-        vulnerabilityCode:
-          type:
-          - string
-          - 'null'
-          description: The catalog code identifying this vulnerability type.
-        category:
-          type:
-          - string
-          - 'null'
-          description: The vulnerability's catalog category.
-        name:
-          type:
-          - string
-          - 'null'
-          description: The vulnerability's catalog name.
-        riskLevel:
-          type:
-          - string
-          - 'null'
-          description: The vulnerability's risk level.
-        confidence:
-          type: integer
-          description: Detector confidence, 0-100.
-          format: int32
-        scoreContribution:
-          type: integer
-          description: How much this finding contributes to the agent's overall posture score.
-          format: int32
-        codeRef:
-          type:
-          - string
-          - 'null'
-          description: A reference to where in the agent's definition this was found, if applicable.
-        snippetHash:
-          type:
-          - string
-          - 'null'
-          description: 'A hash of the matched snippet — never the raw matched value (P13: evidence is a reference, not the secret).'
-        attackSurface:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: The attack-surface tags this vulnerability exposes.
-        remediation:
-          type:
-          - string
-          - 'null'
-          description: Suggested remediation for this finding, if available.
-      additionalProperties: false
-      description: One vulnerability finding, joined to the vulnerability catalog.
-    AgentSkillDto:
-      type: object
-      properties:
-        skillKey:
-          type:
-          - string
-          - 'null'
-          description: The skill's stable key (identity within the skill catalog).
-        displayName:
-          type:
-          - string
-          - 'null'
-          description: The skill's display name, if known.
-        version:
-          type:
-          - string
-          - 'null'
-          description: The skill's version, if known.
-      additionalProperties: false
-      description: A skill this agent is configured to use.
-    AgentSignalDto:
-      type: object
-      properties:
-        signalType:
-          type:
-          - string
-          - 'null'
-          description: The kind of governance signal (e.g. data-access pattern, vendor exposure).
-        riskLevel:
-          type:
-          - string
-          - 'null'
-          description: The signal's risk level.
-        scoreContribution:
-          type: integer
-          description: How much this signal contributes to the agent's overall risk score.
-          format: int32
-        toolId:
-          type:
-          - string
-          - 'null'
-          description: The tool this signal relates to, if applicable.
-          format: uuid
-        vendorRef:
-          type:
-          - string
-          - 'null'
-          description: The vendor this signal relates to, if applicable.
-          format: uuid
-        explanation:
-          type:
-          - string
-          - 'null'
-          description: A human-readable explanation of this signal.
-        dataTypes:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: The categories of data this signal concerns, if applicable.
-        link:
-          type:
-          - string
-          - 'null'
-          description: A link to further reading about this signal, if available.
-      additionalProperties: false
-      description: One governance signal from an insights run.
-    DeviceAttributesDto:
-      type: object
-      properties:
-        macAddresses:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: The device's known MAC addresses.
-        osVersion:
-          type:
-          - string
-          - 'null'
-          description: The device's operating system version.
-        hardwareModel:
-          type:
-          - string
-          - 'null'
-          description: The device's hardware model.
-        arch:
-          type:
-          - string
-          - 'null'
-          description: The device's CPU architecture.
-      additionalProperties: false
-      description: Additional device attributes collected by the scanner.
-    PostureAnalysisRunSummaryDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The run's unique identifier.
-          format: uuid
-        skillspectorVersion:
-          type:
-          - string
-          - 'null'
-          description: The Skillspector scanner version used for this run.
-        status:
-          type:
-          - string
-          - 'null'
-          description: The run's lifecycle status.
-        postureScore:
-          type:
-          - integer
-          - 'null'
-          description: The posture score produced by this run, if completed.
-          format: int32
-        completedAt:
-          type:
-          - string
-          - 'null'
-          description: When this run completed, if it has.
-          format: date-time
-      additionalProperties: false
-      description: A summary of one posture-analysis run.
-    DeviceFullDto:
+    DeviceDetailDto:
       type: object
       properties:
         id:
@@ -331,8 +150,144 @@ components:
           description: The scanner version used on this device's last scan run.
         attributes:
           $ref: '#/components/schemas/DeviceAttributesDto'
+        agents:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DeviceAgentDto'
+          description: Every agent found on this device, each with its own finding state and full detail.
       additionalProperties: false
-      description: Every Device column ("show everything") plus the scanner version from its last scan run.
+      description: The full device plus every agent found on it, each fully expanded.
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      additionalProperties: {}
+    AgentBusinessPurposeDto:
+      type: object
+      properties:
+        purpose:
+          type:
+          - string
+          - 'null'
+          description: The classified business purpose (e.g. "customer support automation").
+        confidence:
+          type: integer
+          description: Classifier confidence, 0-100.
+          format: int32
+        explanation:
+          type:
+          - string
+          - 'null'
+          description: A short explanation of why this purpose was assigned.
+        insightsRunId:
+          type:
+          - string
+          - 'null'
+          description: The insights run that produced this classification, if any.
+          format: uuid
+      additionalProperties: false
+      description: 'Business-purpose classification as a full object (source: AgentBusinessPurpose, 1:1 with Agent).'
+    PostureAnalysisRunSummaryDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The run's unique identifier.
+          format: uuid
+        skillspectorVersion:
+          type:
+          - string
+          - 'null'
+          description: The Skillspector scanner version used for this run.
+        status:
+          type:
+          - string
+          - 'null'
+          description: The run's lifecycle status.
+        postureScore:
+          type:
+          - integer
+          - 'null'
+          description: The posture score produced by this run, if completed.
+          format: int32
+        completedAt:
+          type:
+          - string
+          - 'null'
+          description: When this run completed, if it has.
+          format: date-time
+      additionalProperties: false
+      description: A summary of one posture-analysis run.
+    AgentSignalDto:
+      type: object
+      properties:
+        signalType:
+          type:
+          - string
+          - 'null'
+          description: The kind of governance signal (e.g. data-access pattern, vendor exposure).
+        riskLevel:
+          type:
+          - string
+          - 'null'
+          description: The signal's risk level.
+        scoreContribution:
+          type: integer
+          description: How much this signal contributes to the agent's overall risk score.
+          format: int32
+        toolId:
+          type:
+          - string
+          - 'null'
+          description: The tool this signal relates to, if applicable.
+          format: uuid
+        vendorRef:
+          type:
+          - string
+          - 'null'
+          description: The vendor this signal relates to, if applicable.
+          format: uuid
+        explanation:
+          type:
+          - string
+          - 'null'
+          description: A human-readable explanation of this signal.
+        dataTypes:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: The categories of data this signal concerns, if applicable.
+        link:
+          type:
+          - string
+          - 'null'
+          description: A link to further reading about this signal, if available.
+      additionalProperties: false
+      description: One governance signal from an insights run.
     DeviceAgentDto:
       type: object
       properties:
@@ -452,92 +407,34 @@ components:
         posture run + BOTH risk-factor collections inlined (vulnerabilities + signals — still two separate
 
         arrays, never unioned, D35), plus this agent''s finding state on the device being viewed.'
-    AgentToolDto:
+    DeviceAttributesDto:
       type: object
       properties:
-        toolKey:
+        macAddresses:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: The device's known MAC addresses.
+        osVersion:
           type:
           - string
           - 'null'
-          description: The tool's stable key (identity within the tool catalog).
-        toolKind:
+          description: The device's operating system version.
+        hardwareModel:
           type:
           - string
           - 'null'
-          description: The tool's kind (e.g. built-in, MCP server, custom function).
-        displayName:
+          description: The device's hardware model.
+        arch:
           type:
           - string
           - 'null'
-          description: The tool's display name, if known.
-        resolutionState:
-          type:
-          - string
-          - 'null'
-          description: Whether this tool link resolved to a known catalog entry.
-        permissions:
-          type:
-          - string
-          - 'null'
-          description: The permissions declared for this tool, if any.
-        effectivePermissions:
-          type:
-          - string
-          - 'null'
-          description: The permissions this tool actually has effective access to, if computed.
+          description: The device's CPU architecture.
       additionalProperties: false
-      description: A tool this agent is configured to use.
-    AgentBusinessPurposeDto:
-      type: object
-      properties:
-        purpose:
-          type:
-          - string
-          - 'null'
-          description: The classified business purpose (e.g. "customer support automation").
-        confidence:
-          type: integer
-          description: Classifier confidence, 0-100.
-          format: int32
-        explanation:
-          type:
-          - string
-          - 'null'
-          description: A short explanation of why this purpose was assigned.
-        insightsRunId:
-          type:
-          - string
-          - 'null'
-          description: The insights run that produced this classification, if any.
-          format: uuid
-      additionalProperties: false
-      description: 'Business-purpose classification as a full object (source: AgentBusinessPurpose, 1:1 with Agent).'
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      additionalProperties: {}
-    DeviceDetailDto:
+      description: Additional device attributes collected by the scanner.
+    DeviceFullDto:
       type: object
       properties:
         id:
@@ -606,15 +503,118 @@ components:
           description: The scanner version used on this device's last scan run.
         attributes:
           $ref: '#/components/schemas/DeviceAttributesDto'
-        agents:
+      additionalProperties: false
+      description: Every Device column ("show everything") plus the scanner version from its last scan run.
+    AgentToolDto:
+      type: object
+      properties:
+        toolKey:
+          type:
+          - string
+          - 'null'
+          description: The tool's stable key (identity within the tool catalog).
+        toolKind:
+          type:
+          - string
+          - 'null'
+          description: The tool's kind (e.g. built-in, MCP server, custom function).
+        displayName:
+          type:
+          - string
+          - 'null'
+          description: The tool's display name, if known.
+        resolutionState:
+          type:
+          - string
+          - 'null'
+          description: Whether this tool link resolved to a known catalog entry.
+        permissions:
+          type:
+          - string
+          - 'null'
+          description: The permissions declared for this tool, if any.
+        effectivePermissions:
+          type:
+          - string
+          - 'null'
+          description: The permissions this tool actually has effective access to, if computed.
+      additionalProperties: false
+      description: A tool this agent is configured to use.
+    AgentVulnerabilityDto:
+      type: object
+      properties:
+        vulnerabilityCode:
+          type:
+          - string
+          - 'null'
+          description: The catalog code identifying this vulnerability type.
+        category:
+          type:
+          - string
+          - 'null'
+          description: The vulnerability's catalog category.
+        name:
+          type:
+          - string
+          - 'null'
+          description: The vulnerability's catalog name.
+        riskLevel:
+          type:
+          - string
+          - 'null'
+          description: The vulnerability's risk level.
+        confidence:
+          type: integer
+          description: Detector confidence, 0-100.
+          format: int32
+        scoreContribution:
+          type: integer
+          description: How much this finding contributes to the agent's overall posture score.
+          format: int32
+        codeRef:
+          type:
+          - string
+          - 'null'
+          description: A reference to where in the agent's definition this was found, if applicable.
+        snippetHash:
+          type:
+          - string
+          - 'null'
+          description: 'A hash of the matched snippet — never the raw matched value (P13: evidence is a reference, not the secret).'
+        attackSurface:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/DeviceAgentDto'
-          description: Every agent found on this device, each with its own finding state and full detail.
+            type: string
+          description: The attack-surface tags this vulnerability exposes.
+        remediation:
+          type:
+          - string
+          - 'null'
+          description: Suggested remediation for this finding, if available.
       additionalProperties: false
-      description: The full device plus every agent found on it, each fully expanded.
+      description: One vulnerability finding, joined to the vulnerability catalog.
+    AgentSkillDto:
+      type: object
+      properties:
+        skillKey:
+          type:
+          - string
+          - 'null'
+          description: The skill's stable key (identity within the skill catalog).
+        displayName:
+          type:
+          - string
+          - 'null'
+          description: The skill's display name, if known.
+        version:
+          type:
+          - string
+          - 'null'
+          description: The skill's version, if known.
+      additionalProperties: false
+      description: A skill this agent is configured to use.
   securitySchemes:
     Bearer:
       type: apiKey

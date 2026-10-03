@@ -712,49 +712,96 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    FileAttachment:
+    GroupAssignmentRequest:
+      required:
+      - groupId
       type: object
       properties:
-        label:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        path:
-          type:
-          - string
-          - 'null'
-        expiryDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
+        groupId:
+          minLength: 1
+          type: string
       additionalProperties: false
-    TicketWorkflowResponse:
+    AssignmentLogItem:
       type: object
       properties:
-        workflowId:
+        createdAt:
+          type: string
+          format: date-time
+        agentName:
           type:
           - string
           - 'null'
-          description: The workflow id assigned to the ticket.
-          example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
-        workflowName:
+        agentEmail:
           type:
           - string
           - 'null'
-          description: The display name of the workflow.
-          example: Employees
-        integrations:
+        groupNameAssignment:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/TicketWorkflowIntegration'
-          description: Integrations attached to the ticket's workflow.
+      additionalProperties: false
+    CloseTicketRequest:
+      type: object
+      properties:
+        ticketId:
+          type:
+          - string
+          - 'null'
+          description: Ticket ID to close
+          example: eb640185-9e3d-48f5-bf74-d7a3120814e8
+        reason:
+          $ref: '#/components/schemas/TicketCloseType'
+        test:
+          type: boolean
+          description: When set to true, request is not actually closed
+          example: false
+        skipAutomation:
+          type: boolean
+          description: 'When set to true, any close automations will be skipped (e.g. sending a complete notification to user)
+
+            If the ticket''s request type is undetermined, a close automation will be skipped'
+          example: false
+        templateId:
+          type:
+          - string
+          - 'null'
+          description: 'When provided, the ticket will be closed with the provided template.
+
+            The default workflow template will be used if not provided.'
+          example: 5f44e478-7fca-477c-94e4-a5a1e39da5d6
+      additionalProperties: false
+    TicketCustomIntegrationAction:
+      enum:
+      - Unknown
+      - Delete
+      - Copy
+      type: string
+    RequestCreateResponse:
+      type: object
+      properties:
+        ticketId:
+          type:
+          - string
+          - 'null'
+          description: ID of request that was created
+      additionalProperties: false
+    TicketLogs:
+      type: object
+      properties:
+        conversation:
+          $ref: '#/components/schemas/PortalMessageResponse'
+        notes:
+          $ref: '#/components/schemas/PortalNotesResponse'
+        integrationsLogs:
+          $ref: '#/components/schemas/IntegrationHistoryLog'
+        stateLogs:
+          $ref: '#/components/schemas/StateHistoryLog'
+        assignmentLogs:
+          $ref: '#/components/schemas/AssignmentLog'
+        requireAttentionLogs:
+          $ref: '#/components/schemas/RequireAttentionHistoryLog'
+        workflowChangesLogs:
+          $ref: '#/components/schemas/WorkflowChangeHistoryLog'
       additionalProperties: false
     IntegrationLogItem:
       type: object
@@ -792,26 +839,33 @@ components:
           - 'null'
           format: int32
       additionalProperties: false
-    DataSubjectType:
-      type: object
-      additionalProperties: false
-    CustomQuestion:
+    SingleRequestCreateResponse:
       type: object
       properties:
-        question:
+        ticketId:
           type:
           - string
           - 'null'
-        multiSelect:
+          description: ID of request that was created
+        alreadyExists:
           type: boolean
-        answers:
+          description: True if the request was already created in the last 1 minute
+          example: false
+        emailAddress:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            type: string
+          description: Email address of the requesting user
+        success:
+          type: boolean
+          description: Whether or not the request was created successfully
+        error:
+          type:
+          - string
+          - 'null'
+          description: Error message in case a request creation failed
       additionalProperties: false
-    PortalMessageResponse:
+    IntegrationHistoryLog:
       type: object
       properties:
         items:
@@ -819,8 +873,480 @@ components:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/MessageItem'
+            $ref: '#/components/schemas/IntegrationLogItem'
       additionalProperties: false
+    IntegrationState:
+      enum:
+      - Unknown
+      - NotStarted
+      - Starting
+      - InProgress
+      - Completed
+      - Failed
+      - NewData
+      - MissingIdentifiers
+      - PartialCompleted
+      type: string
+    DataSubjectType:
+      type: object
+      additionalProperties: false
+    NoteResponse:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        agentName:
+          type:
+          - string
+          - 'null'
+        agentEmail:
+          type:
+          - string
+          - 'null'
+        noteText:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    PublicNoteResponse:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        text:
+          type:
+          - string
+          - 'null'
+        createdBy:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    TicketMarkAsRequireAttentionRequest:
+      type: object
+      properties:
+        markedAsRequireAttention:
+          type: boolean
+      additionalProperties: false
+    ChangeWorkflowRequest:
+      required:
+      - workflowId
+      type: object
+      properties:
+        workflowId:
+          minLength: 1
+          type: string
+          description: Workflow id to assign to the ticket. Must belong to the same privacy right as the ticket.
+          example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
+      additionalProperties: false
+    TicketListItem:
+      type: object
+      properties:
+        ticketId:
+          type:
+          - string
+          - 'null'
+        requestId:
+          type:
+          - string
+          - 'null'
+        workflowId:
+          type:
+          - string
+          - 'null'
+        workflowName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    Reference:
+      type: object
+      properties:
+        fileName:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    TicketWorkflowResponse:
+      type: object
+      properties:
+        workflowId:
+          type:
+          - string
+          - 'null'
+          description: The workflow id assigned to the ticket.
+          example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
+        workflowName:
+          type:
+          - string
+          - 'null'
+          description: The display name of the workflow.
+          example: Employees
+        integrations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/TicketWorkflowIntegration'
+          description: Integrations attached to the ticket's workflow.
+      additionalProperties: false
+    ProcessingTaskInfo:
+      type: object
+      properties:
+        taskId:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        errorMsg:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/ActionStatus'
+        lastChanged:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      additionalProperties: false
+    WorkflowChangeLogItemResponse:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        changeSource:
+          $ref: '#/components/schemas/StateChangeSource'
+        agentName:
+          type:
+          - string
+          - 'null'
+        agentEmail:
+          type:
+          - string
+          - 'null'
+        apiKeyName:
+          type:
+          - string
+          - 'null'
+        fromWorkflowId:
+          type:
+          - string
+          - 'null'
+        fromWorkflowName:
+          type:
+          - string
+          - 'null'
+        toWorkflowId:
+          type:
+          - string
+          - 'null'
+        toWorkflowName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    FormCustomData:
+      type: object
+      properties:
+        state:
+          type:
+          - string
+          - 'null'
+        mobileNumber:
+          type:
+          - string
+          - 'null'
+        address:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        customQuestion:
+          $ref: '#/components/schemas/CustomQuestion'
+        authorizedAgentInfo:
+          $ref: '#/components/schemas/AuthorizedAgentInfo'
+        fileAttachment:
+          $ref: '#/components/schemas/FileAttachment'
+        formCustomEntries:
+          type:
+          - string
+          - 'null'
+        fullUrl:
+          type:
+          - string
+          - 'null'
+        referrer:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    FileAttachment:
+      type: object
+      properties:
+        label:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        path:
+          type:
+          - string
+          - 'null'
+        expiryDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      additionalProperties: false
+    PortalNotesResponse:
+      type: object
+      properties:
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/NoteResponse'
+      additionalProperties: false
+    StateLogItem:
+      type: object
+      properties:
+        state:
+          $ref: '#/components/schemas/TicketStateEnum'
+        changeSource:
+          $ref: '#/components/schemas/StateChangeSource'
+        reason:
+          $ref: '#/components/schemas/ReasonEnum'
+        agentEmail:
+          type:
+          - string
+          - 'null'
+        agentName:
+          type:
+          - string
+          - 'null'
+        createdAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        apiKeyName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    CustomIntegrationActionStatusRequest:
+      required:
+      - action
+      - status
+      type: object
+      properties:
+        test:
+          type: boolean
+          description: Used for testing; When Test is true, the status update will not actually apply
+        status:
+          $ref: '#/components/schemas/TicketCustomIntegrationStatus'
+        message:
+          type:
+          - string
+          - 'null'
+          description: Message that explains what changed, such as why the status changed
+        action:
+          $ref: '#/components/schemas/TicketCustomIntegrationAction'
+        data:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+          description: Data that was collected by this integration in JSON format. For use with 'Copy' action only
+        files:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Reference'
+          description: Data that was collected by this integration in files format. For use with 'Copy' action only
+      additionalProperties: false
+    DataSubjectTypeInfo:
+      type: object
+      properties:
+        dataSubjectType:
+          $ref: '#/components/schemas/DataSubjectType'
+        dataSubjectTypeLabel:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    MailDirection:
+      enum:
+      - Unknown
+      - Inbound
+      - Outbound
+      type: string
+    WorkflowChangeHistoryLog:
+      type: object
+      properties:
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/WorkflowChangeLogItemResponse'
+      additionalProperties: false
+    ExternalTicketState:
+      enum:
+      - Unknown
+      - Open
+      - Closed
+      - Redacted
+      - Processing
+      - Notify
+      - Redacting
+      - Unverified
+      - NotReady
+      - Edit
+      - Pending
+      type: string
+    TicketSource:
+      enum:
+      - Unknown
+      - MineApp
+      - Form
+      - Api
+      - EmailForwarding
+      - Manual
+      - Import
+      type: string
+    RequireAttentionHistoryLog:
+      type: object
+      properties:
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RequireAttentionLogItem'
+      additionalProperties: false
+    RequestType:
+      enum:
+      - Unknown
+      - Delete
+      - Get
+      - Fetch
+      - NoProcess
+      type: string
+    MessageItem:
+      type: object
+      properties:
+        timeStamp:
+          type: string
+          format: date-time
+        fromName:
+          type:
+          - string
+          - 'null'
+        fromAddress:
+          type:
+          - string
+          - 'null'
+        payloadText:
+          type:
+          - string
+          - 'null'
+        payloadHtml:
+          type:
+          - string
+          - 'null'
+        subject:
+          type:
+          - string
+          - 'null'
+        mailDirection:
+          $ref: '#/components/schemas/MailDirection'
+        hasAttachments:
+          type: boolean
+        replyTo:
+          type:
+          - string
+          - 'null'
+        automatic:
+          type: boolean
+      additionalProperties: false
+    AssignedTicket:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        autoPilotState:
+          $ref: '#/components/schemas/AutoPilotState'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    TicketUpdateMetadataRequest:
+      required:
+      - customFields
+      - ticketId
+      type: object
+      properties:
+        ticketId:
+          minLength: 1
+          type: string
+          description: TicketID of the request to update status for
+          example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
+        customFields:
+          type: object
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+          description: 'A collection of metadata fields to add to the request. Use the following special names to set custom identifiers: $phoneNumber, $internalId'
+        test:
+          type: boolean
+          description: Used for testing; When Test is true, the change will not actually apply
+      additionalProperties: false
+    AuthorizedAgentInfo:
+      type: object
+      properties:
+        authorizedAgentEmail:
+          type:
+          - string
+          - 'null'
+        verificationDocumentFile:
+          $ref: '#/components/schemas/FileAttachment'
+      additionalProperties: false
+    TicketCloseType:
+      enum:
+      - Unknown
+      - Completed
+      - Rejected
+      - UserPulled
+      - Other
+      type: string
     TicketWorkflowIntegration:
       type: object
       properties:
@@ -840,7 +1366,30 @@ components:
           - 'null'
           description: Display name of the integration.
       additionalProperties: false
-    WorkflowChangeHistoryLog:
+    ReasonEnum:
+      enum:
+      - Unknown
+      - Completed
+      - Rejected
+      - Canceled
+      - NewTicket
+      - Other
+      - EvidenceFinished
+      - Redacted
+      - NewForm
+      - EmailValidation
+      - ApiKey
+      - ManualCreation
+      - AgentEditEmailForwarding
+      - Import
+      - AcceptTicket
+      - RejectTicket
+      - DoneDeleting
+      - DoneCopying
+      - Reopened
+      - AutoTransition
+      type: string
+    PortalMessageResponse:
       type: object
       properties:
         items:
@@ -848,7 +1397,175 @@ components:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/WorkflowChangeLogItemResponse'
+            $ref: '#/components/schemas/MessageItem'
+      additionalProperties: false
+    RequestCreateWithPrivacyRightRequest:
+      required:
+      - countryCode
+      - email
+      - requestTypeId
+      type: object
+      properties:
+        firstName:
+          type:
+          - string
+          - 'null'
+          description: First name of the requesting user
+          example: John
+        lastName:
+          type:
+          - string
+          - 'null'
+          description: Last name of the requesting user
+          example: Doe
+        email:
+          minLength: 1
+          type: string
+          description: Email address of the requesting user
+          example: johndoe@example.com
+        countryCode:
+          minLength: 1
+          type: string
+          description: ISO-3166 country code of the requesting user
+          example: US
+        state:
+          type:
+          - string
+          - 'null'
+          description: ISO-3166 state code of the requesting user
+          example: AL
+        locale:
+          type:
+          - string
+          - 'null'
+          description: Locale of the requesting user. Must be in the format of 5 characters
+          example: en-US
+        customFields:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+          description: 'Custom fields collection to add to the request. Use the following special names to set identifiers for use with automations: $phonenumber, $internalId'
+        requestTypeId:
+          minLength: 1
+          type: string
+          description: Request type Id
+          example: delete
+        brandId:
+          type:
+          - string
+          - 'null'
+          description: Brand Id associated with the ticket
+        isAuthorizedAgent:
+          type: boolean
+          description: Flag that indicates whether the request requires an authorized agent flow. Defaults to false.
+          example: false
+        authorizedAgentEmail:
+          type:
+          - string
+          - 'null'
+          description: 'The email address of the authorized agent.
+
+            If this field is provided, the IsAuthorizedAgent flag must be set to true.
+
+            All user communication will be with the authorized agent.'
+          example: johndoe-parent@example.com
+        isUnverified:
+          type: boolean
+          description: When set to true, the request will open as unverified. The default value is false.
+          example: false
+        workflowId:
+          type:
+          - string
+          - 'null'
+          description: Workflow id to assign to the ticket. Must belong to the same privacy right as the ticket.
+          example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
+      additionalProperties: false
+    TicketGetMetadataResponse:
+      type: object
+      properties:
+        customFields:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+      additionalProperties: false
+    TicketStateEnum:
+      enum:
+      - Unknown
+      - Open
+      - Closed
+      - Redacted
+      - Processing
+      - Notify
+      - Redacting
+      - Unverified
+      - NotReady
+      - Edit
+      - Pending
+      type: string
+    ActionStatus:
+      enum:
+      - NotStarted
+      - MissingIdentifiers
+      - InProgress
+      - Completed
+      - Failed
+      - Expired
+      - PartialCompleted
+      type: string
+    CursorTokens:
+      type: object
+      properties:
+        before:
+          type:
+          - string
+          - 'null'
+        after:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    RequireAttentionLogItem:
+      type: object
+      properties:
+        markedAsRequireAttention:
+          type: boolean
+        changeSource:
+          $ref: '#/components/schemas/StateChangeSource'
+        agentEmail:
+          type:
+          - string
+          - 'null'
+        agentName:
+          type:
+          - string
+          - 'null'
+        createdAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        apiKeyName:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    NoteTextRequest:
+      type: object
+      properties:
+        noteText:
+          type:
+          - string
+          - 'null'
+          description: The contents of the note
+          example: This is a note...
       additionalProperties: false
     TicketInfo:
       type: object
@@ -995,42 +1712,6 @@ components:
           description: The display name of the workflow assigned to the ticket.
           example: Employees
       additionalProperties: false
-    GroupAssignmentRequest:
-      required:
-      - groupId
-      type: object
-      properties:
-        groupId:
-          minLength: 1
-          type: string
-      additionalProperties: false
-    StateLogItem:
-      type: object
-      properties:
-        state:
-          $ref: '#/components/schemas/TicketStateEnum'
-        changeSource:
-          $ref: '#/components/schemas/StateChangeSource'
-        reason:
-          $ref: '#/components/schemas/ReasonEnum'
-        agentEmail:
-          type:
-          - string
-          - 'null'
-        agentName:
-          type:
-          - string
-          - 'null'
-        createdAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        apiKeyName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     TicketCustomIntegrationStatus:
       enum:
       - Unknown
@@ -1040,12 +1721,56 @@ components:
       - UserNotFound
       - CannotDeleteData
       type: string
-    MailDirection:
+    AutoPilotState:
       enum:
-      - Unknown
-      - Inbound
-      - Outbound
+      - NotAssigned
+      - Assigned
+      - TimeOut
       type: string
+    RequestsListResponse:
+      type: object
+      properties:
+        requestIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        tickets:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/TicketListItem'
+        tokens:
+          $ref: '#/components/schemas/CursorTokens'
+      additionalProperties: false
+    TicketAssignAutoPilotResponse:
+      type: object
+      properties:
+        assignedTickets:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AssignedTicket'
+      additionalProperties: false
+    CustomQuestion:
+      type: object
+      properties:
+        question:
+          type:
+          - string
+          - 'null'
+        multiSelect:
+          type: boolean
+        answers:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
     StateHistoryLog:
       type: object
       properties:
@@ -1055,216 +1780,6 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/StateLogItem'
-      additionalProperties: false
-    PortalNotesResponse:
-      type: object
-      properties:
-        items:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/NoteResponse'
-      additionalProperties: false
-    FormCustomData:
-      type: object
-      properties:
-        state:
-          type:
-          - string
-          - 'null'
-        mobileNumber:
-          type:
-          - string
-          - 'null'
-        address:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-        customQuestion:
-          $ref: '#/components/schemas/CustomQuestion'
-        authorizedAgentInfo:
-          $ref: '#/components/schemas/AuthorizedAgentInfo'
-        fileAttachment:
-          $ref: '#/components/schemas/FileAttachment'
-        formCustomEntries:
-          type:
-          - string
-          - 'null'
-        fullUrl:
-          type:
-          - string
-          - 'null'
-        referrer:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    AuthorizedAgentInfo:
-      type: object
-      properties:
-        authorizedAgentEmail:
-          type:
-          - string
-          - 'null'
-        verificationDocumentFile:
-          $ref: '#/components/schemas/FileAttachment'
-      additionalProperties: false
-    ExternalTicketState:
-      enum:
-      - Unknown
-      - Open
-      - Closed
-      - Redacted
-      - Processing
-      - Notify
-      - Redacting
-      - Unverified
-      - NotReady
-      - Edit
-      - Pending
-      type: string
-    CustomIntegrationActionStatusRequest:
-      required:
-      - action
-      - status
-      type: object
-      properties:
-        test:
-          type: boolean
-          description: Used for testing; When Test is true, the status update will not actually apply
-        status:
-          $ref: '#/components/schemas/TicketCustomIntegrationStatus'
-        message:
-          type:
-          - string
-          - 'null'
-          description: Message that explains what changed, such as why the status changed
-        action:
-          $ref: '#/components/schemas/TicketCustomIntegrationAction'
-        data:
-          type:
-          - object
-          - 'null'
-          additionalProperties: {}
-          description: Data that was collected by this integration in JSON format. For use with 'Copy' action only
-        files:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Reference'
-          description: Data that was collected by this integration in files format. For use with 'Copy' action only
-      additionalProperties: false
-    TicketStateEnum:
-      enum:
-      - Unknown
-      - Open
-      - Closed
-      - Redacted
-      - Processing
-      - Notify
-      - Redacting
-      - Unverified
-      - NotReady
-      - Edit
-      - Pending
-      type: string
-    ActionStatus:
-      enum:
-      - NotStarted
-      - MissingIdentifiers
-      - InProgress
-      - Completed
-      - Failed
-      - Expired
-      - PartialCompleted
-      type: string
-    TicketUpdateMetadataRequest:
-      required:
-      - customFields
-      - ticketId
-      type: object
-      properties:
-        ticketId:
-          minLength: 1
-          type: string
-          description: TicketID of the request to update status for
-          example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
-        customFields:
-          type: object
-          additionalProperties:
-            type:
-            - string
-            - 'null'
-          description: 'A collection of metadata fields to add to the request. Use the following special names to set custom identifiers: $phoneNumber, $internalId'
-        test:
-          type: boolean
-          description: Used for testing; When Test is true, the change will not actually apply
-      additionalProperties: false
-    CloseTicketRequest:
-      type: object
-      properties:
-        ticketId:
-          type:
-          - string
-          - 'null'
-          description: Ticket ID to close
-          example: eb640185-9e3d-48f5-bf74-d7a3120814e8
-        reason:
-          $ref: '#/components/schemas/TicketCloseType'
-        test:
-          type: boolean
-          description: When set to true, request is not actually closed
-          example: false
-        skipAutomation:
-          type: boolean
-          description: 'When set to true, any close automations will be skipped (e.g. sending a complete notification to user)
-
-            If the ticket''s request type is undetermined, a close automation will be skipped'
-          example: false
-        templateId:
-          type:
-          - string
-          - 'null'
-          description: 'When provided, the ticket will be closed with the provided template.
-
-            The default workflow template will be used if not provided.'
-          example: 5f44e478-7fca-477c-94e4-a5a1e39da5d6
-      additionalProperties: false
-    TicketSource:
-      enum:
-      - Unknown
-      - MineApp
-      - Form
-      - Api
-      - EmailForwarding
-      - Manual
-      - Import
-      type: string
-    TicketListItem:
-      type: object
-      properties:
-        ticketId:
-          type:
-          - string
-          - 'null'
-        requestId:
-          type:
-          - string
-          - 'null'
-        workflowId:
-          type:
-          - string
-          - 'null'
-        workflowName:
-          type:
-          - string
-          - 'null'
       additionalProperties: false
     StateChangeSource:
       enum:
@@ -1288,520 +1803,6 @@ components:
       - AutoTransition
       - InternalOrchestration
       type: string
-    DataSubjectTypeInfo:
-      type: object
-      properties:
-        dataSubjectType:
-          $ref: '#/components/schemas/DataSubjectType'
-        dataSubjectTypeLabel:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    AssignmentLogItem:
-      type: object
-      properties:
-        createdAt:
-          type: string
-          format: date-time
-        agentName:
-          type:
-          - string
-          - 'null'
-        agentEmail:
-          type:
-          - string
-          - 'null'
-        groupNameAssignment:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    Reference:
-      type: object
-      properties:
-        fileName:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    SingleRequestCreateResponse:
-      type: object
-      properties:
-        ticketId:
-          type:
-          - string
-          - 'null'
-          description: ID of request that was created
-        alreadyExists:
-          type: boolean
-          description: True if the request was already created in the last 1 minute
-          example: false
-        emailAddress:
-          type:
-          - string
-          - 'null'
-          description: Email address of the requesting user
-        success:
-          type: boolean
-          description: Whether or not the request was created successfully
-        error:
-          type:
-          - string
-          - 'null'
-          description: Error message in case a request creation failed
-      additionalProperties: false
-    RequireAttentionHistoryLog:
-      type: object
-      properties:
-        items:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/RequireAttentionLogItem'
-      additionalProperties: false
-    RequestCreateResponse:
-      type: object
-      properties:
-        ticketId:
-          type:
-          - string
-          - 'null'
-          description: ID of request that was created
-      additionalProperties: false
-    RequestType:
-      enum:
-      - Unknown
-      - Delete
-      - Get
-      - Fetch
-      - NoProcess
-      type: string
-    ProcessingTaskInfo:
-      type: object
-      properties:
-        taskId:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        errorMsg:
-          type:
-          - string
-          - 'null'
-        status:
-          $ref: '#/components/schemas/ActionStatus'
-        lastChanged:
-          type:
-          - string
-          - 'null'
-          format: date-time
-      additionalProperties: false
-    IntegrationState:
-      enum:
-      - Unknown
-      - NotStarted
-      - Starting
-      - InProgress
-      - Completed
-      - Failed
-      - NewData
-      - MissingIdentifiers
-      - PartialCompleted
-      type: string
-    TicketMarkAsRequireAttentionRequest:
-      type: object
-      properties:
-        markedAsRequireAttention:
-          type: boolean
-      additionalProperties: false
-    TicketCustomIntegrationAction:
-      enum:
-      - Unknown
-      - Delete
-      - Copy
-      type: string
-    IntegrationHistoryLog:
-      type: object
-      properties:
-        items:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/IntegrationLogItem'
-      additionalProperties: false
-    TicketLogs:
-      type: object
-      properties:
-        conversation:
-          $ref: '#/components/schemas/PortalMessageResponse'
-        notes:
-          $ref: '#/components/schemas/PortalNotesResponse'
-        integrationsLogs:
-          $ref: '#/components/schemas/IntegrationHistoryLog'
-        stateLogs:
-          $ref: '#/components/schemas/StateHistoryLog'
-        assignmentLogs:
-          $ref: '#/components/schemas/AssignmentLog'
-        requireAttentionLogs:
-          $ref: '#/components/schemas/RequireAttentionHistoryLog'
-        workflowChangesLogs:
-          $ref: '#/components/schemas/WorkflowChangeHistoryLog'
-      additionalProperties: false
-    RequireAttentionLogItem:
-      type: object
-      properties:
-        markedAsRequireAttention:
-          type: boolean
-        changeSource:
-          $ref: '#/components/schemas/StateChangeSource'
-        agentEmail:
-          type:
-          - string
-          - 'null'
-        agentName:
-          type:
-          - string
-          - 'null'
-        createdAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        apiKeyName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    RequestCreateWithPrivacyRightRequest:
-      required:
-      - countryCode
-      - email
-      - requestTypeId
-      type: object
-      properties:
-        firstName:
-          type:
-          - string
-          - 'null'
-          description: First name of the requesting user
-          example: John
-        lastName:
-          type:
-          - string
-          - 'null'
-          description: Last name of the requesting user
-          example: Doe
-        email:
-          minLength: 1
-          type: string
-          description: Email address of the requesting user
-          example: johndoe@example.com
-        countryCode:
-          minLength: 1
-          type: string
-          description: ISO-3166 country code of the requesting user
-          example: US
-        state:
-          type:
-          - string
-          - 'null'
-          description: ISO-3166 state code of the requesting user
-          example: AL
-        locale:
-          type:
-          - string
-          - 'null'
-          description: Locale of the requesting user. Must be in the format of 5 characters
-          example: en-US
-        customFields:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type:
-            - string
-            - 'null'
-          description: 'Custom fields collection to add to the request. Use the following special names to set identifiers for use with automations: $phonenumber, $internalId'
-        requestTypeId:
-          minLength: 1
-          type: string
-          description: Request type Id
-          example: delete
-        brandId:
-          type:
-          - string
-          - 'null'
-          description: Brand Id associated with the ticket
-        isAuthorizedAgent:
-          type: boolean
-          description: Flag that indicates whether the request requires an authorized agent flow. Defaults to false.
-          example: false
-        authorizedAgentEmail:
-          type:
-          - string
-          - 'null'
-          description: 'The email address of the authorized agent.
-
-            If this field is provided, the IsAuthorizedAgent flag must be set to true.
-
-            All user communication will be with the authorized agent.'
-          example: johndoe-parent@example.com
-        isUnverified:
-          type: boolean
-          description: When set to true, the request will open as unverified. The default value is false.
-          example: false
-        workflowId:
-          type:
-          - string
-          - 'null'
-          description: Workflow id to assign to the ticket. Must belong to the same privacy right as the ticket.
-          example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
-      additionalProperties: false
-    TicketGetMetadataResponse:
-      type: object
-      properties:
-        customFields:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type:
-            - string
-            - 'null'
-      additionalProperties: false
-    NoteResponse:
-      type: object
-      properties:
-        createdAt:
-          type: string
-          format: date-time
-        agentName:
-          type:
-          - string
-          - 'null'
-        agentEmail:
-          type:
-          - string
-          - 'null'
-        noteText:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    PublicNoteResponse:
-      type: object
-      properties:
-        createdAt:
-          type: string
-          format: date-time
-        text:
-          type:
-          - string
-          - 'null'
-        createdBy:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    CursorTokens:
-      type: object
-      properties:
-        before:
-          type:
-          - string
-          - 'null'
-        after:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    DueDateUpdateRequest:
-      type: object
-      properties:
-        dueDate:
-          type:
-          - string
-          - 'null'
-          example: '2023-05-20'
-      additionalProperties: false
-    WorkflowChangeLogItemResponse:
-      type: object
-      properties:
-        createdAt:
-          type: string
-          format: date-time
-        changeSource:
-          $ref: '#/components/schemas/StateChangeSource'
-        agentName:
-          type:
-          - string
-          - 'null'
-        agentEmail:
-          type:
-          - string
-          - 'null'
-        apiKeyName:
-          type:
-          - string
-          - 'null'
-        fromWorkflowId:
-          type:
-          - string
-          - 'null'
-        fromWorkflowName:
-          type:
-          - string
-          - 'null'
-        toWorkflowId:
-          type:
-          - string
-          - 'null'
-        toWorkflowName:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    RequestsListResponse:
-      type: object
-      properties:
-        requestIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        tickets:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/TicketListItem'
-        tokens:
-          $ref: '#/components/schemas/CursorTokens'
-      additionalProperties: false
-    ChangeWorkflowRequest:
-      required:
-      - workflowId
-      type: object
-      properties:
-        workflowId:
-          minLength: 1
-          type: string
-          description: Workflow id to assign to the ticket. Must belong to the same privacy right as the ticket.
-          example: 3664feb0-b48c-4a8a-a81d-1303a4efc64f
-      additionalProperties: false
-    NoteTextRequest:
-      type: object
-      properties:
-        noteText:
-          type:
-          - string
-          - 'null'
-          description: The contents of the note
-          example: This is a note...
-      additionalProperties: false
-    TicketCloseType:
-      enum:
-      - Unknown
-      - Completed
-      - Rejected
-      - UserPulled
-      - Other
-      type: string
-    AssignedTicket:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        autoPilotState:
-          $ref: '#/components/schemas/AutoPilotState'
-        message:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    MessageItem:
-      type: object
-      properties:
-        timeStamp:
-          type: string
-          format: date-time
-        fromName:
-          type:
-          - string
-          - 'null'
-        fromAddress:
-          type:
-          - string
-          - 'null'
-        payloadText:
-          type:
-          - string
-          - 'null'
-        payloadHtml:
-          type:
-          - string
-          - 'null'
-        subject:
-          type:
-          - string
-          - 'null'
-        mailDirection:
-          $ref: '#/components/schemas/MailDirection'
-        hasAttachments:
-          type: boolean
-        replyTo:
-          type:
-          - string
-          - 'null'
-        automatic:
-          type: boolean
-      additionalProperties: false
-    ReasonEnum:
-      enum:
-      - Unknown
-      - Completed
-      - Rejected
-      - Canceled
-      - NewTicket
-      - Other
-      - EvidenceFinished
-      - Redacted
-      - NewForm
-      - EmailValidation
-      - ApiKey
-      - ManualCreation
-      - AgentEditEmailForwarding
-      - Import
-      - AcceptTicket
-      - RejectTicket
-      - DoneDeleting
-      - DoneCopying
-      - Reopened
-      - AutoTransition
-      type: string
-    AutoPilotState:
-      enum:
-      - NotAssigned
-      - Assigned
-      - TimeOut
-      type: string
     AssignmentLog:
       type: object
       properties:
@@ -1812,15 +1813,14 @@ components:
           items:
             $ref: '#/components/schemas/AssignmentLogItem'
       additionalProperties: false
-    TicketAssignAutoPilotResponse:
+    DueDateUpdateRequest:
       type: object
       properties:
-        assignedTickets:
+        dueDate:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/AssignedTicket'
+          example: '2023-05-20'
       additionalProperties: false
   securitySchemes:
     Bearer:

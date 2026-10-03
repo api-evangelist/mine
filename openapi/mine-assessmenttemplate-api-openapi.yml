@@ -55,30 +55,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    PageType:
-      enum:
-      - Empty
-      - AI
-      - TIA
-      - PIA
-      - LIA
-      - PA
-      - AI_EU
-      - ROI
-      - Vendor
-      - Privacy
-      - DPIA
-      - HIPAA
-      - COPPA
-      - NIST_CSF_Risk
-      - Third_Party_DPIA
-      - AI_Risk_Model_Developer_Focused
-      - DORA_ICT_Third_Party_Criticality
-      - DPIA_Simplified_ICO
-      - DPIA_Standard_GDPR_V2
-      - DPIA_CCPA
-      - ADMT_CCPA
-      type: string
     InternalErrorCode:
       enum:
       - GeneralError
@@ -103,6 +79,30 @@ components:
           description: A flag indicating whether the template is a Data Source Specific template.
       additionalProperties: false
       description: A limited public response for template pages.
+    PageType:
+      enum:
+      - Empty
+      - AI
+      - TIA
+      - PIA
+      - LIA
+      - PA
+      - AI_EU
+      - ROI
+      - Vendor
+      - Privacy
+      - DPIA
+      - HIPAA
+      - COPPA
+      - NIST_CSF_Risk
+      - Third_Party_DPIA
+      - AI_Risk_Model_Developer_Focused
+      - DORA_ICT_Third_Party_Criticality
+      - DPIA_Simplified_ICO
+      - DPIA_Standard_GDPR_V2
+      - DPIA_CCPA
+      - ADMT_CCPA
+      type: string
     ErrorPublicResponse:
       type: object
       properties:

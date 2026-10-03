@@ -334,116 +334,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    AddCustomSystemPublicRequest:
-      required:
-      - name
-      type: object
-      properties:
-        owner:
-          type:
-          - string
-          - 'null'
-        businessUnits:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        name:
-          minLength: 1
-          type: string
-      additionalProperties: false
-    ReviewStatus:
-      type: object
-      properties:
-        lastActionDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        reviewer:
-          type:
-          - string
-          - 'null'
-        agentReviewerId:
-          type:
-          - string
-          - 'null'
-        status:
-          $ref: '#/components/schemas/StatusOfReview'
-      additionalProperties: false
-    SystemPublicPatchDtoJsonPatchRequest:
-      type: object
-      properties:
-        operations:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SystemPublicPatchDtoJsonPatchOperation'
-      additionalProperties: false
-    ErrorPublicResponse:
-      type: object
-      properties:
-        internalErrorCode:
-          $ref: '#/components/schemas/InternalErrorCode'
-        message:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    InternalErrorCode:
-      enum:
-      - GeneralError
-      - NotFound
-      - AlreadyExists
-      - InvalidArgument
-      type: string
-    RemovalInfo:
-      type: object
-      properties:
-        removalJustification:
-          type:
-          - string
-          - 'null'
-        removedBy:
-          type:
-          - string
-          - 'null'
-        removeDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-      additionalProperties: false
-    SystemPublicPatchDtoJsonPatchOperation:
-      required:
-      - operationType
-      - path
-      - value
-      type: object
-      properties:
-        operationType:
-          $ref: '#/components/schemas/PatchOperationType'
-        path:
-          minLength: 1
-          type: string
-        value: {}
-      additionalProperties: false
-    BusinessUnitPublicResponse:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        isCustom:
-          type: boolean
-      additionalProperties: false
     DataSourceOriginEnum:
       enum:
       - Unknown
@@ -457,40 +347,19 @@ components:
       - GcpCloud
       - EntraSso
       type: string
-    SystemState:
-      enum:
-      - Unknown
-      - Radar
-      - Inventory
-      - Trash
-      - Merged
-      type: string
-    StatusOfReview:
-      enum:
-      - Draft
-      - Pending
-      - Approved
-      - InEvaluation
-      - Rejected
-      type: string
-    AddCatalogSystemPublicRequest:
-      required:
-      - domain
+    BusinessUnitPublicResponse:
       type: object
       properties:
-        owner:
+        id:
           type:
           - string
           - 'null'
-        businessUnits:
+        name:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            type: string
-        domain:
-          minLength: 1
-          type: string
+        isCustom:
+          type: boolean
       additionalProperties: false
     SystemPublicResponse:
       type: object
@@ -539,6 +408,101 @@ components:
         removalInfo:
           $ref: '#/components/schemas/RemovalInfo'
       additionalProperties: false
+    SystemPublicLeanResponse:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    SystemPublicPatchDtoJsonPatchOperation:
+      required:
+      - operationType
+      - path
+      - value
+      type: object
+      properties:
+        operationType:
+          $ref: '#/components/schemas/PatchOperationType'
+        path:
+          minLength: 1
+          type: string
+        value: {}
+      additionalProperties: false
+    StatusOfReview:
+      enum:
+      - Draft
+      - Pending
+      - Approved
+      - InEvaluation
+      - Rejected
+      type: string
+    SystemState:
+      enum:
+      - Unknown
+      - Radar
+      - Inventory
+      - Trash
+      - Merged
+      type: string
+    ErrorPublicResponse:
+      type: object
+      properties:
+        internalErrorCode:
+          $ref: '#/components/schemas/InternalErrorCode'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ReviewStatus:
+      type: object
+      properties:
+        lastActionDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        reviewer:
+          type:
+          - string
+          - 'null'
+        agentReviewerId:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/StatusOfReview'
+      additionalProperties: false
+    InternalErrorCode:
+      enum:
+      - GeneralError
+      - NotFound
+      - AlreadyExists
+      - InvalidArgument
+      type: string
+    RemovalInfo:
+      type: object
+      properties:
+        removalJustification:
+          type:
+          - string
+          - 'null'
+        removedBy:
+          type:
+          - string
+          - 'null'
+        removeDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      additionalProperties: false
     SystemAutofillTriggerPublicRequest:
       type: object
       properties:
@@ -562,18 +526,6 @@ components:
             agent in the company, the resulting run is attributed to that owner.'
           format: email
       additionalProperties: false
-    SystemPublicLeanResponse:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     SystemAutofillTriggerPublicResponse:
       type: object
       properties:
@@ -588,6 +540,54 @@ components:
           description: 'The correlation id associated with this autofill run. Echoes the value supplied in the
 
             request when present, otherwise a server-generated value.'
+      additionalProperties: false
+    AddCatalogSystemPublicRequest:
+      required:
+      - domain
+      type: object
+      properties:
+        owner:
+          type:
+          - string
+          - 'null'
+        businessUnits:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        domain:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    AddCustomSystemPublicRequest:
+      required:
+      - name
+      type: object
+      properties:
+        owner:
+          type:
+          - string
+          - 'null'
+        businessUnits:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        name:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    SystemPublicPatchDtoJsonPatchRequest:
+      type: object
+      properties:
+        operations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SystemPublicPatchDtoJsonPatchOperation'
       additionalProperties: false
     PatchOperationType:
       enum:

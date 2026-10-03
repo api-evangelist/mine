@@ -217,35 +217,19 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    WebhookSubscribeRequest:
-      required:
-      - supportedEventTypes
-      - url
-      type: object
-      properties:
-        url:
-          maxLength: 2048
-          minLength: 1
-          type: string
-          description: The URL to which the webhook will send the event data.
-        supportedEventTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/WebhookEventType'
-          description: The list of event types that the webhook will subscribe to.
-        headerName:
-          maxLength: 50
-          type:
-          - string
-          - 'null'
-          description: Custom Header Name
-        headerValue:
-          maxLength: 50
-          type:
-          - string
-          - 'null'
-          description: Custom Header Value
-      additionalProperties: false
+    WebhookEventType:
+      enum:
+      - Unknown
+      - TicketCreated
+      - WebhookSlim
+      - CustomIntegration
+      - SystemCreated
+      - EmployeeInactive
+      - TprmTrigger
+      - TicketClosed
+      - ExitRequireAttention
+      - SystemStatusChange
+      type: string
     WebhookSubscriberPostRequest:
       required:
       - supportedEventTypes
@@ -280,29 +264,6 @@ components:
           - 'null'
           description: The Id for the desired webhook subscription.
       additionalProperties: false
-    WebhookConfigurationsResponse:
-      type: object
-      properties:
-        items:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            $ref: '#/components/schemas/WebhookConfigurationResponse'
-      additionalProperties: false
-    WebhookEventType:
-      enum:
-      - Unknown
-      - TicketCreated
-      - WebhookSlim
-      - CustomIntegration
-      - SystemCreated
-      - EmployeeInactive
-      - TprmTrigger
-      - TicketClosed
-      - ExitRequireAttention
-      - SystemStatusChange
-      type: string
     WebhookConfigurationResponse:
       type: object
       properties:
@@ -339,6 +300,45 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/WebhookEventType'
+      additionalProperties: false
+    WebhookConfigurationsResponse:
+      type: object
+      properties:
+        items:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/WebhookConfigurationResponse'
+      additionalProperties: false
+    WebhookSubscribeRequest:
+      required:
+      - supportedEventTypes
+      - url
+      type: object
+      properties:
+        url:
+          maxLength: 2048
+          minLength: 1
+          type: string
+          description: The URL to which the webhook will send the event data.
+        supportedEventTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebhookEventType'
+          description: The list of event types that the webhook will subscribe to.
+        headerName:
+          maxLength: 50
+          type:
+          - string
+          - 'null'
+          description: Custom Header Name
+        headerValue:
+          maxLength: 50
+          type:
+          - string
+          - 'null'
+          description: Custom Header Value
       additionalProperties: false
   securitySchemes:
     Bearer:
