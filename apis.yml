@@ -295,6 +295,9 @@ apis:
   - type: DataModel
     url: data-model/mine-data-model.yml
 common:
+- type: CapabilityMap
+  url: capabilities/mine-capability-edges.yml
+  name: MINE Business Capability Map
 - type: Overlay
   url: overlays/mine-openapi-overlay.yaml
 - type: AgenticAccess
