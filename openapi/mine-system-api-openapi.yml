@@ -334,19 +334,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    DataSourceOriginEnum:
-      enum:
-      - Unknown
-      - Manual
-      - GoogleSso
-      - Email
-      - Website
-      - Automatic
-      - AwsCloud
-      - OktaSso
-      - GcpCloud
-      - EntraSso
-      type: string
     BusinessUnitPublicResponse:
       type: object
       properties:
@@ -361,6 +348,31 @@ components:
         isCustom:
           type: boolean
       additionalProperties: false
+    ReviewStatus:
+      type: object
+      properties:
+        lastActionDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        reviewer:
+          type:
+          - string
+          - 'null'
+        agentReviewerId:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/StatusOfReview'
+      additionalProperties: false
+    PatchOperationType:
+      enum:
+      - Add
+      - Remove
+      - Replace
+      type: string
     SystemPublicResponse:
       type: object
       properties:
@@ -408,18 +420,6 @@ components:
         removalInfo:
           $ref: '#/components/schemas/RemovalInfo'
       additionalProperties: false
-    SystemPublicLeanResponse:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     SystemPublicPatchDtoJsonPatchOperation:
       required:
       - operationType
@@ -434,58 +434,6 @@ components:
           type: string
         value: {}
       additionalProperties: false
-    StatusOfReview:
-      enum:
-      - Draft
-      - Pending
-      - Approved
-      - InEvaluation
-      - Rejected
-      type: string
-    SystemState:
-      enum:
-      - Unknown
-      - Radar
-      - Inventory
-      - Trash
-      - Merged
-      type: string
-    ErrorPublicResponse:
-      type: object
-      properties:
-        internalErrorCode:
-          $ref: '#/components/schemas/InternalErrorCode'
-        message:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    ReviewStatus:
-      type: object
-      properties:
-        lastActionDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        reviewer:
-          type:
-          - string
-          - 'null'
-        agentReviewerId:
-          type:
-          - string
-          - 'null'
-        status:
-          $ref: '#/components/schemas/StatusOfReview'
-      additionalProperties: false
-    InternalErrorCode:
-      enum:
-      - GeneralError
-      - NotFound
-      - AlreadyExists
-      - InvalidArgument
-      type: string
     RemovalInfo:
       type: object
       properties:
@@ -502,6 +450,16 @@ components:
           - string
           - 'null'
           format: date-time
+      additionalProperties: false
+    ErrorPublicResponse:
+      type: object
+      properties:
+        internalErrorCode:
+          $ref: '#/components/schemas/InternalErrorCode'
+        message:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     SystemAutofillTriggerPublicRequest:
       type: object
@@ -526,6 +484,19 @@ components:
             agent in the company, the resulting run is attributed to that owner.'
           format: email
       additionalProperties: false
+    DataSourceOriginEnum:
+      enum:
+      - Unknown
+      - Manual
+      - GoogleSso
+      - Email
+      - Website
+      - Automatic
+      - AwsCloud
+      - OktaSso
+      - GcpCloud
+      - EntraSso
+      type: string
     SystemAutofillTriggerPublicResponse:
       type: object
       properties:
@@ -540,6 +511,58 @@ components:
           description: 'The correlation id associated with this autofill run. Echoes the value supplied in the
 
             request when present, otherwise a server-generated value.'
+      additionalProperties: false
+    InternalErrorCode:
+      enum:
+      - GeneralError
+      - NotFound
+      - AlreadyExists
+      - InvalidArgument
+      type: string
+    StatusOfReview:
+      enum:
+      - Draft
+      - Pending
+      - Approved
+      - InEvaluation
+      - Rejected
+      type: string
+    SystemPublicPatchDtoJsonPatchRequest:
+      type: object
+      properties:
+        operations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SystemPublicPatchDtoJsonPatchOperation'
+      additionalProperties: false
+    SystemState:
+      enum:
+      - Unknown
+      - Radar
+      - Inventory
+      - Trash
+      - Merged
+      type: string
+    AddCustomSystemPublicRequest:
+      required:
+      - name
+      type: object
+      properties:
+        owner:
+          type:
+          - string
+          - 'null'
+        businessUnits:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        name:
+          minLength: 1
+          type: string
       additionalProperties: false
     AddCatalogSystemPublicRequest:
       required:
@@ -560,41 +583,18 @@ components:
           minLength: 1
           type: string
       additionalProperties: false
-    AddCustomSystemPublicRequest:
-      required:
-      - name
+    SystemPublicLeanResponse:
       type: object
       properties:
-        owner:
+        id:
           type:
           - string
           - 'null'
-        businessUnits:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
         name:
-          minLength: 1
-          type: string
-      additionalProperties: false
-    SystemPublicPatchDtoJsonPatchRequest:
-      type: object
-      properties:
-        operations:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/SystemPublicPatchDtoJsonPatchOperation'
       additionalProperties: false
-    PatchOperationType:
-      enum:
-      - Add
-      - Remove
-      - Replace
-      type: string
   securitySchemes:
     Bearer:
       type: apiKey

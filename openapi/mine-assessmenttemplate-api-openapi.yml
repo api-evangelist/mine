@@ -55,13 +55,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    InternalErrorCode:
-      enum:
-      - GeneralError
-      - NotFound
-      - AlreadyExists
-      - InvalidArgument
-      type: string
     TemplatePublicResponse:
       type: object
       properties:
@@ -79,6 +72,16 @@ components:
           description: A flag indicating whether the template is a Data Source Specific template.
       additionalProperties: false
       description: A limited public response for template pages.
+    ErrorPublicResponse:
+      type: object
+      properties:
+        internalErrorCode:
+          $ref: '#/components/schemas/InternalErrorCode'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     PageType:
       enum:
       - Empty
@@ -103,16 +106,13 @@ components:
       - DPIA_CCPA
       - ADMT_CCPA
       type: string
-    ErrorPublicResponse:
-      type: object
-      properties:
-        internalErrorCode:
-          $ref: '#/components/schemas/InternalErrorCode'
-        message:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
+    InternalErrorCode:
+      enum:
+      - GeneralError
+      - NotFound
+      - AlreadyExists
+      - InvalidArgument
+      type: string
   securitySchemes:
     Bearer:
       type: apiKey

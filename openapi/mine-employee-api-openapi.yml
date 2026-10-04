@@ -55,13 +55,16 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    InternalErrorCode:
-      enum:
-      - GeneralError
-      - NotFound
-      - AlreadyExists
-      - InvalidArgument
-      type: string
+    ErrorPublicResponse:
+      type: object
+      properties:
+        internalErrorCode:
+          $ref: '#/components/schemas/InternalErrorCode'
+        message:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
     EmployeePublicResponse:
       type: object
       properties:
@@ -82,16 +85,13 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    ErrorPublicResponse:
-      type: object
-      properties:
-        internalErrorCode:
-          $ref: '#/components/schemas/InternalErrorCode'
-        message:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
+    InternalErrorCode:
+      enum:
+      - GeneralError
+      - NotFound
+      - AlreadyExists
+      - InvalidArgument
+      type: string
   securitySchemes:
     Bearer:
       type: apiKey

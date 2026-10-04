@@ -380,73 +380,17 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    PublicFormSubmissionResponse:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        formSubmissionId:
-          type: integer
-          description: Duplicate of Id property, make FE use Id property instead and remove afterwards
-          format: int32
-          deprecated: true
-        content:
-          type:
-          - string
-          - 'null'
-        requestorEmails:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-      additionalProperties: false
-    PublicTagResponse:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The tag's unique numeric identifier.
-          format: int32
-        name:
-          type:
-          - string
-          - 'null'
-          description: The tag's user-facing name.
-        description:
-          type:
-          - string
-          - 'null'
-          description: Optional description for the tag.
-        type:
-          type:
-          - string
-          - 'null'
-          description: The tag's category (e.g. risk, framework).
-        isDefault:
-          type: boolean
-          description: True when this tag is a built-in default; false when it was defined by the company.
-      additionalProperties: false
-      description: A tag attached to an assessment.
-    CollabState:
+    CustomFieldInputType:
       enum:
-      - None
-      - Shared
-      - Submitted
+      - Text
+      - Select
       type: string
-    InputOptions:
+    ErrorPublicResponse:
       type: object
       properties:
-        id:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        color:
+        internalErrorCode:
+          $ref: '#/components/schemas/InternalErrorCode'
+        message:
           type:
           - string
           - 'null'
@@ -491,74 +435,109 @@ components:
         type is populated; all other fields are null. The whole object is null when the question
 
         type doesn''t reference any entities, or when the question has no values to resolve.'
-    PublicCollabInviteResponse:
+    InputOptions:
       type: object
       properties:
-        email:
+        id:
           type:
           - string
           - 'null'
-          description: The email address the invitation was sent to.
-        status:
-          $ref: '#/components/schemas/InviteStatusEnum'
-        revoker:
+        name:
           type:
           - string
           - 'null'
-          description: The id of the user who revoked the invitation, if it was revoked.
-        isDone:
-          type: boolean
-          description: True when the invited collaborator has marked their work as done.
-        inviter:
+        color:
           type:
           - string
           - 'null'
-          description: The id of the user who issued the invitation.
-        inviterEmail:
-          type:
-          - string
-          - 'null'
-          description: The email address of the user who issued the invitation.
-        invitedAt:
-          type:
-          - string
-          - 'null'
-          description: The UTC timestamp at which the invitation was issued.
-          format: date-time
-        revokedAt:
-          type:
-          - string
-          - 'null'
-          description: The UTC timestamp at which the invitation was revoked, if it was revoked.
-          format: date-time
       additionalProperties: false
-      description: A collaboration invitation issued for an assessment.
-    LockStatusResponse:
-      type: object
-      properties:
-        isLocked:
-          type: boolean
-        lockedBy:
-          type:
-          - string
-          - 'null'
-        lockedAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        lockedUntil:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        collabState:
-          $ref: '#/components/schemas/CollabState'
-      additionalProperties: false
-    CustomFieldInputType:
+    CollabState:
       enum:
-      - Text
-      - Select
+      - None
+      - Shared
+      - Submitted
+      type: string
+    PageType:
+      enum:
+      - Empty
+      - AI
+      - TIA
+      - PIA
+      - LIA
+      - PA
+      - AI_EU
+      - ROI
+      - Vendor
+      - Privacy
+      - DPIA
+      - HIPAA
+      - COPPA
+      - NIST_CSF_Risk
+      - Third_Party_DPIA
+      - AI_Risk_Model_Developer_Focused
+      - DORA_ICT_Third_Party_Criticality
+      - DPIA_Simplified_ICO
+      - DPIA_Standard_GDPR_V2
+      - DPIA_CCPA
+      - ADMT_CCPA
+      type: string
+    PublicFormSubmissionResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        formSubmissionId:
+          type: integer
+          description: Duplicate of Id property, make FE use Id property instead and remove afterwards
+          format: int32
+          deprecated: true
+        content:
+          type:
+          - string
+          - 'null'
+        requestorEmails:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    CreateFromTemplateRequest:
+      required:
+      - name
+      type: object
+      properties:
+        templateId:
+          type: integer
+          description: The Id of the template to create the new assessment from.
+          format: int32
+        name:
+          minLength: 1
+          type: string
+          description: The name of the new assessment.
+        systemId:
+          type:
+          - string
+          - 'null'
+          description: For a Vendor specific template, the systemId is required.
+        owner:
+          type:
+          - string
+          - 'null'
+          description: The Employee ID of the assessment's owner.
+        formSubmissionId:
+          type:
+          - integer
+          - 'null'
+          description: The ID of the form submission that this assessment is associated with.
+          format: int32
+      additionalProperties: false
+    InviteStatusEnum:
+      enum:
+      - Invited
+      - Revoked
+      - Expired
       type: string
     AssessmentQuestionTypeEnum:
       enum:
@@ -587,13 +566,142 @@ components:
       - Text
       - TextCustomField
       type: string
-    State:
-      enum:
-      - Draft
-      - Completed
-      - Reject
-      - InProgress
-      type: string
+    PublicSectionResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The section's unique identifier within the assessment.
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+          description: The section's machine-readable name.
+        label:
+          type:
+          - string
+          - 'null'
+          description: The section's user-facing label.
+        layout:
+          type:
+          - string
+          - 'null'
+          description: Optional layout schema for the section, in JSON.
+        templateSectionId:
+          type:
+          - string
+          - 'null'
+          description: The id of the template section this section was created from.
+        formControlId:
+          type:
+          - string
+          - 'null'
+          description: The form control id used to bind this section in collaboration forms.
+        questions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PublicQuestionResponse'
+          description: The questions in this section, in the order defined by the template.
+      additionalProperties: false
+      description: 'A section of an assessment. Sections group related questions and follow the order
+
+        defined by the assessment template.'
+    PublicDataTypeReference:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The data type id as stored on the question.
+        name:
+          type:
+          - string
+          - 'null'
+          description: The data type's display name.
+      additionalProperties: false
+      description: A resolved reference to a data type used by data type questions.
+    PublicTagResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The tag's unique numeric identifier.
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+          description: The tag's user-facing name.
+        description:
+          type:
+          - string
+          - 'null'
+          description: Optional description for the tag.
+        type:
+          type:
+          - string
+          - 'null'
+          description: The tag's category (e.g. risk, framework).
+        isDefault:
+          type: boolean
+          description: True when this tag is a built-in default; false when it was defined by the company.
+      additionalProperties: false
+      description: A tag attached to an assessment.
+    CollaboratorInviteRequest:
+      type: object
+      properties:
+        emailAddresses:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: A list of email addresses to which the collaborator invitation will be sent.
+        requestor:
+          type:
+          - string
+          - 'null'
+          description: Optional. The identifier of the user initiating the collaborator invitation request.
+        inviteMessage:
+          type:
+          - string
+          - 'null'
+          description: 'An optional custom message included in the invitation sent to collaborators.
+
+            This message provides additional context or instructions for the invited users.'
+      additionalProperties: false
+      description: Represents a request to invite collaborators to an assessment.
+    PublicFormSubmissionRequest:
+      type: object
+      properties:
+        systemId:
+          type:
+          - string
+          - 'null'
+          description: Optional. The data source id to be associated with the form submission.
+        content:
+          type:
+          - string
+          - 'null'
+          description: The content of the form submission, typically in JSON format.
+        assessmentId:
+          type:
+          - integer
+          - 'null'
+          description: Optional. If provided, the form submission will be associated with this existing assessment.
+          format: int32
+        requestorEmails:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Optional. The email addresses of the users submitting the form.
+      additionalProperties: false
     PublicAssessmentPageResponse:
       type: object
       properties:
@@ -718,155 +826,41 @@ components:
         metadata, its sections and questions, and resolved details for any entities the
 
         questions reference.'
-    CollaboratorInviteRequest:
+    InputConfig:
       type: object
       properties:
-        emailAddresses:
+        inputOptions:
           type:
           - array
           - 'null'
           items:
-            type: string
-          description: A list of email addresses to which the collaborator invitation will be sent.
-        requestor:
-          type:
-          - string
-          - 'null'
-          description: Optional. The identifier of the user initiating the collaborator invitation request.
-        inviteMessage:
-          type:
-          - string
-          - 'null'
-          description: 'An optional custom message included in the invitation sent to collaborators.
-
-            This message provides additional context or instructions for the invited users.'
+            $ref: '#/components/schemas/InputOptions'
+        useMultipleOptions:
+          type: boolean
+        useColors:
+          type: boolean
       additionalProperties: false
-      description: Represents a request to invite collaborators to an assessment.
-    PublicCustomFieldReference:
+    LockStatusResponse:
       type: object
       properties:
-        id:
+        isLocked:
+          type: boolean
+        lockedBy:
           type:
           - string
           - 'null'
-          description: The custom field's unique id.
-        name:
+        lockedAt:
           type:
           - string
           - 'null'
-          description: The custom field's user-facing label.
-        inputType:
-          $ref: '#/components/schemas/CustomFieldInputType'
-        inputData:
-          $ref: '#/components/schemas/InputConfig'
-        description:
+          format: date-time
+        lockedUntil:
           type:
           - string
           - 'null'
-          description: Optional description shown alongside the field.
-      additionalProperties: false
-      description: 'A resolved reference to a custom field used by dropdown and text custom-field
-
-        questions. Mirrors the underlying custom-field definition so consumers can render
-
-        the question (e.g. populate dropdown options, enforce input type) without an
-
-        additional metadata request.'
-    PublicSystemReference:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: The system's unique id.
-        name:
-          type:
-          - string
-          - 'null'
-          description: 'The system''s display name. Null when the id no longer resolves to an active
-
-            system in the company''s inventory.'
-      additionalProperties: false
-      description: A resolved reference to a system (data source). Returned for data source questions.
-    CreateFromTemplateRequest:
-      required:
-      - name
-      type: object
-      properties:
-        templateId:
-          type: integer
-          description: The Id of the template to create the new assessment from.
-          format: int32
-        name:
-          minLength: 1
-          type: string
-          description: The name of the new assessment.
-        systemId:
-          type:
-          - string
-          - 'null'
-          description: For a Vendor specific template, the systemId is required.
-        owner:
-          type:
-          - string
-          - 'null'
-          description: The Employee ID of the assessment's owner.
-        formSubmissionId:
-          type:
-          - integer
-          - 'null'
-          description: The ID of the form submission that this assessment is associated with.
-          format: int32
-      additionalProperties: false
-    PublicDataTypeReference:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: The data type id as stored on the question.
-        name:
-          type:
-          - string
-          - 'null'
-          description: The data type's display name.
-      additionalProperties: false
-      description: A resolved reference to a data type used by data type questions.
-    PageType:
-      enum:
-      - Empty
-      - AI
-      - TIA
-      - PIA
-      - LIA
-      - PA
-      - AI_EU
-      - ROI
-      - Vendor
-      - Privacy
-      - DPIA
-      - HIPAA
-      - COPPA
-      - NIST_CSF_Risk
-      - Third_Party_DPIA
-      - AI_Risk_Model_Developer_Focused
-      - DORA_ICT_Third_Party_Criticality
-      - DPIA_Simplified_ICO
-      - DPIA_Standard_GDPR_V2
-      - DPIA_CCPA
-      - ADMT_CCPA
-      type: string
-    ErrorPublicResponse:
-      type: object
-      properties:
-        internalErrorCode:
-          $ref: '#/components/schemas/InternalErrorCode'
-        message:
-          type:
-          - string
-          - 'null'
+          format: date-time
+        collabState:
+          $ref: '#/components/schemas/CollabState'
       additionalProperties: false
     PublicExternalEntityReference:
       type: object
@@ -890,99 +884,6 @@ components:
       description: 'A resolved reference to an entity used by data subject, business unit,
 
         transfer mechanism, and legal basis questions.'
-    InviteStatusEnum:
-      enum:
-      - Invited
-      - Revoked
-      - Expired
-      type: string
-    AssessmentFormSubmission:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        content:
-          type:
-          - string
-          - 'null'
-        systemId:
-          type:
-          - string
-          - 'null'
-        assessmentPageId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-      additionalProperties: false
-    PublicSectionResponse:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The section's unique identifier within the assessment.
-          format: int32
-        name:
-          type:
-          - string
-          - 'null'
-          description: The section's machine-readable name.
-        label:
-          type:
-          - string
-          - 'null'
-          description: The section's user-facing label.
-        layout:
-          type:
-          - string
-          - 'null'
-          description: Optional layout schema for the section, in JSON.
-        templateSectionId:
-          type:
-          - string
-          - 'null'
-          description: The id of the template section this section was created from.
-        formControlId:
-          type:
-          - string
-          - 'null'
-          description: The form control id used to bind this section in collaboration forms.
-        questions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/PublicQuestionResponse'
-          description: The questions in this section, in the order defined by the template.
-      additionalProperties: false
-      description: 'A section of an assessment. Sections group related questions and follow the order
-
-        defined by the assessment template.'
-    TriggerTprmPublicRequest:
-      type: object
-      properties:
-        systemId:
-          type:
-          - string
-          - 'null'
-          description: 'The system identifier. Accepts either the system''s ExternalId (ShortGuid)
-
-            or the system display name (for custom systems where the ExternalId is auto-generated).'
-        requestedBusinessUnits:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: Optional. The list of business units that are requested for the TPRM assessment.
-        formSubmissionId:
-          type:
-          - integer
-          - 'null'
-          description: Optional. If provided, the TPRM assessment will be associated with this existing form submission.
-          format: int32
-      additionalProperties: false
     PublicQuestionResponse:
       type: object
       properties:
@@ -1033,20 +934,74 @@ components:
         (data sources, data subjects, data types, custom fields, etc.) include the
 
         resolved entity details in Mine.Portal.Module.Assessments.Pages.Api.Public.Contracts.Responses.PublicQuestionResponse.ReferencedObjects.'
-    InputConfig:
+    AssessmentFormSubmission:
       type: object
       properties:
-        inputOptions:
+        id:
+          type: integer
+          format: int32
+        content:
+          type:
+          - string
+          - 'null'
+        systemId:
+          type:
+          - string
+          - 'null'
+        assessmentPageId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      additionalProperties: false
+    State:
+      enum:
+      - Draft
+      - Completed
+      - Reject
+      - InProgress
+      type: string
+    TriggerTprmPublicRequest:
+      type: object
+      properties:
+        systemId:
+          type:
+          - string
+          - 'null'
+          description: 'The system identifier. Accepts either the system''s ExternalId (ShortGuid)
+
+            or the system display name (for custom systems where the ExternalId is auto-generated).'
+        requestedBusinessUnits:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/InputOptions'
-        useMultipleOptions:
-          type: boolean
-        useColors:
-          type: boolean
+            type: string
+          description: Optional. The list of business units that are requested for the TPRM assessment.
+        formSubmissionId:
+          type:
+          - integer
+          - 'null'
+          description: Optional. If provided, the TPRM assessment will be associated with this existing form submission.
+          format: int32
       additionalProperties: false
+    PublicSystemReference:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The system's unique id.
+        name:
+          type:
+          - string
+          - 'null'
+          description: 'The system''s display name. Null when the id no longer resolves to an active
+
+            system in the company''s inventory.'
+      additionalProperties: false
+      description: A resolved reference to a system (data source). Returned for data source questions.
     InternalErrorCode:
       enum:
       - GeneralError
@@ -1054,33 +1009,78 @@ components:
       - AlreadyExists
       - InvalidArgument
       type: string
-    PublicFormSubmissionRequest:
+    PublicCollabInviteResponse:
       type: object
       properties:
-        systemId:
+        email:
           type:
           - string
           - 'null'
-          description: Optional. The data source id to be associated with the form submission.
-        content:
+          description: The email address the invitation was sent to.
+        status:
+          $ref: '#/components/schemas/InviteStatusEnum'
+        revoker:
           type:
           - string
           - 'null'
-          description: The content of the form submission, typically in JSON format.
-        assessmentId:
+          description: The id of the user who revoked the invitation, if it was revoked.
+        isDone:
+          type: boolean
+          description: True when the invited collaborator has marked their work as done.
+        inviter:
           type:
-          - integer
+          - string
           - 'null'
-          description: Optional. If provided, the form submission will be associated with this existing assessment.
-          format: int32
-        requestorEmails:
+          description: The id of the user who issued the invitation.
+        inviterEmail:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            type: string
-          description: Optional. The email addresses of the users submitting the form.
+          description: The email address of the user who issued the invitation.
+        invitedAt:
+          type:
+          - string
+          - 'null'
+          description: The UTC timestamp at which the invitation was issued.
+          format: date-time
+        revokedAt:
+          type:
+          - string
+          - 'null'
+          description: The UTC timestamp at which the invitation was revoked, if it was revoked.
+          format: date-time
       additionalProperties: false
+      description: A collaboration invitation issued for an assessment.
+    PublicCustomFieldReference:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The custom field's unique id.
+        name:
+          type:
+          - string
+          - 'null'
+          description: The custom field's user-facing label.
+        inputType:
+          $ref: '#/components/schemas/CustomFieldInputType'
+        inputData:
+          $ref: '#/components/schemas/InputConfig'
+        description:
+          type:
+          - string
+          - 'null'
+          description: Optional description shown alongside the field.
+      additionalProperties: false
+      description: 'A resolved reference to a custom field used by dropdown and text custom-field
+
+        questions. Mirrors the underlying custom-field definition so consumers can render
+
+        the question (e.g. populate dropdown options, enforce input type) without an
+
+        additional metadata request.'
   securitySchemes:
     Bearer:
       type: apiKey

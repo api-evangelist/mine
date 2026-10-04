@@ -79,6 +79,36 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ActivationRequest:
+      required:
+      - companyName
+      - domains
+      - userEmail
+      type: object
+      properties:
+        userEmail:
+          minLength: 1
+          type: string
+          description: 'Email address of the first user to have access to the new account.
+
+            the email address provided must be a business account (not a free domain like gmail/outlook/...)'
+          example: johndoe@acmecorp.com
+        companyName:
+          minLength: 1
+          type: string
+          description: Name of the company for which the account is created.
+          example: Acme Corp
+        cmpProductId:
+          type:
+          - string
+          - 'null'
+          description: 'Optional: If the customer for which the account is being created has a CMP solution, insert its product ID here so it will be linked from the platform. If you are not sure the product ID of you CMP solution, reach out to us.'
+        domains:
+          type: array
+          items:
+            type: string
+          description: A list of website domains that are used by the customer for which the account is being created. At least one is required.
+      additionalProperties: false
     InfoResponse:
       type: object
       properties:
@@ -113,36 +143,6 @@ components:
           - 'null'
           description: Account ID of the newly created account.
           example: 8d78993b-73ac-4fa1-a3d3-a8fca7a061c7
-      additionalProperties: false
-    ActivationRequest:
-      required:
-      - companyName
-      - domains
-      - userEmail
-      type: object
-      properties:
-        userEmail:
-          minLength: 1
-          type: string
-          description: 'Email address of the first user to have access to the new account.
-
-            the email address provided must be a business account (not a free domain like gmail/outlook/...)'
-          example: johndoe@acmecorp.com
-        companyName:
-          minLength: 1
-          type: string
-          description: Name of the company for which the account is created.
-          example: Acme Corp
-        cmpProductId:
-          type:
-          - string
-          - 'null'
-          description: 'Optional: If the customer for which the account is being created has a CMP solution, insert its product ID here so it will be linked from the platform. If you are not sure the product ID of you CMP solution, reach out to us.'
-        domains:
-          type: array
-          items:
-            type: string
-          description: A list of website domains that are used by the customer for which the account is being created. At least one is required.
       additionalProperties: false
   securitySchemes:
     Bearer:

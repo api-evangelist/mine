@@ -217,19 +217,16 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    WebhookEventType:
-      enum:
-      - Unknown
-      - TicketCreated
-      - WebhookSlim
-      - CustomIntegration
-      - SystemCreated
-      - EmployeeInactive
-      - TprmTrigger
-      - TicketClosed
-      - ExitRequireAttention
-      - SystemStatusChange
-      type: string
+    WebhookConfigurationsResponse:
+      type: object
+      properties:
+        items:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            $ref: '#/components/schemas/WebhookConfigurationResponse'
+      additionalProperties: false
     WebhookSubscriberPostRequest:
       required:
       - supportedEventTypes
@@ -301,16 +298,6 @@ components:
           items:
             $ref: '#/components/schemas/WebhookEventType'
       additionalProperties: false
-    WebhookConfigurationsResponse:
-      type: object
-      properties:
-        items:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            $ref: '#/components/schemas/WebhookConfigurationResponse'
-      additionalProperties: false
     WebhookSubscribeRequest:
       required:
       - supportedEventTypes
@@ -340,6 +327,19 @@ components:
           - 'null'
           description: Custom Header Value
       additionalProperties: false
+    WebhookEventType:
+      enum:
+      - Unknown
+      - TicketCreated
+      - WebhookSlim
+      - CustomIntegration
+      - SystemCreated
+      - EmployeeInactive
+      - TprmTrigger
+      - TicketClosed
+      - ExitRequireAttention
+      - SystemStatusChange
+      type: string
   securitySchemes:
     Bearer:
       type: apiKey
