@@ -64,6 +64,169 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-MINE is a company surfaced as a portfolio company of battery-ventures and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Mine (MineOS) is a data privacy, governance, and AI security posture management platform backed by Battery Ventures. Its MineOS product automates data mapping and inventory, data subject / privacy rights requests (DSR), consent management, vendor and third-party risk (TPRM) assessments, and AI governance (AISPM) for enterprises, while the MineApp helps individuals reclaim their personal data. The MineOS public API (OpenAPI 3.0.1, API-key Bearer auth, EU + US datacenter endpoints) exposes tickets / privacy requests, data-source systems, assessments and templates, employees and business units, AI agent and device discovery, and webhook subscriptions, plus a hosted remote MCP server for agent access.
 
-Backed by: battery-ventures
+**Areas:** Company · Privacy · Data Governance · Privacy Operations · Consent Management · AI Governance · Third-Party Risk Management · Compliance · Security
+
+## MINE on APIs.io
+
+Everything profiled for MINE is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/mine/](https://apis.io/providers/mine/)** — or go straight to one of the APIs or properties below.
+
+### APIs (18)
+
+- [MINE Aispm API](https://apis.io/apis/mine/mine-aispm-api/) — The Aispm API from MINE — 1 operation(s) for aispm.
+- [MINE AispmDeviceFlags API](https://apis.io/apis/mine/mine-aispmdeviceflags-api/) — The AispmDeviceFlags API from MINE — 1 operation(s) for aispmdeviceflags.
+- [MINE AispmEnroll API](https://apis.io/apis/mine/mine-aispmenroll-api/) — The AispmEnroll API from MINE — 2 operation(s) for aispmenroll.
+- [MINE AispmEnrollmentTokens API](https://apis.io/apis/mine/mine-aispmenrollmenttokens-api/) — The AispmEnrollmentTokens API from MINE — 3 operation(s) for aispmenrollmenttokens.
+- [MINE AispmIngest API](https://apis.io/apis/mine/mine-aispmingest-api/) — The AispmIngest API from MINE — 1 operation(s) for aispmingest.
+- [MINE AispmInsights API](https://apis.io/apis/mine/mine-aispminsights-api/) — The AispmInsights API from MINE — 1 operation(s) for aispminsights.
+- [MINE AispmPublicAgents API](https://apis.io/apis/mine/mine-aispmpublicagents-api/) — The AispmPublicAgents API from MINE — 4 operation(s) for aispmpublicagents.
+- [MINE AispmPublicDevices API](https://apis.io/apis/mine/mine-aispmpublicdevices-api/) — The AispmPublicDevices API from MINE — 2 operation(s) for aispmpublicdevices.
+- [MINE Assessment API](https://apis.io/apis/mine/mine-assessment-api/) — The Assessment API from MINE — 8 operation(s) for assessment.
+- [MINE AssessmentTemplate API](https://apis.io/apis/mine/mine-assessmenttemplate-api/) — The AssessmentTemplate API from MINE — 1 operation(s) for assessmenttemplate.
+- [MINE Employee API](https://apis.io/apis/mine/mine-employee-api/) — The Employee API from MINE — 1 operation(s) for employee.
+- [MINE EvidenceSearch API](https://apis.io/apis/mine/mine-evidencesearch-api/) — The EvidenceSearch API from MINE — 1 operation(s) for evidencesearch.
+- [MINE Partners API](https://apis.io/apis/mine/mine-partners-api/) — The Partners API from MINE — 2 operation(s) for partners.
+- [MINE PrivacyRightsPublic API](https://apis.io/apis/mine/mine-privacyrightspublic-api/) — The PrivacyRightsPublic API from MINE — 1 operation(s) for privacyrightspublic.
+- [MINE System API](https://apis.io/apis/mine/mine-system-api/) — The System API from MINE — 6 operation(s) for system.
+- [MINE Test API](https://apis.io/apis/mine/mine-test-api/) — The Test API from MINE — 1 operation(s) for test.
+- [MINE Tickets API](https://apis.io/apis/mine/mine-tickets-api/) — The Tickets API from MINE — 16 operation(s) for tickets.
+- [MINE Webhooks API](https://apis.io/apis/mine/mine-webhooks-api/) — The Webhooks API from MINE — 6 operation(s) for webhooks.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Mine Webhooks](https://apis.io/asyncapis/mine/mine-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [mineos](https://apis.io/servers/mine/mineos/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Mine Agentic Access](https://apis.io/agentic-access/mine/mine-agentic-access/)
+
+#### Collections (18)
+
+Postman and Open Collection request collections.
+
+- [MineOS Aispm API](https://apis.io/collections/mine/open-mine-aispm-api/)
+- [MineOS Aispm AispmDeviceFlags API](https://apis.io/collections/mine/open-mine-aispmdeviceflags-api/)
+- [MineOS Aispm AispmEnroll API](https://apis.io/collections/mine/open-mine-aispmenroll-api/)
+- [MineOS Aispm AispmEnrollmentTokens API](https://apis.io/collections/mine/open-mine-aispmenrollmenttokens-api/)
+- [MineOS Aispm AispmIngest API](https://apis.io/collections/mine/open-mine-aispmingest-api/)
+- [MineOS Aispm AispmInsights API](https://apis.io/collections/mine/open-mine-aispminsights-api/)
+- [MineOS Aispm AispmPublicAgents API](https://apis.io/collections/mine/open-mine-aispmpublicagents-api/)
+- [MineOS Aispm AispmPublicDevices API](https://apis.io/collections/mine/open-mine-aispmpublicdevices-api/)
+- [MineOS Aispm Assessment API](https://apis.io/collections/mine/open-mine-assessment-api/)
+- [MineOS Aispm AssessmentTemplate API](https://apis.io/collections/mine/open-mine-assessmenttemplate-api/)
+- [MineOS Aispm Employee API](https://apis.io/collections/mine/open-mine-employee-api/)
+- [MineOS Aispm EvidenceSearch API](https://apis.io/collections/mine/open-mine-evidencesearch-api/)
+- [MineOS Aispm Partners API](https://apis.io/collections/mine/open-mine-partners-api/)
+- [MineOS Aispm PrivacyRightsPublic API](https://apis.io/collections/mine/open-mine-privacyrightspublic-api/)
+- [MineOS Aispm System API](https://apis.io/collections/mine/open-mine-system-api/)
+- [MineOS Aispm Test API](https://apis.io/collections/mine/open-mine-test-api/)
+- [MineOS Aispm Tickets API](https://apis.io/collections/mine/open-mine-tickets-api/)
+- [MineOS Aispm Webhooks API](https://apis.io/collections/mine/open-mine-webhooks-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Mine Openapi Overlay](https://apis.io/overlays/mine/mine-openapi-overlay/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Mine Authentication](https://apis.io/security/mine/mine-authentication/)
+- [Mine Domain Security](https://apis.io/security/mine/mine-domain-security/)
+- [Mine Trust Center](https://apis.io/security/mine/mine-trust-center/)
+- [Mine Vulnerability Disclosure](https://apis.io/security/mine/mine-vulnerability-disclosure/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Mine Rate Limits](https://apis.io/rate-limits/mine/mine-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.mineos.ai)
+- [Documentation](https://docs.mineos.ai/knowledge)
+- [Getting started](https://developers.mineos.ai/docs/getting-started)
+- [API reference](https://developers.mineos.ai/reference/get_api-public-v1-system-list.md)
+- [Support](https://mineos.ai/get-in-touch)
+- [Blog](https://www.mineos.ai/hub/articles)
+- [Security](https://www.mineos.ai/about-security)
+- [Compliance](https://www.mineos.ai/about-security)
+- [Terms of service](https://www.mineos.ai/legal/portal-terms-of-service)
+- [Privacy policy](https://www.mineos.ai/legal/portal-privacy-policy)
+- [GitHub](https://github.com/saymine)
+- [Status](https://status.mineos.ai/)
+
+## API Evangelist rating
+
+**Kin Score 50.7** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 51.8 |
+| Contract governance | 18.2 |
+| Operational transparency | 57.9 |
+| Developer ergonomics | 54.2 |
+| Access clarity | 36.8 |
+
+**Agent readiness 35.5** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 35.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/mine/](https://apis.io/providers/mine/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for MINE: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/mine/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
